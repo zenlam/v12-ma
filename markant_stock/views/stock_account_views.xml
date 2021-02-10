@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- valuation wizard view: By datetime -->
+    <record id="view_stock_quantity_history_by_datetime" model="ir.ui.view">
+        <field name="name">Valuation Report by Datetime</field>
+        <field name="model">stock.quantity.history</field>
+        <field name="arch" type="xml">
+            <form string="Choose your date">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="no_of_days"/>
+                    </group>
+                    <div class="col-6 offset-6 mt8 text-warning">Allowed value for <strong># of days after start date</strong> is <strong>0 - 15</strong></div>
+                </group>
+                <footer>
+                    <button name="print_report" string="Print the inventory valuation"
+                            type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- valuation wizard action: By datetime -->
+    <record id="action_stock_inventory_valuation_by_datetime" model="ir.actions.act_window">
+        <field name="name">Inventory Valuation (PDF)</field>
+        <field name="res_model">stock.quantity.history</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="markant_stock.view_stock_quantity_history_by_datetime"/>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- valuation wizard menu: By datetime -->
+    <menuitem id="menu_valuation_by_datetime" name="Inventory Valuation (PDF)"
+              parent="stock.menu_warehouse_report" sequence="111"
+              action="action_stock_inventory_valuation_by_datetime"/>
+
+</odoo>

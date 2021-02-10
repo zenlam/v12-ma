@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_form_inherit_landed_cost">
+        <field name="name">purchase.order.landed.cost</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="is_caln_factor"/>
+                <field name="caln_factor" attrs="{'invisible': [('is_caln_factor', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button type="object" name="action_view_landed_cost" class="oe_stat_button" icon="fa-plane" attrs="{'invisible':[('state', '!=', 'purchase')]}" groups="stock.group_stock_manager">
+                    <field name="landed_cost_count" widget="statinfo" string="Landed Cost"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

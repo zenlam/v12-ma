@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="action_report_saleorder_markant_gross_total"
+                string="SO - Gross Total"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="markant_sale.report_saleorder_markant_gross_total"
+                name="markant_sale.report_saleorder_markant_gross_total"
+                print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+        />
+        <report
+                id="action_report_saleorder_markant_gross_disc_sub_total"
+                string="SO - Discount"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="markant_sale.report_saleorder_markant_gross_disc_sub_total"
+                name="markant_sale.report_saleorder_markant_gross_disc_sub_total"
+                print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+        />
+        <report
+                id="action_report_saleorder_markant_subtotal_only"
+                string="SO - Subtotal"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="markant_sale.report_saleorder_markant_subtotal_only"
+                name="markant_sale.report_saleorder_markant_subtotal_only"
+                print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+        />
+
+
+        <template id="report_saleorder_markant_gross_total">
+            <t t-call="web.html_container">
+                <t t-set="markant_show_gross_total" t-value="True"/>
+                <t t-set="markant_show_discount_total" t-value="False"/>
+                <t t-set="markant_subtotal_only" t-value="False"/>
+                <t t-set="markant_show_gross_total_in_section" t-value="True"/>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="markant_sale.report_saleorder_document_markant_sale" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+        <template id="report_saleorder_markant_gross_disc_sub_total">
+            <t t-call="web.html_container">
+                <t t-set="markant_show_gross_total" t-value="True"/>
+                <t t-set="markant_show_discount_total" t-value="True"/>
+                <t t-set="markant_subtotal_only" t-value="True"/>
+                <t t-set="markant_show_gross_total_in_section" t-value="False"/>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="markant_sale.report_saleorder_document_markant_sale" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+        <template id="report_saleorder_markant_subtotal_only">
+            <t t-call="web.html_container">
+                <t t-set="markant_subtotal_only" t-value="True"/>
+                <t t-set="markant_show_gross_total" t-value="False"/>
+                <t t-set="markant_show_discount_total" t-value="False"/>
+                <t t-set="markant_show_gross_total_in_section" t-value="False"/>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="markant_sale.report_saleorder_document_markant_sale" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+        <template id="report_saleorder_pro_forma_inherit" inherit_id="sale.report_saleorder_pro_forma">
+
+            <xpath expr="//t[@t-call='sale.report_saleorder_document']" position="replace">
+                <t t-if="doc.report_to_send == 'so_discount'">
+                    <t t-set="is_pro_forma" t-value="True"/>
+                    <t t-set="markant_show_gross_total" t-value="True"/>
+                    <t t-set="markant_show_discount_total" t-value="True"/>
+                    <t t-set="markant_subtotal_only" t-value="True"/>
+                    <t t-set="markant_show_gross_total_in_section" t-value="False"/>
+                </t>
+                <t t-elif="doc.report_to_send == 'so_sub_total'">
+                    <t t-set="is_pro_forma" t-value="True"/>
+                    <t t-set="markant_subtotal_only" t-value="True"/>
+                    <t t-set="markant_show_gross_total" t-value="False"/>
+                    <t t-set="markant_show_discount_total" t-value="False"/>
+                    <t t-set="markant_show_gross_total_in_section" t-value="False"/>
+                </t>
+                <t t-else="doc.report_to_send == 'so_gross_total'">
+                    <t t-set="is_pro_forma" t-value="True"/>
+                    <t t-set="markant_show_gross_total" t-value="True"/>
+                    <t t-set="markant_show_discount_total" t-value="False"/>
+                    <t t-set="markant_subtotal_only" t-value="False"/>
+                    <t t-set="markant_show_gross_total_in_section" t-value="True"/>
+                </t>
+                <t t-call="markant_sale.report_saleorder_document_markant_sale" t-lang="doc.partner_id.lang"/>
+            </xpath>
+
+        </template>
+
+        <record id="grosstotal_report_format" model="report.paperformat">
+            <field name="name">Grosstotal SO Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">25.50</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(4, ref('action_report_saleorder_markant_gross_total'))]"/>
+        </record>
+
+        <record id="discount_report_format" model="report.paperformat">
+            <field name="name">Discount SO Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">25.50</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(4, ref('action_report_saleorder_markant_gross_disc_sub_total'))]"/>
+        </record>
+
+        <record id="subtotal_report_format" model="report.paperformat">
+            <field name="name">Subtotal SO Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">25.50</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(4, ref('action_report_saleorder_markant_subtotal_only'))]"/>
+        </record>
+
+        <record id="proforma_report_format" model="report.paperformat">
+            <field name="name">Proforma Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">25.50</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(4, ref('sale.action_report_pro_forma_invoice'))]"/>
+        </record>
+
+
+        <!-- inherit the main template -->
+        <!-- <template id="report_saleorder_document_inherit_markant_sale" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//table[hasclass('o_main_table')]/thead//tr/th[@t-if='display_discount']" position="before">
+                <th t-if="markant_show_gross_total">Gross Total</th>
+            </xpath>
+            <xpath expr="//tbody[@class='sale_tbody']//tr[1]//td[@t-if='display_discount']" position="before">
+                <td t-if="markant_show_gross_total" class="text-right">
+                    <span t-field="line.price_gross_total"/>
+                </td>
+            </xpath>
+        </template> -->
+
+
+        <template id="report_saleorder_document_markant_sale">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+                <div class="page" style="margin-left: 20px;">
+                    <div class="oe_structure"/>
+                    <div class="row" style="margin-bottom: 32px; margin-left: 60px;">
+                        <div class="col-6">
+                            <div t-if="doc.partner_invoice_id">
+                                <strong style="text-decoration:underline;">Invoice address:</strong>
+                                <div t-field="doc.partner_invoice_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            </div>
+                        </div>
+                        <div class="col-5 offset-1">
+                            <div t-if="doc.partner_invoice_id">
+                                <strong style="text-decoration:underline;">Delivery address:</strong>
+                                <div t-field="doc.partner_shipping_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            </div>
+                        </div>
+                    </div>
+                    <h3>
+                        <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                            <span t-if="doc.state not in ['draft','sent']">Order confirmation</span>
+                            <span t-if="doc.state in ['draft','sent']">Quotation</span>
+                        </t>
+                        <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                            <span>Pro-Forma Invoice # </span>
+                        </t>
+                        <span t-field="doc.name"/>
+                    </h3>
+
+                    <div id="informations" class="row mt22 mb22" style="margin-left: -2px;">
+                        <table class="table table-sm table-borderless">
+                            <tr class="" style="" name="date_customer">
+                                <t t-if="doc.partner_id.name">
+                                    <td width="23%"><strong>Customer number</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span class="m-0" t-field="doc.partner_id.id" t-options='{"widget": "payment"}'/>
+                                    </td>
+                                </t>
+                                <td width="23%"><strong>Date</strong></td>
+                                <td> :</td>
+                                <td width="40%" style="text-right">
+                                    <span class="m-0" t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <tr class="" style="" name="order_contact">
+                                <t t-if="doc.client_order_ref">
+                                    <td width="23%"><strong>Your reference</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span class="m-0" t-field="doc.client_order_ref"/>
+                                    </td>
+                                </t>
+                                <t t-if="doc.date_order">
+                                    <td width="23%"><strong>Order date</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span class="m-0" t-esc="doc.date_order.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr class="" style="" name="description">
+                                <t t-if="doc.user_id">
+                                    <td width="23%"><strong>Contact Person</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.contact_person_id"/>
+                                    </td>
+                                </t>
+                                <t t-if="doc.origin">
+                                    <td width="23%"><strong>Incoterms</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.origin"/>
+                                    </td>
+                                </t>
+                                <t t-if="doc.carrier_name_id">
+                                    <td width="23%"><strong>Carrier</strong></td>
+                                    <td> :</td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.carrier_name_id"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Is there a discount on at least one line? -->
+                    <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
+
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr class="border-black">
+                                <!-- TODO: remove in master -->
+                                <t t-set="colspan" t-value="5"/>
+                                <th>Product Image</th>
+                                <th class="text-left">Description</th>
+                                <th class="text-right">Ordered</th>
+                                <!-- <th class="text-right">Uom</th> -->
+                                <th class="text-right" width="10%"><strong>Expected Delivery Date</strong></th>
+                                <th t-if="not doc.company_id.hide_tax_column" class="text-right">
+                                    <span class="text-right">VAT %</span>
+                                </th>
+                                <th class="text-right">Price p.p.</th>
+                                <th t-if="markant_show_gross_total" class="text-right">Gross Total</th>
+                                <t t-if="markant_show_discount_total">
+                                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                        <span>Disc.(%)</span>
+                                        <!-- TODO: remove in master -->
+                                        <t t-set="colspan" t-value="colspan+1"/>
+                                    </th>
+                                </t>
+                                <th class="text-right" t-if="markant_subtotal_only">
+                                    <t>SubTotal</t>
+                                    <!-- <t groups="account.group_show_line_subtotals_tax_included">Total Price</t> -->
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+
+                            <t t-set="current_subtotal" t-value="0"/>
+                            <t t-set="current_grosstotal" t-value="0"/>
+
+                            <t t-foreach="doc.order_line" t-as="line">
+
+                                <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+                                <!--  <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/> -->
+
+                                <t t-set="current_grosstotal" t-value="current_grosstotal + line.price_gross_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                    <t t-if="not line.display_type">
+                                        <td>
+                                            <t t-if="line.is_project_discount_line or line.is_min_admin_cost_rule_line or line.is_montage_install_rule_line">
+                                                <img style="padding-left: 13px;" t-att-src="'data:image/png;base64,%s' % to_text(line.product_image_small)"/>
+                                            </t>
+                                            <t t-if="not line.is_project_discount_line and not line.is_min_admin_cost_rule_line and not line.is_montage_install_rule_line">
+                                                <img t-att-src="'data:image/png;base64,%s' % to_text(line.product_image)" height="90px"/>
+                                            </t>
+                                        </td>
+                                        <td><span t-field="line.name"/></td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'% line.product_uom_qty"/>
+                                        </td>
+                                        <!-- <td class="text-right">
+                                            <span t-field="line.product_uom" groups="uom.group_uom"/>
+                                        </td> -->
+                                        <td class="text-right">
+                                            <t t-if="line.delivery_date">
+                                                <span t-esc="line.delivery_date.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+                                            </t>
+                                        </td>
+                                        <td t-if="not doc.company_id.hide_tax_column" class="text-right">
+                                            <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-if="markant_subtotal_only and not markant_show_gross_total and not markant_show_discount_total and not markant_show_gross_total_in_section">
+                                                <t t-if="line.product_uom_qty != 0">
+                                                    <span t-esc="'%.2f' % (line.price_subtotal/line.product_uom_qty)"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-field="line.price_unit"/>
+                                                </t> 
+                                            </t>
+                                            <t t-else="">
+                                                <span t-field="line.price_unit"/>
+                                            </t>
+                                        </td>
+                                        <td t-if="markant_show_gross_total" class="text-right">
+                                            <span t-field="line.price_gross_total"/>
+                                        </td>
+                                        <t t-if="markant_show_discount_total">
+                                            <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                                <span t-field="line.discount"/>
+                                            </td>
+                                        </t>
+                                        <td class="text-right o_price_total" t-if="markant_subtotal_only">
+                                            <span t-field="line.price_subtotal"/>
+                                            <!-- <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/> -->
+                                        </td>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_section'">
+                                        <td colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <t t-set="current_section" t-value="line"/>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                        <t t-set="current_grosstotal" t-value="0"/>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_note'">
+                                        <td colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                                <t t-if="markant_show_gross_total_in_section">
+                                    <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                        <tr class="is-subtotal text-right">
+                                            <td colspan="99">
+                                                <strong class="mr16">GrossTotal</strong>
+                                                <span
+                                                        t-esc="current_grosstotal"
+                                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                                />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <t t-if="markant_subtotal_only">
+                                    <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                        <tr class="is-subtotal text-right">
+                                            <td colspan="99">
+                                                <strong class="mr16">Subtotal</strong>
+                                                <span
+                                                        t-esc="current_subtotal"
+                                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                                />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div class="clearfix">
+                        <div id="total" class="row" name="total">
+                            <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                <table class="table table-sm">
+                                    <!-- <tr class="border-black o_subtotal" style="">
+                                        <td><strong>Subtotal</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_untaxed"/>
+                                        </td>
+                                    </tr> -->
+                                    <tr class="" style="" t-if="markant_show_gross_total">
+                                        <td><strong>Gross Total</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_gross_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="" style="" t-if="markant_show_discount_total">
+                                        <td><strong>Discount</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_discount_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_subtotal" style="" t-if="markant_subtotal_only">
+                                        <td><strong>Sum of Subtotal</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_subtotal_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="" style="" t-if="doc.is_project_discount">
+                                        <td><strong>Project Discount</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_project_disc_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="" style="" t-if="doc.is_montage_install_rule">
+                                        <td><strong>Installation costs</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_installation_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="" style="" t-if="doc.is_min_admin_cost_rule">
+                                        <td><strong>Administration costs</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_admin_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_subtotal" style="">
+                                        <td><strong>Total ex. VAT</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="" style="">
+                                        <td><strong>VAT amount</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <!--  <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
+                                         <tr style="">
+                                             <t t-if="amount_by_group[3] == 1 and doc.amount_untaxed == amount_by_group[2]">
+                                                 <td>
+                                                     <span t-esc="amount_by_group[0]"/>
+                                                     <span>&amp;nbsp;<span>on</span>&amp;nbsp;<t t-esc="amount_by_group[2]" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></span>
+                                                 </td>
+                                                 <td class="text-right o_price_total">
+                                                     <span t-esc="amount_by_group[1]"
+                                                         t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                                 </td>
+                                             </t>
+                                             <t t-else ="">
+                                                 <td>
+                                                     <span t-esc="amount_by_group[0]"/>
+                                                 </td>
+                                                 <td class="text-right o_price_total">
+                                                     <span t-esc="amount_by_group[1]"
+                                                         t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                                 </td>
+                                             </t>
+                                         </tr>
+                                     </t> -->
+                                    <tr class="border-black o_total">
+                                        <td><strong>Total incl. VAT</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                        <td><strong>Currency</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.currency_id"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p t-field="doc.terms_note"/>
+                    <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                        <t t-set="rec" t-value="request.env['proforma.account.term'].search([('active', '=', True)])"/>
+                        <t t-if="rec">
+                            <t t-esc="rec.note"/>
+                        </t>
+                        <t t-else="">
+                            <p t-if="doc.payment_term_id.note">
+                                <span t-field="doc.payment_term_id.note"/>
+                            </p>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <p t-if="doc.payment_term_id.note">
+                            <span t-field="doc.payment_term_id.note"/>
+                        </p>
+                    </t>
+                    <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.sudo().note">
+                        <strong>Fiscal Position Remark:</strong>
+                        <span t-field="doc.fiscal_position_id.sudo().note"/>
+                    </p>
+
+                    <div t-if="doc.sale_order_option_ids and doc.state not in ['done', 'sale']" class="mt32">
+                        <t t-set="has_option_discount" t-value="any(doc.sale_order_option_ids.filtered(lambda o: o.discount != 0.0))" />
+                        <h4>
+                            <span>Optional Products</span>
+                        </h4>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Product Image</th>
+                                    <th class="text-left">Description</th>
+                                    <th t-if="has_option_discount" groups="sale.group_discount_per_so_line" class="text-left"></th>
+                                    <th class="text-right">Price p.p.</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <tr t-foreach="doc.sale_order_option_ids" t-as="option">
+                                    <td>
+                                        <img style="padding-left: 13px;" t-att-src="'data:image/png;base64,%s' % to_text(option.product_id.image_small)"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="option.name"/>
+                                    </td>
+                                    <td t-if="has_option_discount" groups="sale.group_discount_per_so_line">
+                                        <strong t-if="option.discount != 0.0" class="text-info">
+                                            <t t-esc="((option.discount % 1) and '%s' or '%d') % option.discount"/>% discount
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <strong class="text-right">
+                                            <div t-field="option.price_unit"
+                                                 t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                                 t-att-style="option.discount and 'text-decoration: line-through' or None"
+                                                 t-att-class="option.discount and 'text-danger' or None"/>
+                                            <div t-if="option.discount">
+                                                <t t-esc="'%.2f' % ((1-option.discount / 100.0) * option.price_unit)"/>
+                                            </div>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div t-if="doc.signature" class="mt32 ml16 mr16" name="signature">
+                        <div class="offset-8">
+                            <strong>Signature</strong>
+                        </div>
+                        <div class="offset-8">
+                            <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                        </div>
+                        <div class="offset-8 text-center">
+                            <p t-field="doc.signed_by"/>
+                        </div>
+                    </div>
+
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="sale_quotation_order_report_inherit_markant_sale" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//table[hasclass('o_main_table')]/thead//tr/th[1]" position="before">
+                <th>Product Image</th>
+            </xpath>
+            <xpath expr="//tbody[@class='sale_tbody']//tr[1]//td[1]" position="before">
+                <td>
+                    <t t-if="line.is_project_discount_line or line.is_min_admin_cost_rule_line or line.is_montage_install_rule_line">
+                        <img style="padding-left:13px;" t-att-src="'data:image/png;base64,%s' % to_text(line.product_image_small)"/>
+                    </t>
+                    <t t-if="not line.is_project_discount_line and not line.is_min_admin_cost_rule_line and not line.is_montage_install_rule_line">
+                        <img t-att-src="'data:image/png;base64,%s' % to_text(line.product_image)" height="90px"/>
+                    </t>
+                </td>
+            </xpath>
+            <xpath expr="//td[span[@t-field='line.product_uom_qty']]" position="after">
+                <td class="text-right">
+                    <span t-field="line.product_uom" groups="uom.group_uom"/>
+                </td>
+            </xpath>
+            <xpath expr="//span[@t-field='line.product_uom_qty']" position="replace">
+                <span t-esc="'%.2f'% line.product_uom_qty"/>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/thead//tr/th[5]" position="replace">
+                <th t-if="not doc.company_id.hide_tax_column" class="text-right">
+                    <span class="text-right">VAT %</span>
+                </th>
+            </xpath>
+            <xpath expr="//td[span[@t-field='line.discount']]/following-sibling::td[1]" position="replace">
+                <td t-if="not doc.company_id.hide_tax_column" class="text-right">
+                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                </td>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[3]" position="after">
+                <th class="text-right">Uom</th>
+            </xpath>
+
+            <xpath expr="//tbody[@class='sale_tbody']//span[@t-field='line.product_uom']" position="replace"/>
+
+            <xpath expr="//div[@id='informations']//p[@t-field='doc.confirmation_date']" position="replace">
+                <p class="m-0" t-esc="doc.confirmation_date.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+            </xpath>
+            <xpath expr="//div[@id='informations']//p[@t-field='doc.date_order']" position="replace">
+                <p class="m-0" t-esc="doc.date_order.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

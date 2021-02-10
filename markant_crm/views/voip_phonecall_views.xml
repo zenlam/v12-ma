@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_voip_phonecall_tree_view_inherit" model="ir.ui.view">
+        <field name="name">Phonecalls Tree</field>
+        <field name="model">voip.phonecall</field>
+        <field name="inherit_id" ref="markant_phonecall.markant_voip_phonecall_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='in_queue']" position="before">
+                <field name="display_creation_group"/>
+                <field name="group_to_release" widget="many2many_tags"/>
+                <field name="real_creation_group" widget="many2many_tags" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_voip_phonecall_form_view_inherit" model="ir.ui.view">
+        <field name="name">Phonecalls Form</field>
+        <field name="model">voip.phonecall</field>
+        <field name="inherit_id" ref="markant_phonecall.markant_voip_phonecall_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='next_action_summary']" position="after">
+                <field name="set_from_action" invisible="1"/>
+                <field name="display_creation_group" options="{'no_open': 1}"/>
+                <field name="real_creation_group" widget="many2many_tags" invisible="1"/>
+                <field name="group_to_release" widget="many2many_tags"
+                       groups="markant_crm.group_call_visit_director,markant_crm.group_call_visit_management,markant_crm.group_call_visit_purchase"
+                       options="{'no_open': 1, 'no_create_edit': 1, 'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_voip_sales_phonecall_crm" name="Phone Calls"
+              sequence="20" parent="crm.crm_menu_root"/>
+    <menuitem id="menu_voip_sales_phonecall_visit_crm" name="Call / Visit Report"
+              sequence="1" parent="menu_voip_sales_phonecall_crm"
+              action="markant_phonecall.markant_voip_phonecall_action" />
+
+</odoo>

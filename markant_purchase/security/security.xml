@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add group to hide and show confirm order button in purchase form view -->
+    <record id="group_markant_purchase_pre_payment_manager" model="res.groups">
+        <field name="name">PO Prepayment Manager</field>
+        <field name="category_id" ref="base.module_category_usability"/>
+    </record>
+</odoo>

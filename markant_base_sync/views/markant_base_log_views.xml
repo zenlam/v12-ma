@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_markant_base_logs" name="Base Logs"
+        parent="menu_main_markant_base" sequence="3"/>
+
+
+    <record id="view_markant_base_sync_todo_form" model="ir.ui.view">
+        <field name="name">Base Sync Todo</field>
+        <field name="model">base.sync.todo</field>
+        <field name="type">form</field>
+        <field name="arch"  type="xml">
+           <form string="" create="false">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="todo,done" clickable="True"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="todo_type"/>
+                        <field name="description"/>
+                        <field name="create_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_markant_base_sync_todo_search" model="ir.ui.view">
+        <field name="name">Base Sync Todo</field>
+        <field name="model">base.sync.todo</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Todo" name="todo" domain="[('state','=','todo')]"/>
+                <filter string="Done" name="done" domain="[('state','=','done')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="state" context="{'group_by': 'state'}" icon="terp-folder-orange"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_markant_base_sync_todo_tree" model="ir.ui.view">
+        <field name="name">Base Sync Todo</field>
+        <field name="model">base.sync.todo</field>
+        <field name="type">tree</field>
+        <field name="arch"  type="xml">
+            <tree create="false">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="todo_type"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_markant_base_sync_todo" model="ir.actions.act_window">
+        <field name="name">Base Sync Todo</field>
+        <field name="res_model">base.sync.todo</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="search_view_id" ref="view_markant_base_sync_todo_search"/>
+        <field name="context">{"search_default_todo":1}</field>
+
+    </record>
+
+    <menuitem id="menu_markant_base_sync_todo" name="Need to Resolve"
+        parent="menu_markant_base_logs" action="action_markant_base_sync_todo" sequence="4"/>
+
+    <record id="view_markant_base_sync_log_form" model="ir.ui.view">
+        <field name="name">Base Sync Log</field>
+        <field name="model">base.sync.log</field>
+        <field name="type">form</field>
+        <field name="arch"  type="xml">
+           <form string="Log" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="name"/>
+                            <field name="status"/>
+                            <field name="odoo_contact_id"/>
+                        </group>
+                        <group>
+                            <field name="create_uid"/>
+                            <field name="log_type"/>
+                            <field name="description"/>
+                            <field name="odoo_call_visit_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="fields_updated"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_markant_base_sync_log_tree" model="ir.ui.view">
+        <field name="name">Base Logs</field>
+        <field name="model">base.sync.log</field>
+        <field name="type">tree</field>
+        <field name="arch"  type="xml">
+            <tree create="false">
+                <field name="create_date"/>
+                <field name="create_uid"/>
+                <field name="name"/>
+                <field name="log_type"/>
+                <field name="status"/>
+                <field name="description"/>
+                <field name="fields_updated"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_markant_base_sync_log_lead" model="ir.actions.act_window">
+        <field name="name">Base Sync Log</field>
+        <field name="res_model">base.sync.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('log_type','=','lead')]</field>
+    </record>
+    <record id="action_markant_base_sync_log_note" model="ir.actions.act_window">
+        <field name="name">Base Sync Log</field>
+        <field name="res_model">base.sync.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('log_type','=','note')]</field>
+    </record>
+    <record id="action_markant_base_sync_log_task" model="ir.actions.act_window">
+        <field name="name">Base Sync Log</field>
+        <field name="res_model">base.sync.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('log_type','=','task')]</field>
+    </record>
+    <menuitem id="menu_markant_base_sync_log_lead" name="Lead"
+        parent="menu_markant_base_logs" action="action_markant_base_sync_log_lead" sequence="1"/>
+
+    <menuitem id="menu_markant_base_sync_log_note" name="Note"
+        parent="menu_markant_base_logs" action="action_markant_base_sync_log_note" sequence="2"/>
+
+    <menuitem id="menu_markant_base_sync_log_task" name="Task"
+        parent="menu_markant_base_logs" action="action_markant_base_sync_log_task" sequence="3"/>
+</odoo>

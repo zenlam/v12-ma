@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View: Auto Invoice Mail -->
+    <record id="view_markant_auto_invoice_mail_tree" model="ir.ui.view">
+        <field name="name">auto.invoice.mail.tree</field>
+        <field name="model">auto.invoice.mail</field>
+        <field name="arch" type="xml">
+            <tree string="Auto Invoice Mail" editable="bottom">
+                <field name="user_id"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action: Auto Invoice Mail -->
+    <record id="action_markant_auto_invoice_mail" model="ir.actions.act_window">
+        <field name="name">Invoice Creation Alert</field>
+        <field name="res_model">auto.invoice.mail</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu: Auto Invoice Mail -->
+    <menuitem id="menu_markant_auto_invoice_mail" parent="base.menu_email"
+              action="action_markant_auto_invoice_mail" groups="base.group_no_one"/>
+
+</odoo>

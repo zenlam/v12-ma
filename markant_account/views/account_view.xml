@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="markant_view_move_form" model="ir.ui.view">
+            <field name="name">markant.account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="so_po_ref_link" attrs="{'invisible':[('so_po_ref', '=', False)]}"/>
+                    <field name="so_po_ref" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_view_move_line_form" model="ir.ui.view">
+            <field name="name">markant.account.move.line.form</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="so_po_ref_link" attrs="{'invisible':[('so_po_ref', '=', False)]}"/>
+                    <field name="so_po_ref" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_view_move_tree" model="ir.ui.view">
+            <field name="name">markant.view.move.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="so_po_ref"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_view_move_line_tree" model="ir.ui.view">
+            <field name="name">markant.view.move.line.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="so_po_ref"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_view_move_line_tax_audit_tree" model="ir.ui.view">
+            <field name="name">markant.account.move.line.tax.audit.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tax_audit_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tax_base_amount']" position="replace">
+                    <field name="neg_tax_base_amount" sum="Total Base Amount"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_invoice_supplier_tree" model="ir.ui.view">
+            <field name="name">markant.account.invoice.supplier.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_untaxed']" position="replace">
+                    <field name="neg_amount_untaxed" sum="Total"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_tax']" position="replace">
+                    <field name="neg_amount_tax" sum="Total"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

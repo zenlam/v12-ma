@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+proforma_payment,proforma.account.term,model_proforma_account_term,,1,1,1,1
+customer_invoice,customer.invoice.term,model_customer_invoice_term,,1,1,1,1
+vendor_bill,vendor.bill.term,model_vendor_bill_term,,1,1,1,1

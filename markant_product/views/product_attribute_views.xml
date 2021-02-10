@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_product_attribute_view_form" model="ir.ui.view">
+        <field name="name">markant.product.attribute.form</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='values_ids']" position="before">
+                <label for="allow_image"/>
+                <field name="allow_image"/>
+            </xpath>
+            <xpath expr="//group[@name='values_ids']" position="after">
+                <group name="product_tmpl_ids">
+                    <label for="product_tmpl_ids" string="Products"/>
+                    <field name="product_tmpl_ids" widget="one2many_list" nolabel="1">
+                        <tree string="Values">
+                            <field name="name"/>
+                            <field name="configurable_ok"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='value_ids']/tree" position="inside">
+                <field name="article_code"/>
+                <field name="image" attrs="{'column_invisible': [('parent.allow_image', '!=', True)]}"
+                       widget="image" class="oe_avatar" options='{"size": [90, 90]}'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_variants_tree_view" model="ir.ui.view">
+        <field name="name">markant.variants.template.tree</field>
+        <field name="model">product.attribute.value</field>
+        <field name="inherit_id" ref="sale.variants_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='html_color']" position="after">
+                <field name="article_code"/>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_template_attribute_line_form" model="ir.ui.view">
+        <field name="name">markant.product.template.attribute.line.form.inherit</field>
+        <field name="model">product.template.attribute.line</field>
+        <field name="inherit_id" ref="sale.product_template_attribute_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='html_color']" position="after">
+                <field name="article_code"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_variants_form_view" model="ir.ui.view">
+        <field name="name">product.attribute.value.form</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <form string="Variant Values">
+                <sheet>
+                    <group>
+                        <field name="attribute_id"/>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="is_custom" groups="product.group_product_variant" />
+                        <field name="html_color"/>
+                    </group>
+                    <group>
+                        <field name="article_code"/>
+                    </group>
+                    <div class="oe_left">
+                        <label for="image"/>
+                        <field name="image" widget="image" class="oe_avatar" options='{"size": [90, 90]}'/>
+                    </div>
+                    <group name="product_tmpl_ids">
+                        <label for="product_tmpl_ids" string="Products"/>
+                        <field name="product_tmpl_ids" widget="one2many_list" nolabel="1">
+                            <tree string="Values">
+                                <field name="name"/>
+                                <field name="configurable_ok"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product.variants_action" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

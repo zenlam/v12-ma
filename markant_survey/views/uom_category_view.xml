@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_uom_categ_form_view_inherit" model="ir.ui.view">
+        <field name="name">markant.uom.category</field>
+        <field name="model">uom.category</field>
+        <field name="inherit_id" ref="uom.product_uom_categ_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="is_length"/>
+                <field name="is_depth"/>
+                <field name="is_hight"/>
+                <field name="is_weight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

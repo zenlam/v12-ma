@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="trouble_responsible_form_view" model="ir.ui.view">
+        <field name="name">trouble.responsible.form</field>
+        <field name="model">trouble.responsible</field>
+        <field name="arch" type="xml">
+            <form string="Trouble Responsible">
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="trouble_responsible_tree_view" model="ir.ui.view">
+        <field name="name">trouble.responsible.tree</field>
+        <field name="model">trouble.responsible</field>
+        <field name="arch" type="xml">
+            <tree string="Trouble Responsible">
+                <field name="name" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_trouble_responsible" model="ir.actions.act_window">
+        <field name="name">Trouble Responsible</field>
+        <field name="res_model">trouble.responsible</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_trouble_responsible"
+        action="action_trouble_responsible"
+        name="Trouble Responsible"
+        parent="bi_crm_claim.menu_config_claim"
+        sequence="1" groups="base.group_system"/>
+</odoo>

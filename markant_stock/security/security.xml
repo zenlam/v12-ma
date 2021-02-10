@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_product_reservation_manager" model="res.groups">
+        <field name="name">Product Reservation Manager</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+    <record id="group_allow_replenishment" model="res.groups">
+        <field name="name">Allow Replenishment</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="group_allow_update_qty_onhand" model="res.groups">
+        <field name="name">Allow Update Qty On Hand</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="group_allow_to_see_unreserve_button_ms" model="res.groups">
+        <field name="name">Allow to see Un-reserve button</field>
+        <field name="category_id" ref="base.module_category_warehouse_management"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="labour_type_markant_product_template_form_view" model="ir.ui.view">
+        <field name="name">labour.type.markant.product.template.common.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="markant_product.markant_product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='configurable_ok']" position="attributes">
+                <attribute name="attrs">{'readonly': [('mrp_cost_ok', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_product_form_view_reservation_button" model="ir.ui.view">
+        <field name="name">markant.product.product.reservation</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="groups_id" eval="[(4, ref('markant_stock.group_product_reservation_manager'))]"/>
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" name="open_reservation_picking"
+                        type="object" icon="fa-bullseye">
+                    <field string="Reservation" name="reservation_count"
+                           widget="statinfo" />
+                </button>
+            </button>
+        </field>
+    </record>
+
+    <record id="markant_product_template_form_view_button_access_right" model="ir.ui.view">
+        <field name="name">markant.product.template.form.view.button.access.right</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_update_qty_onhand</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_product_replenish)d']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_replenishment</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_product_form_view_button_access_right" model="ir.ui.view">
+        <field name="name">markant.product.product.form.view.button.access.right</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_update_qty_onhand</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_product_replenish)d']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_replenishment</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_product_easy_form_view_button_access_right" model="ir.ui.view">
+        <field name="name">markant.product.product.easy.form.view.button.access.right</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_view_form_easy_inherit_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_update_qty_onhand</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_product_replenish)d']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_replenishment</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_variant_cost_price_inherit" model="ir.ui.view">
+        <field name="name">Markant Product: product.view.form.easy.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="last_update_cost_price"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

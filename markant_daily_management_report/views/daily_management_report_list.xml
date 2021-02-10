@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_daily_management_report_list_tree" model="ir.ui.view">
+        <field name="name">daily.management.report.list.tree</field>
+        <field name="model">daily.management.report.list</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Management Report Tree">
+                <field name="report_date"/>
+                <field name="order_book" widget="integer"/>
+                <field name="current_month_ob" widget="integer"/>
+                <field name="next_month_ob" widget="integer"/>
+                <field name="total_invoiced" widget="integer"/>
+                <field name="invoiced_margin_amount" widget="integer"/>
+                <field name="invoiced_margin_percentage"/>
+                <field name="invoice_service" widget="integer"/>
+                <field name="invoice_service_product" widget="integer"/>
+                <field name="total_stock_value" widget="integer"/>
+                <field name="total_invoiced_not_paid" widget="integer"/>
+                <field name="so_intake_today" widget="integer"/>
+                <field name="so_intake_day" widget="integer"/>
+                <field name="so_intake_margin_today"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_daily_management_report_list_search" model="ir.ui.view">
+        <field name="name">daily.management.report.list.search</field>
+        <field name="model">daily.management.report.list</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By">
+                    <filter string="Date" name="date" domain="[]" context="{'group_by': 'report_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_daily_management_report_list" model="ir.actions.act_window">
+        <field name="name">Daily Management Report List</field>
+        <field name="res_model">daily.management.report.list</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_daily_management_report_list_search"/>
+    </record>
+
+    <menuitem id="menu_daily_management_report_list"
+              name="Daily Management Report"
+              action="action_daily_management_report_list"
+              parent="sale.menu_sale_report"
+              sequence="3"/>
+</odoo>

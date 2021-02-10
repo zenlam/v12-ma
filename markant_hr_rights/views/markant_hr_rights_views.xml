@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="markant_view_employee_form_leave_approver" model="ir.ui.view">
+            <field name="name">markant.view.employee.form.leave.approver</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='leave']" position="inside">
+                    <field name="is_hr_manager" invisible="1" />
+                    <field name="approver_user_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True}"
+                        context="{'check_groups': ['hr.group_hr_user']}"
+                        attrs="{'readonly': [('is_hr_manager','!=',True)]}"/>
+                    <field name="validator_user_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True}"
+                        context="{'check_groups': ['hr.group_hr_manager']}"
+                        attrs="{'readonly': [('is_hr_manager','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record model="ir.actions.act_window" id="hr_holidays.request_approve_holidays">
+            <field name="domain">[('type','=','remove')]</field>
+        </record> -->
+
+       <record id="edit_holiday_new_approver" model="ir.ui.view">
+            <field name="name">hr.holidays.approve.validate.visible.form.view</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="attributes">
+                    <attribute name="groups">
+                        hr.group_hr_user,markant_hr_rights.group_hr_supervisor
+                    </attribute>
+                </field>
+                <!--<button name="action_approve" position="before">-->
+                    <!--<field name="is_approver" invisible="1" />-->
+                    <!--<field name="is_validator" invisible="1" />-->
+                <!--</button>-->
+                <!--<button name="action_approve" position="attributes">-->
+                    <!--<attribute name="states"></attribute>-->
+                    <!--<attribute name="attrs">{-->
+                        <!--'invisible': ['|',-->
+                                <!--('is_approver','=',False),-->
+                                <!--('state', '!=', 'confirm'),-->
+                            <!--]-->
+                        <!--}-->
+                    <!--</attribute>-->
+                <!--</button>-->
+                <!--<button name="action_validate" position="attributes">-->
+                    <!--<attribute name="states"></attribute>-->
+                    <!--<attribute name="attrs">{-->
+                        <!--'invisible': ['|',-->
+                                <!--('is_validator','=',False),-->
+                                <!--('state', '!=', 'validate1'),-->
+                            <!--]-->
+                        <!--}-->
+                    <!--</attribute>-->
+                <!--</button>-->
+                <!--<button name="action_refuse" position="attributes">-->
+                    <!--<attribute name="states"></attribute> &ndash;&gt;-->
+                    <!--<attribute name="attrs">{-->
+                        <!--'invisible': ['|',-->
+                                <!--('is_approver','=',False),-->
+                                <!--('state', 'not in', ('confirm', 'validate', 'validate1')),-->
+                            <!--]-->
+                        <!--}-->
+                    <!--</attribute>-->
+                <!--</button>-->
+            </field>
+        </record>
+    </data>
+</odoo>

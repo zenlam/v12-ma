@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Purchase Advice View -->
+    <record id="purchase_advice_sql_view_tree" model="ir.ui.view">
+        <field name="name">purchase.advice.sql.view.tree</field>
+        <field name="model">purchase.advice.sql.view</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Advice" delete="0" create="0">
+                <field name="orderpoint_id"/>
+                <field name="warehouse_id" invisible="1"/>
+                <field name="location_id" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="eerstedatum"/>
+                <field name="product_id"/>
+                <field name="product_uom" invisible="1"/>
+                <field name="default_code"/>
+                <field name="description"/>
+                <field name="product_attr_ids" widget="many2many_tags"/>
+                <field name="vrd"/>
+                <field name="sales"/>
+                <field name="res"/>
+                <field name="ink"/>
+                <field name="backorder"/>
+                <field name="ecvrd"/>
+                <field name="vrij"/>
+                <field name="min"/>
+                <field name="max"/>
+                <field name="pu"/>
+                <field name="moq"/>
+                <field name="advies" invisible="1"/>
+                <field name="hulp"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View: Purchase Advice -->
+    <record id="purchase_advice_sql_view_search" model="ir.ui.view">
+        <field name="name">purchase.advice.sql.view.search</field>
+        <field name="model">purchase.advice.sql.view</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Advice">
+                <field name="orderpoint_id"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="default_code"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Creditor" name="partner_id" domain="[]"
+                            context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Server Action in Dropdown -->
+    <record id="act_product_template_duplicate_bom" model="ir.actions.server">
+        <field name="name">Create Purchase Order</field>
+        <field name="model_id" ref="markant_purchase.model_purchase_advice_sql_view"/>
+        <field name="binding_model_id" ref="markant_purchase.model_purchase_advice_sql_view"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_po_from_advice()</field>
+    </record>
+
+    <!-- Action: Purchase Advice SQL -->
+    <record id="action_markant_purchase_advice_sql_view" model="ir.actions.act_window">
+        <field name="name">Purchase Advice</field>
+        <field name="res_model">purchase.advice.sql.view</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="purchase_advice_sql_view_tree"/>
+        <field name="search_view_id" ref="purchase_advice_sql_view_search"/>
+    </record>
+
+    <!-- Tree View: Purchase Advice Log -->
+    <record id="view_markant_purchase_advice_log_tree" model="ir.ui.view">
+        <field name="name">purchase.advice.log.tree</field>
+        <field name="model">purchase.advice.log</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Advice Log" delete="0" create="0" default_order="date desc">
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="log_item_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Purchase Advice Log -->
+    <record id="view_markant_purchase_advice_log_form" model="ir.ui.view">
+        <field name="name">purchase.advice.log.form</field>
+        <field name="model">purchase.advice.log</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Advice Log" delete="0" create="0" edit="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="date"/>
+                        </h1>
+                        <br/>
+                        <h2>
+                            <field name="user_id"/>
+                        </h2>
+                    </div>
+                    <separator string="Log Items"/>
+                    <field name="log_item_ids" nolabel="1">
+                        <tree>
+                            <field name="origin"/>
+                            <field name="partner_id"/>
+                            <field name="po_id"/>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="uom_id"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View: Purchase Advice Log -->
+    <record id="view_markant_purchase_advice_log_search" model="ir.ui.view">
+        <field name="name">purchase.advice.log.search</field>
+        <field name="model">purchase.advice.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Advice Log">
+                <field name="date"/>
+                <field name="user_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action: Purchase Advice Log -->
+    <record id="action_markant_purchase_advice_log" model="ir.actions.act_window">
+        <field name="name">Advice Logs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.advice.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_markant_purchase_advice_log_search"/>
+    </record>
+
+    <!-- Purchase Advice Main Menu -->
+    <menuitem id="menu_root_markant_purchase_advice" sequence="100"
+              name="Purchase Advice" parent="purchase.menu_purchase_control"
+              groups="purchase.group_purchase_manager"/>
+
+    <!-- Purchase Advice Menu -->
+    <menuitem id="menu_markant_purchase_advice_sql" name="Advice"
+              action="markant_purchase.action_markant_purchase_advice_sql_view"
+              parent="markant_purchase.menu_root_markant_purchase_advice"/>
+
+    <!-- Setting Menu: Purchase Log -->
+    <menuitem parent="base.menu_custom"
+              name="Markant: Purchase Log"
+              id="menu_markant_purchase_log"/>
+
+    <!-- Log Menu -->
+    <menuitem id="menu_markant_purchase_advice_log"
+              action="markant_purchase.action_markant_purchase_advice_log"
+              name="Advice Logs" parent="markant_purchase.menu_markant_purchase_log"/>
+
+</odoo>

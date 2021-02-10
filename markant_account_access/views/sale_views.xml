@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_account_access_view_order_form" model="ir.ui.view">
+        <field name="name">markant.account.access.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_sale_order_view_form" model="ir.ui.view">
+        <field name="name">markant.account.access.sale.order.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

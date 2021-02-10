@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="action_report_installation_dutch"
+        string="Installation Form (Dutch)"
+        model="markant.installation.form"
+        report_type="qweb-pdf"
+        file="markant_installation.report_installation_form_dutch"
+        name="markant_installation.report_installation_form_dutch"
+    />
+
+    <template id="report_installation_form_dutch">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context({'lang':doc.user_id.lang})" />
+                    <div class="page">
+                        <div class="oe_structure"/>
+
+                        <div class="container">
+                            <div class="row mt16 mb16 col-12">
+                                <h1>
+                                    <em t-field="doc.name"/>
+                                    <small t-field="doc.stage_id.name"/>
+                                </h1>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Ordernummer: </strong></div>
+                                        <t t-set="ts" t-value="0"/>
+                                        <t t-set="total_sale" t-value="len(doc.sale_order_ids)"/>
+                                        <div class="col-auto">
+                                            <span t-foreach="doc.sale_order_ids" t-as="sale_order">
+                                                <span t-field="sale_order.name"/><t t-set="ts" t-value="ts+1"/><t t-if="ts &lt; total_sale"><span>,</span></t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>AS400 Ordernummer: </strong></div>
+                                        <div class="col-auto" t-field="doc.as400_order_ref"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Aanmaak Datum: </strong></div>
+                                        <div class="col-auto" t-field="doc.submit_date"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Installatie Datum: </strong></div>
+                                        <div class="col-auto" t-field="doc.installation_date"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Eindgebruiker: </strong></div>
+                                        <div class="col-auto" t-field="doc.end_user_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Afleveradres: </strong></div>
+                                        <div class="col-auto" t-field="doc.address_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto">
+                                            <span><i>House: </i></span>
+                                            <span t-field="doc.street_number"/>
+                                            <span><i>Door: </i></span>
+                                            <span t-field="doc.street_number2"/>
+                                        </div>
+                                        <div class="col-auto" t-field="doc.street_name"/>
+                                        <div class="col-auto" t-field="doc.street2"/>
+                                        <div class="col-auto">
+                                            <span t-field="doc.zip"/>
+                                            <span t-field="doc.city"/>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span t-field="doc.state_id.name"/>
+                                            <span t-field="doc.country_id.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Contactpersoon: </strong></div>
+                                        <div class="col-auto" t-field="doc.end_contact_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Phonenumber: </strong></div>
+                                        <div class="col-auto" t-field="doc.phone"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Mobile Nummer: </strong></div>
+                                        <div class="col-auto" t-field="doc.mobile"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Email: </strong></div>
+                                        <div class="col-auto" t-field="doc.email"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Opportunities: </strong></div>
+                                        <t t-set="to" t-value="0"/>
+                                        <t t-set="total_opp" t-value="len(doc.opportunity_ids)"/>
+                                        <div class="col-auto">
+                                            <span t-foreach="doc.opportunity_ids" t-as="opp">
+                                                <span t-field="opp.name"/><t t-set="to" t-value="to+1"/><t t-if="to &lt; total_opp"><span>,</span></t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Type: </strong></div>
+                                        <div class="col-auto" t-field="doc.installation_type_id.name"/>
+                                    </div>
+                                    <div class="mt8" t-if="doc.initial_so_id">
+                                        <div class="col-auto"><strong>Initial SO: </strong></div>
+                                        <div class="col-auto" t-field="doc.initial_so_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Berekening: </strong></div>
+                                        <div class="col-auto" t-field="doc.calculation_type_id.name"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Handelaar: </strong></div>
+                                        <div class="col-auto" t-field="doc.dealer_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Handelaar Contactpersoon: </strong></div>
+                                        <div class="col-auto" t-field="doc.dealer_contact_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Phonenumber: </strong></div>
+                                        <div class="col-auto" t-field="doc.phone_dealer"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Mobile Nummer: </strong></div>
+                                        <div class="col-auto" t-field="doc.mobile_dealer"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Email: </strong></div>
+                                        <div class="col-auto" t-field="doc.email_dealer"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Voorgestelde Datum: </strong></div>
+                                        <div class="col-auto">
+                                            <span t-field="doc.proposed_date_from"/>
+                                            <b>To</b> <span t-field="doc.proposed_date_to"/>
+                                        </div>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Geplande Datum: </strong></div>
+                                        <div class="col-auto">
+                                            <span t-field="doc.planned_date_from"/>
+                                            <b>To</b> <span t-field="doc.planned_date_to"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="col-auto mt8">
+                                        <span><strong>Project Tekeningen Noodzakelijk: </strong></span>
+                                        <span t-field="doc.site_drawing_avail"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Tekening Bijgevoegd: </strong></span>
+                                        <span t-field="doc.drawing_included"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Voormontage: </strong></span>
+                                        <span t-field="doc.pre_assembly"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Deellevering: </strong></span>
+                                        <span t-field="doc.back_order"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div class="col-auto mt8">
+                                        <span><strong>Survey Benodigd: </strong></span>
+                                        <span t-field="doc.survey_needed"/>
+                                    </div>
+                                    <t t-if="doc.survey_needed == 'yes'">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Survey Datum: </strong></div>
+                                            <div class="col-auto" t-field="doc.survey_date"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Survey Formulier: </strong></div>
+                                            <div class="col-auto" t-field="doc.survey_id.name"/>
+                                        </div>
+                                    </t>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Trappenhuis aanwezig: </strong></span>
+                                        <span t-field="doc.staircase_available"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Lift aanwezig: </strong></span>
+                                        <span t-field="doc.lift_available"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Afstand losplaats tot pand (in Meter): </strong></div>
+                                        <div class="col-auto" t-field="doc.distance_place_unloading"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Kamers Leeg/ Schoon: </strong></span>
+                                        <span t-field="doc.any_empty_clean_zone"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Totaal Aantal Verdiepingen: </strong></span>
+                                        <span t-field="doc.total_number_floors"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Verdieping van installatie: </strong></span>
+                                        <span t-field="doc.floor_of_installation"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Aangemaakt Door: </strong></div>
+                                        <div class="col-auto" t-field="doc.user_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Assignee: </strong></div>
+                                        <div class="col-auto" t-field="doc.assignee_id.name"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Aankomsttijd: </strong></div>
+                                        <div class="col-auto" t-field="doc.arrival_time"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <div class="col-auto"><strong>Vertrektijd: </strong></div>
+                                        <div class="col-auto" t-field="doc.departure_time"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Aantal Monteurs: </strong></span>
+                                        <span t-field="doc.number_installer"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Aantal Hulp Monteurs: </strong></span>
+                                        <span t-field="doc.number_assistant_installer"/>
+                                    </div>
+                                    <div class="col-auto mt8">
+                                        <span><strong>Aantal Uren: </strong></span>
+                                        <span t-field="doc.number_of_hours"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <div class="col-auto"><strong>Claims: </strong></div>
+                                    <t t-set="tc" t-value="0"/>
+                                    <t t-set="total_claims" t-value="len(doc.claim_ids)"/>
+                                    <div class="col-auto">
+                                        <span t-foreach="doc.claim_ids" t-as="claim">
+                                            <span t-field="claim.name"/><t t-set="tc" t-value="tc+1"/><t t-if="tc &lt; total_claims"><span>,</span></t>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <h4 class="col-auto"><strong>Comment: </strong></h4>
+                                    <div class="col-auto" t-field="doc.note"/>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <h4 class="col-auto"><strong>Retour Goederen: </strong></h4>
+                                    <div class="col-auto">
+                                        <table class="table table-sm o_main_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Artikel</th>
+                                                    <th>Omschrijving</th>
+                                                    <th class="text-right">Aantal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr t-foreach="doc.return_good_ids" t-as="option">
+                                                    <td>
+                                                        <t t-if="option.product_id">
+                                                            <div t-field="option.product_id.name"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-info" t-field="option.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right" t-field="option.qty"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <h4 class="col-auto"><strong>Gebruikte Goederen: </strong></h4>
+                                    <div class="col-auto">
+                                        <table class="table table-sm o_main_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Artikel</th>
+                                                    <th>Omschrijving</th>
+                                                    <th class="text-right">Aantal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr t-foreach="doc.used_good_ids" t-as="option">
+                                                    <td>
+                                                        <t t-if="option.product_id">
+                                                            <div t-field="option.product_id.name"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-info" t-field="option.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right" t-field="option.qty"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt32">
+                                <div class="col-6">
+                                    <div class="mt16 text-center">
+                                        <t t-if="doc.signature_mechanic">
+                                            <h4 class="col-auto"><strong>Hoofdmonteur</strong></h4>
+                                            <div t-field="doc.signature_mechanic" t-options="{'widget': 'image'}"/>
+                                            <h3 class="col-auto" t-field="doc.name_mechanic"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt16 text-center">
+                                        <t t-if="doc.signature_customer">
+                                            <h4 class="col-auto"><strong>Klant</strong></h4>
+                                            <div t-field="doc.signature_customer" t-options="{'widget': 'image'}"/>
+                                            <h3 class="col-auto" t-field="doc.name_customer"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="oe_structure"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

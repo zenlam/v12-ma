@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_markant_hr_manager,hr.holidays.public.officer.manager,markant_hr.model_hr_holidays_public,hr.group_hr_manager,1,1,1,1
+access_markant_hr_user,hr.holidays.public.user,markant_hr.model_hr_holidays_public,base.group_user,1,1,1,1
+hrss_markant_hr_manager_line,hr.holidays.public.line.manager,markant_hr.model_hr_holidays_public_line,hr.group_hr_manager,1,1,1,1
+access_markant_hr_user_line_user,hr.holidays.public.line.user,markant_hr.model_hr_holidays_public_line,base.group_user,1,1,1,1
+access_hr_leave_todo_task_manager,hr.leave.todo.task.manager,markant_hr.model_hr_leave_todo_task,hr.group_hr_manager,1,1,1,1
+access_hr_leave_todo_task_user,hr.leave.todo.task.user,markant_hr.model_hr_leave_todo_task,base.group_user,1,0,0,0
+access_hr_contract_type_user,hr.contract.type.user,hr_contract.model_hr_contract_type,base.group_user,1,0,0,0
+access_hr_contract_user,hr.contract.user,hr_contract.model_hr_contract,base.group_user,1,0,0,0
+access_hr_resource_calendar_hr_user,hr.employee.resource.calendar.user,resource.model_resource_calendar,base.group_user,1,0,0,0
+access_hr_holidays_hours_user,hr.holidays.hours.user,markant_hr.model_hr_holidays_hours,base.group_user,1,1,1,1
+access_hr_holidays_shift_manager,hr.holidays.shift.manager,markant_hr.model_hr_holidays_shift,hr.group_hr_manager,1,1,1,1
+access_hr_holidays_shift_user,hr.holidays.shift.user,markant_hr.model_hr_holidays_shift,base.group_user,1,0,0,0
+

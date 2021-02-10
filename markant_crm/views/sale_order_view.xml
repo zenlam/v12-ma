@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- inherited sale.order -->
+    <record id="view_order_form_inherit_markant_crm" model="ir.ui.view">
+        <field name="name">sale.order.inherit.markant_crm</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Organization</attribute>
+                <attribute name="domain">['|', ('customer','=',True), ('end_user','=',True)]</attribute>
+            </field>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="always_reload">None</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="always_reload">None</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="before">
+                <field name="product_image_small" widget="image" class="oe_avatar"/>
+            </xpath>
+            <xpath expr="//field[@name='analytic_account_id']" position="after">
+                <field name="influencer_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_partner_form_contacts" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{"search_default_customer":1}</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a contact in your address book.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a customer; discussions, history of business opportunities,
+            documents, etc.
+          </p>
+        </field>
+    </record>
+
+<!-- TODO HITESH : This view is removed from here but added same in maraknt_sale  -->
+<!--     <template id="sale_quotation_order_report_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('o_main_table')]/thead//tr/th[1]" position="before">
+            <th>Product Image</th>
+        </xpath>
+        <xpath expr="//tbody[@class='sale_tbody']//tr[1]//td[1]" position="before">
+            <td>
+                <img t-att-src="'data:image/png;base64,%s' % to_text(line.product_image)"/>
+            </td>
+        </xpath>
+    </template> -->
+
+</odoo>

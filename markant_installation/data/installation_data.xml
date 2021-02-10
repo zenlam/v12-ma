@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Sequences for Installation Form -->
+    <record id="seq_markant_installation_form" model="ir.sequence">
+        <field name="name">Installation Form</field>
+        <field name="code">markant.installation.form</field>
+        <field name="prefix">IF</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Data for Installation Stages -->
+    <record id="installation_draft" model="markant.installation.stage">
+        <field name="name">Draft</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="installation_proposal_to_plan" model="markant.installation.stage">
+        <field name="name">Proposal To Plan</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="installation_proposal_to_sale" model="markant.installation.stage">
+        <field name="name">Proposal To Sale</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="installation_planned" model="markant.installation.stage">
+        <field name="name">Planned</field>
+        <field name="sequence">4</field>
+    </record>
+
+    <record id="installation_done" model="markant.installation.stage">
+        <field name="name">Done</field>
+        <field name="sequence">5</field>
+    </record>
+
+    <record id="installation_closed" model="markant.installation.stage">
+        <field name="name">Closed</field>
+        <field name="sequence">6</field>
+    </record>
+
+    <!-- Data for Installation Type -->
+    <record id="installation_standard" model="markant.installation.type">
+        <field name="name">Standard</field>
+    </record>
+
+    <record id="installation_mockup" model="markant.installation.type">
+        <field name="name">Mock Up</field>
+    </record>
+
+    <record id="installation_service_repair" model="markant.installation.type">
+        <field name="name">Service/Repair</field>
+    </record>
+
+    <!-- Data for Calculation Type -->
+    <record id="installation_real_hours" model="markant.calculation.type">
+        <field name="name">Calculated upon real hours</field>
+    </record>
+
+    <record id="installation_free_charge" model="markant.calculation.type">
+        <field name="name">Free of charge</field>
+    </record>
+
+    <record id="installation_via_order" model="markant.calculation.type">
+        <field name="name">Via order</field>
+    </record>
+
+    <record id="installation_warranty" model="markant.calculation.type">
+        <field name="name">Warranty</field>
+    </record>
+
+    <!-- Mail Template -->
+    <record id="email_template_edi_installation" model="mail.template">
+        <field name="name">Installation Form - Send by Email</field>
+        <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+        <field name="subject">Installation Ref - ${object.name or 'n/a' }</field>
+        <field name="partner_to">${ctx.get('email_to') or False}</field>
+        <field name="model_id" ref="markant_installation.model_markant_installation_form"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="action_report_installation"/>
+        <field name="report_name">${(object.name or '').replace('/','_')}</field>
+        <field name="lang">${object.end_user_id.lang}</field>
+        <field name="body_html">
+<![CDATA[
+<p>Dear
+% if ctx.get('email_to_name')
+${ctx.get('email_to_name')},
+% else
+Customer,
+% endif
+</p>
+
+<p>
+Here is your installation form reference <strong>${object.name}</strong> from ${object.user_id.company_id.name}.
+</p>
+
+<br/><br/>
+<center>
+    <a href="${object.get_portal_url()}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Installation Form</a>
+    <br/><br/><br/>
+    <span style="color:#888888">(or view attached PDF)</span>
+</center>
+<br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you.</p>
+]]>
+        </field>
+    </record>
+
+    <!-- Mail Template for Followers -->
+    <record id="email_template_edi_installation_followers" model="mail.template">
+        <field name="name">Installation Form for Followers - Send by Email</field>
+        <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+        <field name="subject">Installation Ref - ${object.name or 'n/a' }</field>
+        <field name="partner_to">${ctx.get('follower_partner') or False}</field>
+        <field name="model_id" ref="markant_installation.model_markant_installation_form"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.assignee_id.lang}</field>
+        <field name="body_html">
+<![CDATA[
+<p>Dear ${ctx['follower_name']},
+</p>
+
+<p>
+You have been assign to installation form reference <strong>${object.name}</strong> from ${object.user_id.company_id.name}.
+</p>
+
+<br/><br/>
+<center>
+    <a href="${object.get_portal_url()}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Installation Form</a>
+    <br/><br/><br/>
+</center>
+<br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you.</p>
+]]>
+        </field>
+    </record>
+
+</odoo>

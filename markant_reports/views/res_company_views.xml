@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="country_report_formats_form_view" model="ir.ui.view">
+        <field name="name">country.report.formats.form</field>
+        <field name="model">country.report.formats</field>
+        <field name="arch" type="xml">
+            <form string="Report Formats">
+                <group>
+                    <field name="country_id" options="{'no_create': True}"/>
+                    <field name="set_as_global"/>
+                    <field name="header_info"/>
+                    <field name="footer_info"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_company_form_report_format" model="ir.ui.view">
+        <field name="name">res.company.form.report_format</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <group>
+                    <field name="allow_report_format"/>
+                </group>
+            </xpath>
+            <xpath expr="//page" position="after">
+                <page string="Report Formats" name="report_formats" attrs="{'invisible': [('allow_report_format', '!=', True)]}">
+                    <group>
+                        <group>
+                            <field name="report_header_img" widget='image' class="oe_avatar"/>
+                            <field name="hide_tax_column"/>
+                        </group>
+                        <group>
+                            <field name="report_footer_img" widget='image' class="oe_avatar"/>
+                        </group>
+                    </group>
+                    <group string="Report Formats">
+                        <field name="country_report_ids" nolabel="1">
+                            <tree string="Report Formats">
+                                <field name="country_id"/>
+                                <field name="set_as_global"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <h4 class="alert-heading"><strong>Important Notes</strong></h4>
+                        <hr class="mb16"/>
+                        <p class="mb-8">Go to <strong>General Settings</strong> &amp; under <strong>Business Documents</strong> section choose <strong>Edge to Edge</strong> paper format.</p>
+                        <hr class="mt16 mb16" style="margin-left: 100px; margin-right: 100px;"/>
+                        <p class="mb-8">To use global report, Just create single report format marked as <strong>Used as Global</strong>.</p>
+                        <hr class="mt16 mb16" style="margin-left: 100px; margin-right: 100px;"/>
+                        <p><strong>Header/Footer Background Image</strong> dimension should be <strong><u>1180px*142px</u></strong></p>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

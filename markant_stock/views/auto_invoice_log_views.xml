@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Customer Invoice Form View to Add Created by & Creation date -->
+    <record id="markant_account_invoice_form_auto_invoice" model="ir.ui.view">
+        <field name="name">markant.account.invoice.form.auto.invoice</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cash_rounding_id']" position="after">
+                <field name="create_uid" readonly="1"/>
+                <field name="create_date" readonly="1"/>
+                <field name="contact_person_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree View: Auto Invoice Log -->
+    <record id="view_markant_auto_invoice_log_tree" model="ir.ui.view">
+        <field name="name">auto.invoice.log.tree</field>
+        <field name="model">auto.invoice.log</field>
+        <field name="arch" type="xml">
+            <tree string="Auto Invoice Log" delete="0" create="0" default_order="date desc">
+                <field name="date"/>
+                <field name="sale_order_ref_ids"/>
+                <field name="invoice_ref_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Auto Invoice Log -->
+    <record id="view_markant_auto_invoice_log_form" model="ir.ui.view">
+        <field name="name">auto.invoice.log.form</field>
+        <field name="model">auto.invoice.log</field>
+        <field name="arch" type="xml">
+            <form string="Auto Invoice Log" delete="0" create="0" edit="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="date"/>
+                        </h1>
+                    </div>
+                    <separator string="Sale Orders"/>
+                    <field name="auto_invoice_so_rel" nolabel="1">
+                        <tree string="SO Ref">
+                            <field name="order_id"/>
+                            <field name="confirmation_date"/>
+                            <field name="commitment_date"/>
+                            <field name="expected_date"/>
+                            <field name="partner_id"/>
+                            <field name="salesperson"/>
+                            <field name="currency_id"/>
+                            <field name="amount_total"/>
+                            <field name="invoice_status"/>
+                            <field name="cron_status"/>
+                            <field name="error_log" invisible="1"/>
+                            <button name="action_show_error_message" string="Error Log" class="oe_link" type="object"
+                                    attrs="{'invisible': [('error_log', '=', False)]}"/>
+                        </tree>
+                    </field>
+<!--                    <separator string="Sale Orders"/>-->
+<!--                    <field name="sale_order_ref_ids" nolabel="1"/>-->
+                    <separator string="Invoices"/>
+                    <field name="invoice_ref_ids" nolabel="1"
+                           context="{'form_view_ref' : 'account.invoice_form',
+                           'tree_view_ref' : 'account.invoice_tree'}"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action: Auto Invoice Log -->
+    <record id="action_markant_auto_invoice_log" model="ir.actions.act_window">
+        <field name="name">Auto Invoice Log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auto.invoice.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Menu: Auto Invoice Log -->
+    <menuitem parent="base.menu_custom"
+              name="Markant: Automation Log"
+              id="menu_markant_automation_log"/>
+
+    <menuitem parent="markant_stock.menu_markant_automation_log"
+              id="menu_markant_auto_invoice_log"
+              action="action_markant_auto_invoice_log"/>
+
+</odoo>

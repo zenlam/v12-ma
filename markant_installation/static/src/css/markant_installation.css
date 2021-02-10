@@ -1,0 +1,7 @@
+.as400-hide-search {
+    display: none !important;
+}
+
+.as400-tokenizer .select2-choices .select2-search-field input.select2-active {
+    background: none !important;
+}

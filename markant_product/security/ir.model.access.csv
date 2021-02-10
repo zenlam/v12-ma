@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_config_steps_user,product_config_steps_user,model_product_config_steps,base.group_user,1,1,1,1
+access_product_config_steps_attr_user,product_config_steps_attr_user,model_product_config_steps_attr,base.group_user,1,1,1,1
+access_mrp_bom_conf_line_user,mrp_bom_conf_line_user,model_mrp_bom_conf_line,mrp.group_mrp_user,1,0,0,0
+access_mrp_bom_conf_line_manager,mrp_bom_conf_line_manager,model_mrp_bom_conf_line,mrp.group_mrp_manager,1,1,1,1
+access_mrp_bom_attr_mapping_user,mrp_bom_attr_mapping_user,model_mrp_bom_attr_mapping,base.group_user,1,1,1,1
+access_mrp_bom_attr_value_mapping_user,mrp_bom_attr_value_mapping_user,model_mrp_bom_attr_value_mapping,base.group_user,1,1,1,1
+access_product_manual_creation_user,product_manual_creation_user,model_product_manual_creation,base.group_user,1,1,1,1

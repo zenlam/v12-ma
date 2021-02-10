@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="markant_survey.survey_form_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-call='markant_survey.survey_form_report_style'/>
+                        <div class="name">Survey Form: <span t-field="o.name"/></div>
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Creation Date </div>
+                                    <span t-field="o.creation_date" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">AS400 SO Number </div>
+                                    <span t-field="o.so_number" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Google Drive </div>
+                                    <span t-field="o.google_drive" class="content"/>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Created By </div>
+                                    <span t-field="o.created_by" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Project </div>
+                                    <span t-field="o.project" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Project Image URL Link </div>
+                                    <span t-field="o.project_image_url" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Dealer Company </div>
+                                    <span t-field="o.dealer_partner_id" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Address </div>
+                                    <div class="content">
+                                        <span t-field="o.dealer_street" class="street"/>
+                                        <span t-field="o.dealer_street2" class="street"/>
+                                        <span t-field="o.dealer_city"/>
+                                        <span t-field="o.dealer_state_id"/>
+                                        <span t-field="o.dealer_zip"/>
+                                        <span t-field="o.dealer_country_id" class="street"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Contact Person </div>
+                                    <span t-field="o.dealer_contact_person" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Email </div>
+                                    <span t-field="o.dealer_email" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Phone </div>
+                                    <span t-field="o.dealer_phone" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">End User Company </div>
+                                    <span t-field="o.end_user_partner_id" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Address </div>
+                                    <div class="content">
+                                        <span t-field="o.end_user_street" class="street"/>
+                                        <span t-field="o.end_user_street2" class="street"/>
+                                        <span t-field="o.end_user_city"/>
+                                        <span t-field="o.end_user_state_id"/>
+                                        <span t-field="o.end_user_zip"/>
+                                        <span t-field="o.end_user_country_id" class="street"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Contact Person </div>
+                                    <span t-field="o.end_user_contact_person" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Email </div>
+                                    <span t-field="o.end_user_email" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Phone </div>
+                                    <span t-field="o.end_user_phone" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Google Map URL </div>
+                                    <span t-field="o.google_map_url" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Planning</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Lead Mechanic </div>
+                                    <span t-field="o.mechanic" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Number of Mechanics </div>
+                                    <div class="content">
+                                        <span t-field="o.number_mechanics" />
+                                    </div>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Number of Assistant </div>
+                                    <div class="content">
+                                        <span t-field="o.number_assistant" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Contact Person Internal Sales </div>
+                                    <span t-field="o.contact_person" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Project Manager at Site </div>
+                                    <span t-field="o.project_manager" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Carrier </div>
+                                    <span t-field="o.carrier" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Survey Planned Date </div>
+                                    <span t-field="o.survey_planned_date" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Survey Form Finished </div>
+                                    <div class="content">
+                                        <span t-field="o.survey_finished_date" />
+                                    </div>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Planned Installation Date </div>
+                                    <div class="content">
+                                        <span t-field="o.planned_installation_date" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Planning Production Order </div>
+                                    <span t-field="o.planning_production_order" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Delivery Date </div>
+                                    <span t-field="o.delivery_date" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Planned Transport Date </div>
+                                    <span t-field="o.planned_transport_date" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Licenses</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">VCA-certification mandatory </div>
+                                    <span t-field="o.vca_certification" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Vehicle / Equipment</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Accessibility </div>
+                                    <span t-field="o.accessibility_transport" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Trailer </div>
+                                    <div class="content">
+                                        <span t-field="o.trailer" />
+                                    </div>
+                                </div>
+                                <t t-if="o.trailer == 'yes'">
+                                    <div class="line">
+                                        <div class="title">Trailer Load Value (kg) </div>
+                                        <div class="content">
+                                            <span t-field="o.trailer_load_value" />
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Trailer with Tailgate </div>
+                                        <div class="content">
+                                            <span t-field="o.trailer_with_tailgate" />
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Small Truck </div>
+                                    <span t-field="o.small_truck" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Truck </div>
+                                    <span t-field="o.truck" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Coach </div>
+                                    <span t-field="o.coach" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Loading Site Survey</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Distance to Place of Unloading </div>
+                                    <span t-field="o.distance_place_unloading" />
+                                    <span t-field="o.distance_uom" />
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <div class="title">Load / Unload Dock </div>
+                                    <span t-field="o.distance_load_dock" class="content"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="line">
+                                <div class="title">Photo's Site </div>
+                                <span t-field="o.photo_site" class="content ext"/>
+                            </div>
+                            <div class="line">
+                                <div class="title">Photo's Description </div>
+                                <span t-field="o.photo_description" class="content ext"/>
+                            </div>
+                            <div class="line">
+                                <div class="title">Video </div>
+                                <span t-field="o.video" class="content ext"/>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Obstacle </div>
+                                    <span t-field="o.obstacle" class="content"/>
+                                </div>
+                            </div>
+                            <t t-if="o.obstacle == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Obstacle Description </div>
+                                        <span t-field="o.obstacle_description" class="content"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="title_group">Entry Object Information</div>
+
+                        <div class="info">
+                            <div class="line">
+                                <div class="three-col">
+                                    <div class="title">Entry Object (Length)</div>
+                                    <span t-field="o.entry_object_length" class="content mini"/>
+                                </div>
+                                <div class="three-col">
+                                    <div class="title">Entry Object (Width)</div>
+                                    <span t-field="o.entry_object_with" class="content mini"/>
+                                </div>
+                                <div class="three-col">
+                                    <div class="title">Entry Object (Height)</div>
+                                    <span t-field="o.entry_object_height" class="content mini"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Time Constraints</div>
+
+                        <div class="info">
+                            <div class="line">
+                                <div class="three-col">
+                                    <div class="title">Tuning and Loading Time</div>
+                                </div>
+                                <div class="three-col">
+                                    <div class="title">From</div>
+                                    <span t-field="o.tuning_loading_time_from" class="content mini"/>
+                                </div>
+                                <div class="three-col">
+                                    <div class="title">To</div>
+                                    <span t-field="o.tuning_loading_time_to" class="content mini"/>
+                                </div>
+                            </div>
+                            <t t-if="o.available_working_hours == 'yes'">
+                                <div class="line">
+                                    <div class="three-col">
+                                        <div class="title">Available Working Hours</div>
+                                    </div>
+                                    <div class="three-col">
+                                        <div class="title">From</div>
+                                        <span t-field="o.available_working_hours_from" class="content mini"/>
+                                    </div>
+                                    <div class="three-col">
+                                        <div class="title">To</div>
+                                        <span t-field="o.available_working_hours_to" class="content mini"/>
+                                    </div>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Difference Available Time </div>
+                                    <span class="show_color" t-attf-style="background-color:#{o.difference_available_time}"/>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="title_group">Buffer Zone</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Any Buffer Zone </div>
+                                    <span t-field="o.any_buffer_zone" class="content"/>
+                                </div>
+                                <t t-if="o.any_buffer_zone == 'yes'">
+                                    <div class="line">
+                                        <div class="title">Buffer Zone (Length) </div>
+                                        <span t-field="o.buffer_zone_length" class="content"/>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Buffer Zone (Width) </div>
+                                        <span t-field="o.buffer_zone_width" class="content"/>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Buffer Zone (Height) </div>
+                                        <span t-field="o.buffer_zone_height" class="content"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <t t-if="o.any_buffer_zone == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Distance Buffer Zone to Site </div>
+                                        <span t-field="o.distance_buffer_zone" />
+                                        <span t-field="o.distance_buffer_zone_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Photo's Buffer Zone </div>
+                                        <span t-field="o.photo_buffer_zone" class="content"/>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Waste Disposal Area Buffer Zone </div>
+                                        <span t-field="o.waste_buffer_zone" class="content"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="title_group">Lift Condition</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Lift Available </div>
+                                    <span t-field="o.lift_available" class="content"/>
+                                </div>
+                                <t t-if="o.lift_available == 'yes'">
+                                    <div class="line">
+                                        <div class="title">Size of Lift (Length) </div>
+                                        <span t-field="o.size_lift_length" />
+                                        <span t-field="o.size_lift_length_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Size of Lift (Depth) </div>
+                                        <span t-field="o.size_lift_depth" />
+                                        <span t-field="o.size_lift_depth_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Size of Lift (Height) </div>
+                                        <span t-field="o.size_lift_height" />
+                                        <span t-field="o.size_lift_height_uom" />
+                                    </div>
+                                </t>
+                            </div>
+                            <t t-if="o.lift_available == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Lift Qty </div>
+                                        <span t-field="o.lift_qty_lift" class="content"/>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Lift Load Capacity (kg) </div>
+                                        <span t-field="o.lift_load_capacity" />
+                                        <span t-field="o.lift_load_capacity_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Lift Opening (Length) </div>
+                                        <span t-field="o.lift_opening_length" />
+                                        <span t-field="o.lift_opening_length_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Lift Opening (Height) </div>
+                                        <span t-field="o.lift_opening_height" />
+                                        <span t-field="o.lift_opening_height_uom" />
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Moving Lift Available </div>
+                                    <span t-field="o.moving_lift_available" class="content"/>
+                                </div>
+                                <t t-if="o.moving_lift_available == 'yes'">
+                                    <div class="line">
+                                        <div class="title">Size of Moving Lift (Length) </div>
+                                        <span t-field="o.size_moving_lift_length" />
+                                        <span t-field="o.size_moving_lift_length_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Size of Moving Lift (Depth) </div>
+                                        <span t-field="o.size_moving_lift_depth" />
+                                        <span t-field="o.size_moving_lift_depth_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Size of Moving Lift (Height) </div>
+                                        <span t-field="o.size_moving_lift_height" />
+                                        <span t-field="o.size_moving_lift_height_uom" />
+                                    </div>
+                                </t>
+                            </div>
+                            <t t-if="o.moving_lift_available == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Lift Qty </div>
+                                        <span t-field="o.lift_qty_moving" class="content"/>
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Moving Lift Load Capacity (kg) </div>
+                                        <span t-field="o.moving_lift_load_capacity" />
+                                        <span t-field="o.moving_lift_load_capacity_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Moving Lift Opening (Length) </div>
+                                        <span t-field="o.moving_lift_opening_length" />
+                                        <span t-field="o.moving_lift_opening_length_uom" />
+                                    </div>
+                                    <div class="line">
+                                        <div class="title">Moving Lift Opening (Height) </div>
+                                        <span t-field="o.moving_lift_opening_height" />
+                                        <span t-field="o.moving_lift_opening_height_uom" />
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Lift Protection </div>
+                                    <span t-field="o.lift_protection" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Staircase Available </div>
+                                    <span t-field="o.staircase_available" class="content"/>
+                                </div>
+                            </div>
+                            <t t-if="o.staircase_available == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Number of Staircase </div>
+                                        <span t-field="o.number_staircase" class="content"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="title_group">Installation Space Survey</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Installation on Multiple Floors </div>
+                                    <span t-field="o.installation_on_multiple" class="content"/>
+                                </div>
+                                <t t-if="o.installation_on_multiple == 'yes'">
+                                    <div class="line">
+                                        <div class="title">Number of Floor Where Work Takes Place </div>
+                                        <span t-field="o.number_floors" class="content"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <t t-if="o.installation_on_multiple == 'yes'">
+                                <div class="right">
+                                    <div class="line">
+                                        <div class="title">Total Number of Floors </div>
+                                        <span t-field="o.total_number_floors" class="content"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="title_group">Necessary Means of Transport (Internal Use)</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Dog? </div>
+                                    <span t-field="o.dog" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Rolling Containers </div>
+                                    <span t-field="o.rolling_containers" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Pickup Truck </div>
+                                    <span t-field="o.pickup_truck" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Pump Truck </div>
+                                    <span t-field="o.pump_truck" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Threshold Plate </div>
+                                    <span t-field="o.threshold_plate" class="content"/>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <t t-if="o.dog == 'yes'">
+                                        <div class="title">Dog Qty </div>
+                                        <span t-field="o.dog_qty" class="content"/>
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.rolling_containers == 'yes'">
+                                        <div class="title">Rolling Container Qty </div>
+                                        <span t-field="o.rolling_container_qty" class="content"/>
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.pickup_truck == 'yes'">
+                                        <div class="title">Pickup Truck Qty </div>
+                                        <span t-field="o.pickup_truck_qty" class="content"/>
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.pump_truck == 'yes'">
+                                        <div class="title">Pump Truck Qty </div>
+                                        <span t-field="o.pump_truck_qty" class="content"/>
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.threshold_plate == 'yes'">
+                                        <div class="title">Truck Qty </div>
+                                        <span t-field="o.truck_qty" class="content"/>
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Protective Device for Housing</div>
+
+                        <div class="info">
+                            <div class="left">
+                                <div class="line">
+                                    <div class="title">Stool </div>
+                                    <span t-field="o.stool" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Carpenter Cover </div>
+                                    <span t-field="o.carpenter_cover" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Board Plates </div>
+                                    <span t-field="o.board_plates" class="content"/>
+                                </div>
+                                <div class="line">
+                                    <div class="title">Blankets </div>
+                                    <span t-field="o.blankets" class="content"/>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="line">
+                                    <t t-if="o.stool == 'yes'">
+                                        <div class="title">Stool Size </div>
+                                        <span t-field="o.stool_size" />
+                                        <span t-field="o.stool_size_uom" />
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.carpenter_cover == 'yes'">
+                                        <div class="title">Carpenter Size </div>
+                                        <span t-field="o.carpenter_size" />
+                                        <span t-field="o.carpenter_size_uom" />
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.board_plates == 'yes'">
+                                        <div class="title">Board Plates Size </div>
+                                        <span t-field="o.board_plates_size" />
+                                        <span t-field="o.board_plates_size_uom" />
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                                <div class="line">
+                                    <t t-if="o.blankets == 'yes'">
+                                        <div class="title">Blankets Size </div>
+                                        <span t-field="o.blankets_size" />
+                                        <span t-field="o.blankets_size_uom" />
+                                    </t>
+                                    &amp;nbsp;
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_group">Other Detail Information</div>
+                        <div class="info">
+                            <div class="line">
+                                <span t-field="o.other_detail_info" class="content ext"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id='markant_survey.survey_form_report_style'>
+        <style type="text/css">
+            .name {
+                font-size: 25px;
+                margin-bottom: 40px;
+            }
+            .info {
+                float: left;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .left, .right {
+                float: left;
+                width: 50%;
+            }
+            .line {
+                float: left;
+                width: 100%;
+            }
+            .title {
+                float: left;
+                width: 160px;
+                font-weight: bold;
+            }
+            .content {
+                float: left;
+                width: 60%;
+            }
+            .street {
+                float: left;
+                width: 100%;
+            }
+            .title_group {
+                float: left;
+                width: 100%;
+                font-size: 20px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            .ext {
+                width: 80%;
+            }
+            .three-col {
+                float: left;
+                width: 30%;
+            }
+            .mini {
+                width: 35%;
+            }
+            .show_color {
+                float: left;
+                height: 18px;
+                margin-top: 2px;
+                width: 10%;
+            }
+        </style>
+    </template>
+
+    <report id='markant_survey.survey_form_report'
+        string='Survey Form Report'
+        model='survey'
+        report_type='qweb-pdf'
+        menu='True'
+        file='markant_survey.survey_form_report_template'
+        name='markant_survey.survey_form_report_template'
+    />
+
+</odoo>

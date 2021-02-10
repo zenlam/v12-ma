@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='markant_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.webshop.api.log.tree</field>
+        <field name="model">webshop.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Webshop Api Log" delete="0" create="0">
+                <field name="internal_ref"/>
+                <field name="product_id"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.webshop.api.log.form</field>
+        <field name="model">webshop.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Webshop Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="internal_ref"/>
+                            <field name="product_id"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop API Log Search View -->
+    <record id="webshop_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.api.log.search.view</field>
+        <field name="model">webshop.api.log</field>
+        <field name="arch" type="xml">
+            <search string="WEBSHOP API LOG">
+                <field name="product_id" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Webshop Api Log</field>
+        <field name="res_model">webshop.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_webshop_api_log_tree"/>
+    </record>
+
+    <!--    Webshop Asset Log-->
+    <record id='markant_asset_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.asset.webshop.api.log.tree</field>
+        <field name="model">webshop.asset.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Asset Api Log" delete="0" create="0">
+                <field name="internal_ref"/>
+                <field name="product_id"/>
+                <field name="asset"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_asset_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.asset.webshop.api.log.form</field>
+        <field name="model">webshop.asset.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Asset Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="internal_ref"/>
+                            <field name="product_id"/>
+                            <field name="asset"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop Asset Log Search View -->
+    <record id="webshop_asset_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.asset.api.log.search.view</field>
+        <field name="model">webshop.asset.api.log</field>
+        <field name="arch" type="xml">
+            <search string="Webshop Asset API LOG">
+                <field name="asset" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_asset_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Assets Api Log</field>
+        <field name="res_model">webshop.asset.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_asset_webshop_api_log_tree"/>
+    </record>
+
+    <!--    Webshop Pricelist Log-->
+    <record id='markant_pricelist_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.pricelist.webshop.api.log.tree</field>
+        <field name="model">webshop.pricelist.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Pricelist Api Log" delete="0" create="0">
+                <field name="pricelist_id"/>
+                <field name="pricelist_name"/>
+                <field name="categ_pricelist"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_pricelist_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.pricelist.webshop.api.log.form</field>
+        <field name="model">webshop.pricelist.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Pricelist Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="pricelist_id"/>
+                            <field name="pricelist_name"/>
+                            <field name="categ_pricelist"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop Pricelist Log Search View -->
+    <record id="webshop_pricelist_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.pricelist.api.log.search.view</field>
+        <field name="model">webshop.pricelist.api.log</field>
+        <field name="arch" type="xml">
+            <search string="Webshop Pricelist API LOG">
+                <field name="pricelist_name" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_pricelist_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Pricelist Api Log</field>
+        <field name="res_model">webshop.pricelist.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_pricelist_webshop_api_log_tree"/>
+    </record>
+
+    <!--    Webshop Customer Log-->
+    <record id='markant_customer_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.customer.webshop.api.log.tree</field>
+        <field name="model">webshop.customer.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Api Log" delete="0" create="0">
+                <field name="customer_name"/>
+                <field name="customer_id"/>
+                <field name="webshop_import_key"/>
+                <field name="customer_email"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_customer_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.customer.webshop.api.log.form</field>
+        <field name="model">webshop.customer.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Customer Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="customer_id"/>
+                            <field name="webshop_import_key"/>
+                            <field name="customer_email"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop Customer Log Search View -->
+    <record id="webshop_customer_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.customer.api.log.search.view</field>
+        <field name="model">webshop.customer.api.log</field>
+        <field name="arch" type="xml">
+            <search string="Webshop Customer API LOG">
+                <field name="customer_name" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_customer_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Customer Api Log</field>
+        <field name="res_model">webshop.customer.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_customer_webshop_api_log_tree"/>
+    </record>
+
+    <!--    Webshop Address Log-->
+    <record id='markant_address_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.address.webshop.api.log.tree</field>
+        <field name="model">webshop.address.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Address Api Log" delete="0" create="0">
+                <field name="address_name"/>
+                <field name="parent_address_name"/>
+                <field name="address_id"/>
+                <field name="webshop_import_key"/>
+                <field name="default_address"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_address_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.address.webshop.api.log.form</field>
+        <field name="model">webshop.address.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Address Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="address_name"/>
+                            <field name="parent_address_name"/>
+                            <field name="address_id"/>
+                            <field name="webshop_import_key"/>
+                            <field name="default_address"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop Address Log Search View -->
+    <record id="webshop_address_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.address.api.log.search.view</field>
+        <field name="model">webshop.address.api.log</field>
+        <field name="arch" type="xml">
+            <search string="Webshop Address API LOG">
+                <field name="address_name" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_address_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Address Api Log</field>
+        <field name="res_model">webshop.address.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_address_webshop_api_log_tree"/>
+    </record>
+
+    <!--    Webshop User Log-->
+    <record id='markant_user_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.user.webshop.api.log.tree</field>
+        <field name="model">webshop.user.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="User Api Log" delete="0" create="0">
+                <field name="user_name"/>
+                <field name="user_id"/>
+                <field name="parent_company_name"/>
+                <field name="parent_company_id"/>
+                <field name="parent_webshop_import_key"/>
+                <field name="type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+                <field name="response_body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_user_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.user.webshop.api.log.form</field>
+        <field name="model">webshop.user.api.log</field>
+        <field name="arch" type="xml">
+            <form string="User Api Log" delete="0" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_name"/>
+                            <field name="user_id"/>
+                            <field name="parent_company_name"/>
+                            <field name="parent_company_id"/>
+                            <field name="parent_webshop_import_key"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Webshop Address Log Search View -->
+    <record id="webshop_user_api_log_search_view" model="ir.ui.view">
+        <field name="name">webshop.user.api.log.search.view</field>
+        <field name="model">webshop.user.api.log</field>
+        <field name="arch" type="xml">
+            <search string="Webshop User API LOG">
+                <field name="user_name" string="Name"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('sync_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('sync_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='markant_user_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">User Api Log</field>
+        <field name="res_model">webshop.user.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="markant_user_webshop_api_log_tree"/>
+    </record>
+
+    <!-- Webshop Stock API Log -->
+    <record id='markant_stock_webshop_api_log_tree' model='ir.ui.view'>
+        <field name="name">markant.stock.webshop.api.log.tree</field>
+        <field name="model">webshop.stock.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Api Log" delete="0" create="0" edit="0">
+                <field name="create_date"/>
+                <field name="internal_ref"/>
+                <field name="product_id"/>
+                <field name="qty_synced"/>
+                <field name="req_type"/>
+                <field name="sync_method"/>
+                <field name="sync_time"/>
+                <field name="sync_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_stock_webshop_api_log_form' model='ir.ui.view'>
+        <field name="name">markant.stock.webshop.api.log.form</field>
+        <field name="model">webshop.stock.api.log</field>
+        <field name="arch" type="xml">
+            <form string="Stock Api Log" delete="0" create="0" edit="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="internal_ref"/>
+                            <field name="product_id"/>
+                            <field name="qty_synced"/>
+                        </group>
+                        <group>
+                            <field name="req_type"/>
+                            <field name="sync_method"/>
+                            <field name="sync_time"/>
+                            <field name="sync_status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="response_body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='markant_stock_webshop_api_log_action' model='ir.actions.act_window'>
+        <field name="name">Stock Api Log</field>
+        <field name="res_model">webshop.stock.api.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- REST API Log Tree View -->
+    <record id="rest_api_log_tree_view" model="ir.ui.view">
+        <field name="name">rest.api.log.tree.view</field>
+        <field name="model">rest.api.log</field>
+        <field name="arch" type="xml">
+            <tree edit='false' create='false' delete='false'>
+                <field name="request_type"/>
+                <field name="request_direction"/>
+                <field name="request_method"/>
+                <field name="request_time"/>
+                <field name="request_uid"/>
+                <field name="request_url"/>
+                <field name="request_headers" invisible="1"/>
+                <field name="request_response" invisible="1"/>
+                <field name="request_status"/>
+                <field name="current_retry"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- REST API Log Form View -->
+    <record id="rest_api_log_form_view" model="ir.ui.view">
+        <field name="name">rest.api.log.form.view</field>
+        <field name="model">rest.api.log</field>
+        <field name="arch" type="xml">
+            <form string="REST API Log" create="false" delete="false"
+                  edit="false">
+                <sheet>
+                    <group string="API Caller Info">
+                        <field name="request_uid"/>
+                        <field name="request_type"/>
+                        <field name="request_time"/>
+                    </group>
+                    <group string="API Request Info">
+                        <field name="request_direction"/>
+                        <field name="request_method"/>
+                        <field name="request_url"/>
+                        <field name="request_headers"/>
+                        <field name="request_arguments"/>
+                    </group>
+                    <group string="API Response Info">
+                        <field name="request_status"/>
+                        <field name="request_response"/>
+                        <field name="current_retry"/>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- REST API Log Search View -->
+    <record id="rest_api_log_search_view" model="ir.ui.view">
+        <field name="name">rest.api.log.search.view</field>
+        <field name="model">rest.api.log</field>
+        <field name="arch" type="xml">
+            <search string="REST API Log">
+                <field name="request_type" string="Request Type"/>
+                <separator/>
+                <filter name="outgoing" string="Outgoing"
+                        domain="[('request_direction','=','outgoing')]"/>
+                <filter name="incoming" string="Incoming"
+                        domain="[('request_direction','=','incoming')]"/>
+                <separator/>
+                <filter name="get" string="GET"
+                        domain="[('request_method','=','GET')]"/>
+                <filter name="post" string="POST"
+                        domain="[('request_method','=','POST')]"/>
+                <filter name="put" string="PUT"
+                        domain="[('request_method','=','PUT')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('request_time','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('request_time','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- REST API Log Window Action -->
+    <record id="rest_api_log_action" model="ir.actions.act_window">
+        <field name="name">REST API Log</field>
+        <field name="res_model">rest.api.log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rest_api_log_tree_view"/>
+        <field name="context">{'search_default_today':1}</field>
+    </record>
+
+    <record id="act_active_pricelist_sync_cron" model="ir.actions.server">
+        <field name="name">Activate Pricelist Sync Cron</field>
+        <field name="model_id" ref="markant_webshop.model_product_pricelist"/>
+        <field name="binding_model_id" ref="markant_webshop.model_product_pricelist"/>
+        <field name="state">code</field>
+        <field name="code">model.set_pricelist_sync_cron_active()</field>
+    </record>
+
+    <record id="act_active_customer_sync_cron" model="ir.actions.server">
+        <field name="name">Activate Customer Sync Cron</field>
+        <field name="model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="binding_model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="sequence">5</field>
+        <field name="state">code</field>
+        <field name="code">model.set_customer_sync_cron_active()</field>
+    </record>
+
+    <record id="act_active_address_sync_cron" model="ir.actions.server">
+        <field name="name">Activate Address Sync Cron</field>
+        <field name="model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="binding_model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="sequence">6</field>
+        <field name="state">code</field>
+        <field name="code">model.set_address_sync_cron_active()</field>
+    </record>
+
+    <record id="act_active_user_sync_cron" model="ir.actions.server">
+        <field name="name">Activate User Sync Cron</field>
+        <field name="model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="binding_model_id" ref="markant_webshop.model_res_partner"/>
+        <field name="sequence">7</field>
+        <field name="state">code</field>
+        <field name="code">model.set_user_sync_cron_active()</field>
+    </record>
+
+    <!-- REST API Log Menuitem -->
+    <menuitem id="rest_api_log_menu" name="API Technical Log"
+              action="rest_api_log_action"
+              parent="markant_webshop.menu_markant_webshop_api"
+              sequence="5"/>
+
+    <!-- Menu: API Log-->
+    <menuitem name="API Log"
+              id="menu_markant_webshop_log"
+              parent="markant_webshop.main_menu_webshop"/>
+
+    <menuitem name="Product API Log"
+              id="menu_markant_product_webshop_log"
+              sequence="1"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_webshop_api_log_action"/>
+
+    <menuitem name="Assets API Log"
+              id="menu_markant_asset_webshop_log"
+              sequence="2"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_asset_webshop_api_log_action"/>
+
+    <menuitem name="Pricelist API Log"
+              id="menu_markant_pricelist_webshop_log"
+              sequence="3"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_pricelist_webshop_api_log_action"/>
+
+    <menuitem name="Customer API Log"
+              id="menu_markant_customer_webshop_log"
+              sequence="4"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_customer_webshop_api_log_action"/>
+
+    <menuitem name="Address API Log"
+              id="menu_markant_address_webshop_log"
+              sequence="5"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_address_webshop_api_log_action"/>
+
+    <menuitem name="User API Log"
+              id="menu_markant_user_webshop_log"
+              sequence="6"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_user_webshop_api_log_action"/>
+
+    <menuitem name="Stock API Log"
+              id="menu_markant_stock_webshop_log"
+              sequence="7"
+              parent="markant_webshop.menu_markant_webshop_log"
+              action="markant_stock_webshop_api_log_action"/>
+
+    <!-- Menu: API Sync-->
+    <menuitem name="API Sync"
+              id="menu_markant_webshop_sync"
+              parent="markant_webshop.main_menu_webshop"/>
+
+    <menuitem name="Sync All Pricelist"
+              id="menu_markant_pricelist_sync"
+              sequence="1"
+              parent="markant_webshop.menu_markant_webshop_sync"
+              action="act_active_pricelist_sync_cron"/>
+
+    <menuitem name="Sync All Customer"
+              id="menu_markant_customer_sync"
+              sequence="2"
+              parent="markant_webshop.menu_markant_webshop_sync"
+              action="act_active_customer_sync_cron"/>
+
+    <menuitem name="Sync All Address"
+              id="menu_markant_address_sync"
+              sequence="3"
+              parent="markant_webshop.menu_markant_webshop_sync"
+              action="act_active_address_sync_cron"/>
+
+    <menuitem name="Sync All User"
+              id="menu_markant_user_sync"
+              sequence="4"
+              parent="markant_webshop.menu_markant_webshop_sync"
+              action="act_active_user_sync_cron"/>
+
+</odoo>

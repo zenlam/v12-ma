@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <!-- Sale Order Cycle Views -->
+    <menuitem id="markant_order_cycle_sale_menu" name="Order Cycle"
+        action="markant_generic.markant_order_cycle_action"
+        parent="sale.menu_sale_config" sequence="99"/>
+    <!-- End Sale order Cycle Views -->
+</odoo>

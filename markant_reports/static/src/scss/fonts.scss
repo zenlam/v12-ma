@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: local('Ubuntu'), local('Ubuntu'),
+    url(/markant_reports/static/src/fonts/Ubuntu-R.ttf) format('opentype');
+}
+
+.page {
+    font-family: Ubuntu;
+    font-size: 13px;
+}

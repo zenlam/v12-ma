@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sale_person_email_automation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <br/>
+                        <h3>
+                            <span>Sale Person:</span>
+                            <span t-field="o.name"/>
+                        </h3>
+                        <br/>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%">#</th>
+                                    <th style="width:20%">Subject</th>
+                                    <th style="width:20%">Dealers</th>
+                                    <th style="width:35%">
+                                        <div style="width: 48%; float: left;">
+                                            Activity Date
+                                        </div>
+                                        <div>Activity Type</div>
+                                    </th>
+                                    <th style="width:20%">Expected Closing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="lead_data[o.id]" t-as="lead">
+                                    <tr style="border-top: 1px solid black;">
+                                        <td>
+                                            <span t-esc="lead_index + 1"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="lead.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="', '.join(lead.dealer_oppor_info_ids.mapped('dealer_id.name'))"/>
+                                        </td>
+                                        <td>
+                                            <t t-set="activities"
+                                               t-value="lead.activity_ids"/>
+                                            <t t-set="activities"
+                                               t-value="activities + lead.dealer_oppor_info_ids.mapped('activity_ids')"/>
+
+                                            <div>
+                                                <t t-if="activities">
+                                                    <p style="margin: 0px 4px;"
+                                                       t-foreach="activities"
+                                                       t-as="activity">
+                                                        <div style="width: 48%; float: left"
+                                                             t-field="activity.date_deadline"/>
+                                                        <div t-field="activity.activity_type_id.name"/>
+                                                    </p>
+                                                </t>
+                                                <p style="margin: 0px 4px;">
+                                                    <div style="width: 48%; float: left"
+                                                         t-field="lead.next_action_date"/>
+                                                    <div t-field="lead.title_action_date"/>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span t-field="lead.date_deadline"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

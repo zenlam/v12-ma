@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="Markant CRM" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/markant_crm/static/src/css/style.css" />
+            <!--<script type="text/javascript" src="/markant_crm/static/src/js/disable_double_click.js"/>-->
+            <!--<script type="text/javascript" src="/markant_crm/static/src/js/search_filters.js"/>-->
+        </xpath>
+    </template>
+
+</odoo>

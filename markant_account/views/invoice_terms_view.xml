@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_proforma_account_term_search" model="ir.ui.view">
+             <field name="name">proforma.account.term.tree</field>
+            <field name="model">proforma.account.term</field>
+            <field name="arch" type="xml">
+                <search string="Pro-forma Terms">
+                    <field name="name" string="Pro-forma Terms"/>
+                    <field name="active"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_proforma_account_term_tree" model="ir.ui.view">
+            <field name="name">proforma.account.term.tree</field>
+            <field name="model">proforma.account.term</field>
+            <field name="arch" type="xml">
+                <tree string="Pro-forma Terms">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_proforma_account_term_form" model="ir.ui.view">
+            <field name="name">proforma.account.term.form</field>
+            <field name="model">proforma.account.term</field>
+            <field name="arch" type="xml">
+                <form string="Pro-forma Terms">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <label for="note"/>
+                        <field name="note" placeholder="Pro-forma payment term explanation for the customer..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_proforma_account_term_form" model="ir.actions.act_window">
+            <field name="name">Proforma Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">proforma.account.term</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('active', '=', True),('active', '=', False)]</field>
+            <field name="search_view_id" ref="view_proforma_account_term_search"/>
+        </record>
+
+        <menuitem action="action_proforma_account_term_form"
+            id="menu_action_proforma_account_term_form" parent="account.account_management_menu" sequence="1"/>
+
+        <record id="view_customer_invoice_term_search" model="ir.ui.view">
+             <field name="name">customer.invoice.term.tree</field>
+            <field name="model">customer.invoice.term</field>
+            <field name="arch" type="xml">
+                <search string="Customer Invoice Terms">
+                    <field name="name" string="Customer Invoice Terms"/>
+                    <field name="active"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_customer_invoice_term_tree" model="ir.ui.view">
+            <field name="name">customer.invoice.term.tree</field>
+            <field name="model">customer.invoice.term</field>
+            <field name="arch" type="xml">
+                <tree string="Customer Invoice Terms">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_customer_invoice_term_form" model="ir.ui.view">
+            <field name="name">customer.invoice.term.form</field>
+            <field name="model">customer.invoice.term</field>
+            <field name="arch" type="xml">
+                <form string="Customer Invoice Terms">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <label for="note"/>
+                        <field name="note" placeholder="Customer Invoice payment term explanation for the customer..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_customer_invoice_term_form" model="ir.actions.act_window">
+            <field name="name">Customer Invoice Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.invoice.term</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('active', '=', True),('active', '=', False)]</field>
+            <field name="search_view_id" ref="view_customer_invoice_term_search"/>
+        </record>
+
+        <menuitem action="action_customer_invoice_term_form"
+            id="menu_action_customer_invoice_term_form" parent="account.account_management_menu" sequence="1"/>
+
+        <record id="view_vendor_bill_term_search" model="ir.ui.view">
+             <field name="name">vendor.bill.term.tree</field>
+            <field name="model">vendor.bill.term</field>
+            <field name="arch" type="xml">
+                <search string="Vendor Bill Terms">
+                    <field name="name" string="Vendor Bill Terms"/>
+                    <field name="active"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_vendor_bill_term_tree" model="ir.ui.view">
+            <field name="name">vendor.bill.term.tree</field>
+            <field name="model">vendor.bill.term</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Bill Terms">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_vendor_bill_term_form" model="ir.ui.view">
+            <field name="name">vendor.bill.term.form</field>
+            <field name="model">vendor.bill.term</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Bill Terms">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <label for="note"/>
+                        <field name="note" placeholder="Vendor Bill payment term explanation for the customer..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_vendor_bill_term_form" model="ir.actions.act_window">
+            <field name="name">Vendor Bill Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vendor.bill.term</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('active', '=', True),('active', '=', False)]</field>
+            <field name="search_view_id" ref="view_vendor_bill_term_search"/>
+        </record>
+
+        <menuitem action="action_vendor_bill_term_form"
+            id="menu_action_vendor_bill_term_form" parent="account.account_management_menu" sequence="1"/>
+
+    </data>
+</odoo>

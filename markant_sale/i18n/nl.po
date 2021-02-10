@@ -1,0 +1,1127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-20 06:36+0000\n"
+"PO-Revision-Date: 2019-12-20 06:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "% discount"
+msgstr "% korting "
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.mail_notification_paynow_sale_order
+msgid "&amp;nbsp;"
+msgstr "&amp;nbsp;"
+
+#. module: markant_sale
+#: model:mail.template,body_html:markant_sale.email_template_down_payment_invoice
+msgid "<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        % if object.number:\n"
+"            invoice <strong>${object.number}</strong>\n"
+"        % else:\n"
+"            invoice\n"
+"        %endif\n"
+"        has been created for down-payment collection. Please followup on the payment collection.\n"
+"        <br/><br/>\n"
+"        <p style=\"margin-top: 24px; margin-bottom: 16px;\">\n"
+"        <p>\n"
+"            <a href=\"/mail/view?model=account.invoice&amp;res_id=${object.id}\" style=\"background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\">\n"
+"                View Invoice\n"
+"            </a>\n"
+"        </p>\n"
+"    </p>\n"
+"    </p>\n"
+"</div>\n"
+"            "
+msgstr "<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        % if object.number:\n"
+"            factuur <strong>${object.number}</strong>\n"
+"        % else:\n"
+"            factuur\n"
+"        %endif\n"
+"        is gemaakt voor vooruitbetaling. Volg de inning van de betalingen op.\n"
+"        <br/><br/>\n"
+"        <p style=\"margin-top: 24px; margin-bottom: 16px;\">\n"
+"        <p>\n"
+"            <a href=\"/mail/view?model=account.invoice&amp;res_id=${object.id}\" style=\"background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\">\n"
+"                View Factuur\n"
+"            </a>\n"
+"        </p>\n"
+"    </p>\n"
+"    </p>\n"
+"</div>\n"
+"            "
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "<i class=\"fa fa-arrow-right\"/> Add to order"
+msgstr "<i class=\"fa fa-arrow-right\"/> Toevoegen aan bestelling"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "<i class=\"fa fa-arrow-right\"/> Get rate"
+msgstr "<i class=\"fa fa-arrow-right\"/>Krijg een tarief"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "<i class=\"fa fa-check text-success\" role=\"img\" aria-label=\"Rating OK\" title=\"Rating OK\" attrs=\"{'invisible':['|','|',('montage_install_rule_id','=',False),('is_montage_install_rule','=', False),('montage_install_rule_price','=',0.0)]}\"/>"
+msgstr "<i class=\"fa fa-check text-success\" role=\"img\" aria-label=\"Beoordeling OK\" title=\"Beoordeling OK\" attrs=\"{'invisible':['|','|',('montage_install_rule_id','=',False),('is_montage_install_rule','=', False),('montage_install_rule_price','=',0.0)]}\"/>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "<span class=\"o_form_label\">Administration Cost</span>"
+msgstr "<span class=\"o_form_label\">Administratiekosten</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "<span class=\"o_form_label\">Verkoop automatisch vergrendelen</span>"
+msgstr ""
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "<span class=\"o_form_label\">Project Discount</span>"
+msgstr "<span class=\"o_form_label\">Project korting</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_quotation_order_report_inherit_markant_sale
+msgid "<span class=\"text-right\">VAT %</span>"
+msgstr "<span class=\"text-right\">BTW %</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "<span> (In Hours)</span>"
+msgstr "<span> (In Uren)</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<span>Disc.(%)</span>"
+msgstr "<span>Korting (%)</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<span>Optional Products</span>"
+msgstr "<span>Optionele Producten</span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<span>Pro-Forma Invoice # </span>"
+msgstr "<span>Pro-Forma factuur # </span>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "<strong class=\"mr16\">Gross Total</strong>"
+msgstr "<strong class=\"mr16\">Totaal</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong class=\"mr16\">GrossTotal</strong>"
+msgstr "<strong class=\"mr16\">Totaal</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Subtotaal</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong style=\"text-decoration:underline;\">Delivery address:</strong>"
+msgstr "<strong style=\"text-decoration:underline;\">Afleveradres:</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong style=\"text-decoration:underline;\">Invoice address:</strong>"
+msgstr "<strong style=\"text-decoration:underline;\">Factuuradres:</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Administration costs</strong>"
+msgstr "<strong>Administratie kosten</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Contact Person</strong>"
+msgstr "<strong>Behandeld door</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Customer number</strong>"
+msgstr "<strong>Klantnummer</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Your reference</strong>"
+msgstr "<strong>Uw referentie</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Date</strong>"
+msgstr "<strong>Datum</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Discount</strong>"
+msgstr "<strong>Korting</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Expected Delivery Date</strong>"
+msgstr "<strong>Verwachte Leverdatum</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Fiscal Position Remark:</strong>"
+msgstr "<strong>Opmerking Fiscale Positie:</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "<strong>Gross Total</strong>"
+msgstr "<strong>Totaal</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Incoterms</strong>"
+msgstr "<strong>Incoterms</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Installation costs</strong>"
+msgstr "<strong>Inhuiskosten</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Order date</strong>"
+msgstr "<strong>Order datum</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Project Discount</strong>"
+msgstr "<strong>Project korting</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Signature</strong>"
+msgstr "<strong>Handtekening</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "<strong>Sum of Subtotal</strong>"
+msgstr "<strong>Som van subtotaal</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Taxes</strong>"
+msgstr "<strong>BTW bedrag</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Total incl. VAT</strong>"
+msgstr "<strong>Totaal incl. BTW</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "<strong>Total ex. VAT</strong>"
+msgstr "<strong>Totaal ex. BTW</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Add an Order Point"
+msgstr "Voeg een bestelpunt toe"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__admin_cost_default_admin_amount
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__admin_cost_default_admin_amount
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Admin Amount"
+msgstr "Admin Bedrag"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__admin_cost_rule_admin_amount
+msgid "Admin Charges"
+msgstr "Admin-kosten"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_admin_total
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Administration costs"
+msgstr "Administratie kosten"
+
+#. module: markant_sale
+#: model:res.groups,name:markant_sale.group_markant_lock_unlock_access
+msgid "Allow Lock/unlock Sale Order"
+msgstr "Verkooporder Vergrendelen / Ontgrendelen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__value
+msgid "Amt/% "
+msgstr "Amt/%"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__is_montage_install_rule
+msgid "Apply Installation Cost"
+msgstr "Installatiekosten toepassen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__is_min_admin_cost_rule
+msgid "Apply Min Administration Cost Rule"
+msgstr "Min Administratie Kostenregel toepassen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__admin_cost_rule_apply_on
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__project_discount_apply_on
+msgid "Apply On"
+msgstr "Toepassen op"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__apply_order_cycle
+msgid "Apply Order Cycle"
+msgstr "Ordercyclus toepassen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__is_project_discount
+msgid "Apply Project Discount"
+msgstr "Projectkorting toepassen"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#. module: markant_sale
+#: model:res.groups,name:markant_sale.group_approve_project_discount
+msgid "Approve Project Discount"
+msgstr "Projectkorting goedkeuren"
+
+#. module: markant_sale
+#: model:res.groups,name:markant_sale.group_markant_approve_so_with_unpaid_downpayment
+msgid "Approve SO with unpaid Downpayment"
+msgstr "Goedkeuren met onbetaalde aanbetaling"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__based_on
+msgid "Based On"
+msgstr "Gebaseerd op"
+
+#. module: markant_sale
+#: selection:montage.installation.rule,condition:0
+msgid "Based on Rules"
+msgstr "Gebaseerd op regels"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.mail_notification_paynow_sale_order
+msgid "Best regards,"
+msgstr "Beste wensen"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_advance_payment_inv_markant_sale
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__carrier_name_id
+#: model:ir.ui.menu,name:markant_sale.sale_menu_carrier
+msgid "Carrier"
+msgstr "Carrier"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__charges_level
+msgid "Charges for Level 1 & Above"
+msgstr "Kosten voor niveau 1 en hoger"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_res_company
+msgid "Companies"
+msgstr "bedrijven"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__condition
+msgid "Condition"
+msgstr "Staat"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_res_config_settings
+msgid "Config Settings"
+msgstr "Config-Instellingen"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Create Down-Payment Invoice"
+msgstr "Vooruitbetalingsfactuur Maken"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_advance_payment_inv_markant_sale
+msgid "Create Invoices"
+msgstr "Facturen Maken"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_advance_payment_inv_markant_sale
+msgid "Create and View Invoices"
+msgstr "Facturen Maken en Bekijken"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__create_uid
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__create_uid
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__create_uid
+msgid "Created by"
+msgstr "Gemaakt door"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__create_date
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__create_date
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__create_date
+msgid "Created on"
+msgstr "Gemaakt op"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__client_order_ref
+msgid "Your reference"
+msgstr "Uw referentie"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_res_company__sale_notes
+msgid "Default Terms and Conditions"
+msgstr "Standaard algemene voorwaarden"
+
+#. module: markant_sale
+#: model:ir.model.fields,help:markant_sale.field_credit_limit_config__project_disc_default_product_id
+#: model:ir.model.fields,help:markant_sale.field_res_config_settings__project_disc_default_product_id
+msgid "Default product used for Project Discount"
+msgstr "Standaardproduct gebruikt voor projectkorting"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__montage_install_rule_id
+msgid "Delivery & Installation"
+msgstr "Levering & Installatie"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Delivery Date"
+msgstr "Bezorgdatum"
+
+#. module: markant_sale
+#: model:ir.actions.act_window,name:markant_sale.markant_montage_installation_rule_action
+#: model:ir.ui.menu,name:markant_sale.markant_montage_installation_rule_menu
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_form_view
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_tree_view
+msgid "Delivery and Installation"
+msgstr "Levering & Installatie"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Discount"
+msgstr "Korting"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Discount Approved"
+msgstr "Korting goedgekeurd"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Discount Rejected"
+msgstr "Korting geweigerd"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__project_discount_type
+msgid "Discount Type"
+msgstr "Kortingstype"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__display_name
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__display_name
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__display_name
+msgid "Display Name"
+msgstr "Weergave naam"
+
+#. module: markant_sale
+#: selection:sale.advance.payment.inv,advance_payment_method_temp:0
+msgid "Down payment (fixed amount)"
+msgstr ""
+
+#. module: markant_sale
+#: selection:sale.advance.payment.inv,advance_payment_method_temp:0
+msgid "Down payment (percentage)"
+msgstr "Vooruitbetaling (vast bedrag)"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:599
+#, python-format
+msgid "Down payment is required before confirm sale order."
+msgstr "Aanbetaling is vereist voordat de verkooporder wordt bevestigd."
+
+#. module: markant_sale
+#: model:ir.actions.act_window,name:markant_sale.markant_downpayment_email_alert_action
+#: model:ir.ui.menu,name:markant_sale.markant_downpayment_email_alert_menu
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_downpayment_email_alert_form_view
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_downpayment_email_alert_tree_view
+msgid "Down-Payment Alert"
+msgstr "Vooruitbetalingswaarschuwing"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__is_downpayment_paid
+msgid "Down-payment Paid"
+msgstr "Vooruitbetaling betaald"
+
+#. module: markant_sale
+#: model:mail.template,subject:markant_sale.email_template_down_payment_invoice
+msgid "Down-payment collection : Invoice (Ref ${object.number or 'n/a'})"
+msgstr "Vooruitbetaling Inning: Factuur (Ref ${object.number or 'n/a'})"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__downpayment_invoice_id
+msgid "Downpayment Invoice"
+msgstr "Vooruitbetalingsfactuur"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__email
+msgid "Email"
+msgstr "E-mail"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_mail_template
+msgid "Email Templates"
+msgstr "E-mailsjablonen"
+
+#. module: markant_sale
+#: model:ir.model.fields,help:markant_sale.field_credit_limit_config__enable_lock_sales_automatic
+#: model:ir.model.fields,help:markant_sale.field_res_config_settings__enable_lock_sales_automatic
+msgid "Enable/Disable Auto locking on sales."
+msgstr "Auto vergrendeling bij verkoop inschakelen / uitschakelen"
+
+#. module: markant_sale
+#: selection:montage.installation.rule,get_rate:0
+msgid "Fixed"
+msgstr "vast"
+
+#. module: markant_sale
+#: selection:sale.order,project_discount_type:0
+msgid "Fixed Amount"
+msgstr "Vaste hoeveelheid"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:229
+#, python-format
+msgid "Fixed Amount, the number keyed‐in in this field cannot be > Total Amount of the Sales Order."
+msgstr "Vast bedrag, het ingetoetste cijfer in dit veld kan niet> Totaalbedrag van de klantorder zijn."
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__price
+#: selection:montage.installation.rule,condition:0
+msgid "Fixed Price"
+msgstr "Vaste prijs"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__get_rate
+msgid "Get Rate"
+msgstr "Ontvang een tarief"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_form_view
+msgid "Greater than"
+msgstr "Groter dan"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:700
+#, python-format
+msgid "Greather than price should be less than Less than or equal to."
+msgstr "Groter dan de prijs moet kleiner zijn dan kleiner dan of gelijk aan."
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_gross_total
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_line__price_gross_total
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Gross Total"
+msgstr "Totaal"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__id
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__id
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__id
+msgid "ID"
+msgstr "ID kaart"
+
+#. module: markant_sale
+#: model:ir.model.fields,help:markant_sale.field_sale_order_option__product_image
+msgid "Image of the product variant (Medium-sized image of product template if false)."
+msgstr "Afbeelding van de productvariant (middelgrote afbeelding van productsjabloon indien onwaar)."
+
+#. module: markant_sale
+#: model:ir.model.fields,help:markant_sale.field_sale_order_option__product_image_small
+msgid "Image of the product variant (Small-sized image of product template if false)."
+msgstr "Afbeelding van de productvariant (kleine afbeelding van productsjabloon indien onwaar)."
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Insert your terms & conditions here..."
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_installation_total
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Installation costs"
+msgstr "Inhuiskosten"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_account_invoice
+msgid "Invoice"
+msgstr "Voer hier uw algemene voorwaarden in ..."
+
+#. module: markant_sale
+#: model:ir.actions.act_window,name:markant_sale.action_view_sale_advance_payment_inv_markant_sale
+msgid "Invoice Order"
+msgstr "Factuurorder"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_advance_payment_inv_markant_sale
+msgid "Invoice Sales Order"
+msgstr "Klantorder factuur"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_advance_payment_inv_markant_sale
+msgid "Invoices will be created in draft so that you can review\n"
+"                    them before validation."
+msgstr "Facturen worden in concept opgesteld zodat u deze kunt bekijken\n"
+"                       ze vóór validatie.                               "
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_account_invoice__is_down_payment_invoice
+msgid "Is Down Payment Invoice"
+msgstr "Is aanbetalingsfactuur"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_line__is_min_admin_cost_rule_line
+msgid "Is Min Admin Cost Rule Line"
+msgstr "Is Minieregel Kostenregelregel"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_line__is_montage_install_rule_line
+msgid "Is Montage Install Rule Line"
+msgstr "Is Montage Regelregel installeren"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_line__is_project_discount_line
+msgid "Is Project Discount Line"
+msgstr "Is de kortingslijn voor projecten"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert____last_update
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule____last_update
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule____last_update
+msgid "Last Modified on"
+msgstr "Laatst aangepast op"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__write_uid
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__write_uid
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__write_date
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__write_date
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__write_date
+msgid "Last Updated on"
+msgstr "Laatst geupdate op"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_form_view
+msgid "Less than or equal to"
+msgstr "Minder dan of gelijk aan"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__montage_install_level_of_floor
+msgid "Level of Floor"
+msgstr "Niveau van verdieping"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__enable_lock_sales_automatic
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__enable_lock_sales_automatic
+msgid "Lock Sales Automatically"
+msgstr "Verkoop automatisch vergrendelen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__time_needed_lock_sales
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__time_needed_lock_sales
+msgid "Lock Time"
+msgstr "Lock Time"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Locked"
+msgstr "Op slot"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Margin (%)"
+msgstr "Marge (%)"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_line__margin_in_per
+msgid "Margin In Per"
+msgstr "Marge In Per"
+
+#. module: markant_sale
+#: model:ir.actions.server,name:markant_sale.markant_sale_autolock_scheduler_ir_actions_server
+#: model:ir.cron,cron_name:markant_sale.markant_sale_autolock_scheduler
+#: model:ir.cron,name:markant_sale.markant_sale_autolock_scheduler
+msgid "Markant Sale: Auto Lock Sales Scheduler"
+msgstr "Markant Sale: Verkoopplanner Auto Lock"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__admin_cost_default_min_amount
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__admin_cost_default_min_amount
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__admin_cost_rule_min_amount
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Minimum Amount"
+msgstr "Minimum hoeveelheid"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__mont_install_rule_id
+msgid "Mont Install Rule"
+msgstr "Mont-installeerregel"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__montage_install_rule_message
+msgid "Montage Install Rule Message"
+msgstr "Montage Regelbericht installeren"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__montage_install_rule_price
+msgid "Montage Installation Price"
+msgstr "Montage Installatieprijs"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:742
+#, python-format
+msgid "Montage amounts should not overlap"
+msgstr "Montagebedragen mogen elkaar niet overlappen"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_montage_installation_rule
+msgid "Montage and Installation"
+msgstr "Montage en installatie"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:367
+#, python-format
+msgid "More then one line found with project Admin Discount product so remove other ones."
+msgstr "Meer dan één regel gevonden met project Admin Discount-product, dus verwijder andere."
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:305
+#, python-format
+msgid "More then one line found with project discount product so remove other ones."
+msgstr "Meer dan één regel gevonden met projectkortingsproduct, dus verwijder andere."
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__montage_install_multiple_of
+msgid "Multiple of"
+msgstr "Meerdere van"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "NOTE : Gross Total &amp; Total Discount Lines Exclude Project Discount, Installation and Administration."
+msgstr "OPMERKING: bruto totaal & amp; Total Discount Lines exclusief projectkorting, installatie en administratie."
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__name
+msgid "Name"
+msgstr "Naam"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__require_down_payment
+msgid "Need Down-Payment"
+msgstr ""
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:523
+#, python-format
+msgid "New"
+msgstr "Nieuw"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.mail_notification_paynow_sale_order
+msgid "Odoo"
+msgstr "Odoo"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Order confirmation"
+msgstr "Orderbevestiging"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__sale_order_cycle_id
+#: model:ir.ui.menu,name:markant_sale.markant_order_cycle_sale_menu
+msgid "Order Cycle"
+msgstr "Bestel cyclus"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Pending Discount Approval"
+msgstr "In afwachting van goedkeuring van korting"
+
+#. module: markant_sale
+#: selection:montage.installation.rule,get_rate:0
+#: selection:sale.order,project_discount_type:0
+msgid "Percentage"
+msgstr "Percentage"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:226
+#, python-format
+msgid "Percentage, the number keyed‐in in this field cannot be >100"
+msgstr "Percentage, het ingetoetste cijfer in dit veld mag niet> 100 zijn"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__project_discount_amount
+msgid "Percentage/Amount"
+msgstr "Percentage / Bedrag"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:354
+#: code:addons/markant_sale/models/sale.py:358
+#: code:addons/markant_sale/models/sale.py:360
+#, python-format
+msgid "Please Configure the Administration Cost Discount Product from Sale settings."
+msgstr "Configureer het Administration Cost Discount-product uit de verkoopinstellingen."
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:292
+#: code:addons/markant_sale/models/sale.py:296
+#: code:addons/markant_sale/models/sale.py:298
+#, python-format
+msgid "Please Configure the Project Discount Product from Sale settings."
+msgstr "Configureer het projectkortingsproduct uit de verkoopinstellingen."
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.mail_notification_paynow_sale_order
+msgid "Powered by"
+msgstr "Aangedreven door"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__price_less_than_eqto
+msgid "Price Less Than Eqto"
+msgstr "Prijs minder dan Eqto"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_pricing_rule__price_more_than
+msgid "Price More Than"
+msgstr "Prijs meer dan"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_form_view
+msgid "Pricing"
+msgstr "pricing"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__mont_install_pricing_rule_ids
+msgid "Pricing Rules"
+msgstr "Prijsregels"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_option__product_image
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order_option__product_image_small
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_quotation_order_report_inherit_markant_sale
+msgid "Product Image"
+msgstr "product afbeelding"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Product used for Administration Cost"
+msgstr "Product dat wordt gebruikt voor administratiekosten"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__admin_cost_default_product_id
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__admin_cost_default_product_id
+#: model:ir.model.fields,help:markant_sale.field_credit_limit_config__admin_cost_default_product_id
+#: model:ir.model.fields,help:markant_sale.field_res_config_settings__admin_cost_default_product_id
+msgid "Product used for Minimum Adminstrative Cost"
+msgstr "Product dat wordt gebruikt voor minimale administratieve kosten"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__project_disc_default_product_id
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__project_disc_default_product_id
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Product used for Project Discount"
+msgstr "Product dat wordt gebruikt voor projectkorting"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_project_disc_total
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Project Discount"
+msgstr "Project korting"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Ordered"
+msgstr "Besteld"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Quotation"
+msgstr "Citaat"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Quotation"
+msgstr "Offerte"
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Quotation Sent"
+msgstr "Offerte verzonden"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Reject"
+msgstr "afwijzen"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__report_to_send
+msgid "Report to send/print"
+msgstr "Rapport om te verzenden / afdrukken"
+
+#. module: markant_sale
+#: model:ir.actions.report,name:markant_sale.action_report_saleorder_markant_gross_disc_sub_total
+#: selection:sale.order,report_to_send:0
+msgid "SO - Discount"
+msgstr "SO - korting"
+
+#. module: markant_sale
+#: model:ir.actions.report,name:markant_sale.action_report_saleorder_markant_gross_total
+#: selection:sale.order,report_to_send:0
+msgid "SO - Gross Total"
+msgstr "SO - Brutototaal"
+
+#. module: markant_sale
+#: model:ir.actions.report,name:markant_sale.action_report_saleorder_markant_subtotal_only
+#: selection:sale.order,report_to_send:0
+msgid "SO - Subtotal"
+msgstr "SO - Subtotaal"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_sale_order_option
+msgid "Sale Options"
+msgstr "Verkoop opties"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_sale_order
+msgid "Sale Order"
+msgstr "Verkoopopdracht"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__sale_order_cycle_prefix
+msgid "Sale Order Cycle Prefix"
+msgstr "Voorvoegsel verkoopordercyclus"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
+
+#. module: markant_sale
+#: selection:sale.order,state:0
+msgid "Sales Order"
+msgstr "Klantorder"
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.markant_montage_installation_rule_search_view
+msgid "Search Delivery and Installation"
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_montage_installation_rule__service_product_id
+msgid "Service Product"
+msgstr "Serviceproduct"
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:596
+#, python-format
+msgid "Something wrong downpayment is there but no invoice is created."
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__state
+msgid "Status"
+msgstr "staat"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Sub Total"
+msgstr ""
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "SubTotal"
+msgstr "Subtotaal"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.view_sale_order_form_inherit_markant_sale
+msgid "Submit Approval"
+msgstr "Goedkeuring doorgeven"
+
+#. module: markant_sale
+#: selection:montage.installation.rule,based_on:0
+msgid "Sum of Gross Amount (excl Admin & Installation)"
+msgstr "Som van bruto bedrag (excl. Admin & installatie)"
+
+#. module: markant_sale
+#: selection:sale.order,admin_cost_rule_apply_on:0
+#: selection:sale.order,project_discount_apply_on:0
+msgid "Sum of Gross Total (excl Admin & Installation)"
+msgstr "Som van brutototaal (excl beheer & installatie)"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_subtotal_total
+msgid "Sum of Subtotal"
+msgstr "Som van subtotaal"
+
+#. module: markant_sale
+#: selection:sale.order,admin_cost_rule_apply_on:0
+#: selection:sale.order,project_discount_apply_on:0
+msgid "Sum of Subtotal (excl Admin and Installation)"
+msgstr "Som van Subtotaal (excl Beheer en Installatie)"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "Taxes"
+msgstr "BTW"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_credit_limit_config__sale_notes
+#: model:ir.model.fields,field_description:markant_sale.field_res_config_settings__sale_notes
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__terms_note
+msgid "Terms and conditions"
+msgstr "Algemene voorwaarden"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Time"
+msgstr ""
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.res_config_settings_view_form_inherit_markant_sale
+msgid "Time needed to lock the confirmed SO"
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,help:markant_sale.field_credit_limit_config__time_needed_lock_sales
+#: model:ir.model.fields,help:markant_sale.field_res_config_settings__time_needed_lock_sales
+msgid "Time needed to lock the confirmed SO automatically."
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_order__amount_discount_total
+msgid "Total Disc Lines"
+msgstr "Total Disc Lines"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "Price p.p."
+msgstr "Prijs p.st."
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:661
+#, python-format
+msgid "Unsupported report type %s found."
+msgstr ""
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:594
+#, python-format
+msgid "Until Down payment is paid, you cant confirm the sale order."
+msgstr ""
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_quotation_order_report_inherit_markant_sale
+msgid "Uom"
+msgstr "Maateenheid"
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_downpayment_email_alert__name
+msgid "User"
+msgstr ""
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.mail_notification_paynow_sale_order
+msgid "View"
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model.fields,field_description:markant_sale.field_sale_advance_payment_inv__advance_payment_method_temp
+msgid "What do you want to invoice?"
+msgstr ""
+
+#. module: markant_sale
+#: code:addons/markant_sale/models/sale.py:53
+#, python-format
+msgid "You cannot change Project Discount line in this stage."
+msgstr ""
+
+#. module: markant_sale
+#: sql_constraint:downpayment.email.alert:0
+msgid "You cant add same user again !"
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_downpayment_email_alert
+msgid "downpayment.email.alert"
+msgstr ""
+
+#. module: markant_sale
+#: model:ir.model,name:markant_sale.model_montage_installation_pricing_rule
+msgid "montage.installation.pricing.rule"
+msgstr "montage.installation.pricing.rule"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Carrier</strong>"
+msgstr "<strong>Vervoerswijze</strong>"
+
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+msgid "<strong>Currency</strong>"
+msgstr "<strong>Valuta</strong>"
+
+#. module: markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.report_saleorder_document_markant_sale
+#: model_terms:ir.ui.view,arch_db:markant_sale.sale_order_portal_content_inherit_markant_sale
+msgid "<strong>VAT amount</strong>"
+msgstr "<strong>BTW bedrag</strong>"

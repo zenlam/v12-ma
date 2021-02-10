@@ -1,0 +1,2205 @@
+# NL Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_crm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-22 06:53+0000\n"
+"PO-Revision-Date: 2019-07-22 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_crm
+#: constraint:opportunity.analysis:0
+msgid " Please select correct date, Select last date which is greater than from date...!!!"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:191
+#, python-format
+msgid " and "
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__child_count
+msgid "# Childs"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__parent_count
+msgid "# Parent"
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,report_name:markant_crm.email_template_markant_sale_person
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:21
+#, python-format
+msgid "%(field)s %(operator)s"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:22
+#, python-format
+msgid "%(field)s %(operator)s \"%(value)s\""
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,body_html:markant_crm.email_template_dealer_opportunity_info_created
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                    <p>Dear ${object.user_id.name},</p>\n"
+"                    <p>You have been assigned to the dealers opportunity information: ${object.name}.</p>\n"
+"                    <p>\n"
+"                        <a href=\"/mail/view?model=dealers.opportunity.info&amp;res_id=${object.id}\" style=\"background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\">\n"
+"                            View Dealers\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,body_html:markant_crm.email_template_crm_lead_won
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                    <p>Hello ${object.user_id.name},</p>\n"
+"                    <p>Congratulations, the Opportunity \"${object.name}\" is won</p>\n"
+"                    <p>\n"
+"                        <a href=\"/mail/view?model=crm.lead&amp;res_id=${object.id}\" style=\"background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\">\n"
+"                            View Opportunity\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,body_html:markant_crm.email_template_markant_sale_person
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hello ${object.name},</p>\n"
+"    <p>Here is the information for your opportunity.</p>\n"
+"    <p>Please Kindly review it.</p>\n"
+"</div>"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:43
+#, python-format
+msgid "<p class='o_view_nocontent_smiling_face'>Add new opportunities</p><p>\n"
+"                Looks like you are not a member of a Sales Team. You should add yourself\n"
+"                as a member of one of the Sales Team.</p>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "<span class=\"o_stat_text\"> Dealers</span>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+msgid "<span class=\"o_stat_text\"> Opportunities</span>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+msgid "<span class=\"oe_grey\"> at </span>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_opportunity_analysis_markant_crm
+msgid "<span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+msgid "<span>Sale Person:</span>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Currency:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Dealer:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Expected Closing:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Expected Revenue:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Influencer:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Next Action:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Salesperson:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "<strong>Stages:</strong>"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__as400_doc
+msgid "AS400 Document"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:277
+#: code:addons/markant_crm/models/markant_crm.py:672
+#, python-format
+msgid "Action"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__active
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__active
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__active
+msgid "Active"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_mail_activity
+msgid "Activity"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+msgid "Activity Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+msgid "Activity Type"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealer_opportunity_info_create_wizard_form_view
+msgid "Add"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__dealer_partner_ids
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__partner_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealer_opportunity_info_create_wizard_form_view
+msgid "Add Dealers"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_dealer_opportunity_info_create_wizard
+msgid "Add dealers"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Address"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__child_ids_address
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__child_ids_address
+msgid "Addresses"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_button_opp_form_inherit
+msgid "All Opportunities"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "All PhoneCalls"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__all_phonecall_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__all_phonecall_count
+msgid "All Phonecall Count"
+msgstr ""
+
+#. module: markant_crm
+#: selection:res.partner,influencer_type:0
+msgid "Architect"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_kanban_view
+msgid "Archive"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_partner_archive
+msgid "Archive contacts"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_mail_activity__user_id
+msgid "Assigned to"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Avatar"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_tree_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_tree_view
+msgid "Avg. of Probability"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_claim_line
+msgid "CRM Claim Line"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_claim_type
+msgid "CRM Claim Type"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_stage
+msgid "CRM Stages"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.ui.menu,name:markant_crm.menu_voip_sales_phonecall_visit_crm
+msgid "Call / Visit Report"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__phonecall_count
+#: model:ir.module.category,name:markant_crm.module_category_call_visit_report
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "Call/Visit Report"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__campaign_id
+msgid "Campaign"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealer_opportunity_info_create_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_opportunity_analysis_markant_crm
+msgid "Cancel"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__chamber_of_commerce
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__chamber_of_commerce
+msgid "Chamber of Commerce"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_res_partner__is_company
+#: model:ir.model.fields,help:markant_crm.field_res_users__is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_res_partner__customer
+#: model:ir.model.fields,help:markant_crm.field_res_users__customer
+msgid "Check this box if this contact is a customer. It can be selected in sales orders."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__check
+msgid "Checkbox"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__child_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__child_count
+msgid "Child"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__child_lead
+msgid "Child Lead"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__child_oppo_id
+msgid "Child Pipeline"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__child_ids
+msgid "Child Piplelines"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__city
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "City"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_claim
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__crm_claim_id
+msgid "Claim"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__claim_line_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.claim_form_add_tab_inherit
+msgid "Claim Products"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__claim_type_id
+msgid "Claim Type"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.ui.menu,name:markant_crm.menu_crm_case_claims_dashboard
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_claim_search_view
+msgid "Claims"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_menu_claims_type
+#: model:ir.ui.menu,name:markant_crm.menu_claims_type
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_claims_type_tree
+msgid "Claims Type"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Clear all"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.actions.act_window,help:markant_crm.action_partner_form_contacts
+msgid "Click to add a contact in your address book."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__date_closed
+msgid "Closed Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__code
+msgid "Code"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__color
+msgid "Color Index"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__commission
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__commission
+msgid "Commission"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__commission_per
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__commission_per
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "Commission %"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__commission
+msgid "Commission (%)"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__commission_amount
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+msgid "Commission Amount"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:266
+#, python-format
+msgid "Commission value must be less then expected revenue"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__company_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__company_id
+msgid "Company"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_tree_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.markant_crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Company Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__phonecall_count_company
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__phonecall_count_company
+msgid "Company Phonecall Count"
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,subject:markant_crm.email_template_crm_lead_won
+msgid "Congratulations Opportunity Won"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__contact_email
+msgid "Contact Email"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__contact_mobile
+msgid "Contact Mobile"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__contact_id
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__contact_name
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Contact Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__contact_name
+msgid "Contact Name Info"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__contact_phone
+msgid "Contact Phone"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_partner_form_contacts
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__child_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__child_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Contacts"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__country_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Country"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "Create"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__create_date
+msgid "Create Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.server,name:markant_crm.create_trouble_responsible_default_ir_actions_server
+#: model:ir.cron,cron_name:markant_crm.create_trouble_responsible_default
+#: model:ir.cron,name:markant_crm.create_trouble_responsible_default
+msgid "Create trouble responsible default"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__create_uid
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__create_date
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_partner.py:411
+#: code:addons/markant_crm/models/markant_partner.py:427
+#, python-format
+msgid "Created partner name \"%s\" already exist!!"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_voip_phonecall__display_creation_group
+msgid "Creation Group"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.open_creditor_creation_view
+#: model:ir.model,name:markant_crm.model_creditor_creation
+#: model:ir.ui.menu,name:markant_crm.menu_open_creditor_creation_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_creditor_creation_form
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_creditor_creation_tree
+msgid "Creditor Creation"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__commission_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__commission_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__company_currency
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__currency_ids
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__other_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__commission_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__company_currency
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Currency"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__partner_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__customer_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__partner_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.claim_form_add_tab_inherit
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_tree_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_tree_view
+msgid "Customer"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__partner_name
+msgid "Customer Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__dealer_id
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__dealer_id
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__customer
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__customer
+#: model_terms:ir.ui.view,arch_db:markant_crm.res_partner_kanban_view_inherit_markant_crm
+msgid "Dealer"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_crm_case_opportunities_filter_inherit_markant_crm
+msgid "Dealer Company"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Dealer Opportunities"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_dealer_opportunity_info_create_wizard
+msgid "Dealer Opportunity Info Create Wizard"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__dealer_company_id
+msgid "Dealer company"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_your_pipeline_child
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__dealer_partner_name
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__dealer_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__dealer_ids
+#: model:ir.ui.menu,name:markant_crm.menu_crm_opportunities_child
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_res_partner_filter_inherit_markant_crm
+msgid "Dealers"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__dealer_oppor_info_ids
+msgid "Dealers Opportunity Info"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_dealers_opportunity_info
+msgid "Dealers opportunity information"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.open_debtor_creation_view
+#: model:ir.model,name:markant_crm.model_debtor_creation
+#: model:ir.ui.menu,name:markant_crm.menu_open_debtor_creation_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_debtor_creation_form
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_debtor_creation_tree
+msgid "Debtor Creation"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_kanban_view
+msgid "Delete"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Delivery"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Delivery Addresses"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+msgid "Describe the lead..."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__description
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__main_description
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__description
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__description
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+msgid "Description"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_call_visit_director
+msgid "Director"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__is_display
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Display"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_report_markant_crm_report_sale_person_email_automation__display_name
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__document_type
+msgid "Document type"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_kanban_view
+msgid "Dropdown menu"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_kanban_view
+msgid "Edit"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__email
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__supplier_email
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__email_from
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__email
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__email_from
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__email_from
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+msgid "Email"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__email_invoices
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__email_invoices
+msgid "Email Invoices"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__email_orders
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__email_orders
+msgid "Email Orders"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__email_from
+#: model:ir.model.fields,help:markant_crm.field_partner_crm_lead__email_from
+msgid "Email address of the contact"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__end_user
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__end_user_id
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__end_user
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__end_user_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.res_partner_kanban_view_inherit_markant_crm
+msgid "End User"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__partner_company_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_crm_case_opportunities_filter_inherit_markant_crm
+msgid "End User Company"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "End User Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__end_user_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__end_user_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "End Users"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__date_deadline
+#: model:ir.model.fields,help:markant_crm.field_partner_crm_lead__date_deadline
+msgid "Estimate of the date on which the opportunity will be won."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_calendar_event
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__event_ids
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__event_id
+msgid "Event"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__event_end_ids
+msgid "Event End"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__event_next_action_ids
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__event_dealer_next_action_ids
+msgid "Event Next Action Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__event_start_ids
+msgid "Event Start"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_event_to_do
+msgid "Event To Do"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__date_deadline
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__date_deadline_from
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__date_deadline
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+msgid "Expected Closing"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__planned_revenue
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__expected_revenue_from
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__planned_revenue
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Expected Revenue"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Expected Revenue\n"
+"                                            in Base("
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+msgid "Expected Revenue in Base Currency"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__planned_revenue_other_currency
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__planned_revenue_other_currency
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__planned_revenue_other_currency
+msgid "Expected Revenue other Currency"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_tree_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_tree_view
+msgid "Expected Revenues"
+msgstr ""
+
+#. module: markant_crm
+#: selection:res.partner,influencer_type:0
+msgid "Facility Manager"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__fax
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__fax
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__fax
+msgid "Fax"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "From :"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "From:"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__function
+msgid "Function"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_voip_phonecall__group_to_release
+msgid "Group to Release"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__groups_id
+msgid "Groups"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__id
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__id
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__id
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__id
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__id
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__id
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__id
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__id
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__id
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__id
+#: model:ir.model.fields,field_description:markant_crm.field_report_markant_crm_report_sale_person_email_automation__id
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__id
+msgid "ID"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_sale_order_line__product_image
+msgid "Image of the product variant (Small-sized image of product template if false)."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__in_base_currency
+msgid "In Base Currency"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__infuenced_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__infuenced_ids
+msgid "Influenced by"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__influencer_id
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__influencer
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__influencer_type
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__influencer
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__influencer_type
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__influencer_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.res_partner_kanban_view_inherit_markant_crm
+msgid "Influencer"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Influencer Opportunities"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Influencer Quotation"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__influencer_quotation_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__influencer_quotation_count
+msgid "Influencer Quotation Count"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_influencer_type
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Influencer Type"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__influencer_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "Influencers"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__influencer_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__influencer_ids
+msgid "Influencing"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__internal_note
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__internal_note
+msgid "Internal Note"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+msgid "Internal Notes"
+msgstr ""
+
+#. module: markant_crm
+#: selection:crm.claim.line,document_type:0
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Invoice"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__inv_id
+msgid "Invoice Number"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__is_company
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__is_company
+msgid "Is a Company?"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Is a Dealer?"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Is a End User?"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Is a Influencer?"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Is a Supplier?"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.open_job_position_view
+#: model:ir.model,name:markant_crm.model_job_position
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__name
+#: model:ir.ui.menu,name:markant_crm.menu_open_job_position_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_job_position_form
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_job_position_tree
+msgid "Job Position"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__job_position_id
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__job_position_id
+msgid "Job position"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:94
+#, python-format
+msgid "Last 1 Quarter"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:98
+#, python-format
+msgid "Last 1 Year"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:90
+#, python-format
+msgid "Last 14 Days"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:88
+#, python-format
+msgid "Last 7 Days"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:96
+#, python-format
+msgid "Last Half Year"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_job_position____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_report_markant_crm_report_sale_person_email_automation____last_update
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:92
+#, python-format
+msgid "Last Month"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__write_uid
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_dealer_opportunity_info_create_wizard__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_event_to_do__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_job_position__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_post_object_markant__write_date
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__lead_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__lead_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Lead"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__lead_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__lead_count
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Leads"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__linkedin_url
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__linkedin_url
+msgid "Linkedin url"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.actions.act_window,help:markant_crm.markant_voip_phonecall_action_partner
+#: model_terms:ir.actions.act_window,help:markant_crm.markant_voip_phonecall_action_partner_company
+msgid "Log the summary of a phonecall"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Logo"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_call_visit_management
+msgid "Management"
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.mass_mailing,name:markant_crm.markant_mass_mail
+#: model:utm.source,name:markant_crm.markant_mass_mail_utm_source
+msgid "Markant Mass Mail"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.server,name:markant_crm.ir_cron_markant_mail_ir_actions_server
+#: model:ir.cron,cron_name:markant_crm.ir_cron_markant_mail
+#: model:ir.cron,name:markant_crm.ir_cron_markant_mail
+msgid "Markant Mass Mail Cron"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__medium_id
+msgid "Medium"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Mobile:"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_creditor_creation__name
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_type__name
+#: model:ir.model.fields,field_description:markant_crm.field_debtor_creation__name
+#: model:ir.model.fields,field_description:markant_crm.field_influencer_type__name
+#: model:ir.model.fields,field_description:markant_crm.field_trouble_responsible__name
+msgid "Name"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__expected_revenue
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_tree_view_oppor_inherit_markant_crm
+msgid "Nett Revenue"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:95
+#, python-format
+msgid "Next 1 Quarter"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:99
+#, python-format
+msgid "Next 1 Year"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:91
+#, python-format
+msgid "Next 14 Days"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:89
+#, python-format
+msgid "Next 7 Days"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__date_action_from
+msgid "Next Action"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__next_action_date
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__next_action_date
+msgid "Next Action Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:97
+#, python-format
+msgid "Next Half Year"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:93
+#, python-format
+msgid "Next Month"
+msgstr ""
+
+#. module: markant_crm
+#: selection:crm.claim,Warranty:0
+msgid "No"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__description
+msgid "Notes"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.actions.act_window,help:markant_crm.action_partner_form_contacts
+msgid "Odoo helps you easily track all activities related to\n"
+"            a customer; discussions, history of business opportunities,\n"
+"            documents, etc."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__opp_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__opp_dealer_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__opp_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__opp_dealer_count
+msgid "Opp"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__opp_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__opp_ids
+msgid "Oppo"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__dealer_oppor_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__influencer_oppor_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__dealer_oppor_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__influencer_oppor_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_tree_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Opportunities"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__name
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__name
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__name
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_tree_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_tree_view
+msgid "Opportunity"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_opportunity_analysis
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_opportunity_analysis_markant_crm
+msgid "Opportunity Analysis"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_opportunity_analysis_markant_crm_menu
+#: model:ir.ui.menu,name:markant_crm.menu_opportunity_analysis_report
+msgid "Opportunity Report"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.report,name:markant_crm.report_opportunity_markant
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Opportunity Report by Currency"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_order_form_inherit_markant_crm
+msgid "Organization"
+msgstr "Organisatie"
+
+#. module: markant_crm
+#: selection:res.partner,influencer_type:0
+msgid "Other"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__other_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__other_currency_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__other_currency_id
+msgid "Other Currency"
+msgstr ""
+
+#. module: markant_crm
+#: selection:dealers.opportunity.info,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__parent_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__parent_count
+msgid "Parent"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__parent_id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__opportunity_id
+msgid "Parent Pipeline"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__supplier_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_claim_search_view
+msgid "Partner"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_partner_crm_lead
+msgid "Partner - CRM Lead"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__partner_pipeline_ids
+msgid "Partner Child Pipeline"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__partner_pipeline_ids
+msgid "Partner Parent Pipeline"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_partner.py:224
+#: model:ir.actions.act_window,name:markant_crm.markant_voip_phonecall_action_partner
+#: model:ir.actions.act_window,name:markant_crm.markant_voip_phonecall_action_partner_company
+#, python-format
+msgid "Partner Phonecalls"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Partner Type"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__supplier_phone
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__phone
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__phone
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__phone
+msgid "Phone"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.ui.menu,name:markant_crm.menu_voip_sales_phonecall_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Phone Calls"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Phone:"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__phonecall_count
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__phonecall_count
+msgid "Phonecall Count"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__oppo_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_tree_view
+msgid "Pipeline"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__pipeline_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__pipeline_ids
+msgid "Pipelines"
+msgstr ""
+
+#. module: markant_crm
+#: selection:dealers.opportunity.info,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__planned_revenue_backend
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__planned_revenue_backend
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__planned_revenue_backend
+msgid "Planned Revenue Backend"
+msgstr ""
+
+#. module: markant_crm
+#: constraint:opportunity.analysis:0
+msgid "Please select right range..!!!"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__portal_user
+msgid "Portal User?"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_post_object_markant
+msgid "Post Object Markant"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__preferred_dealer_id
+msgid "Preferred Dealer"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_crm_case_opportunities_filter_inherit_markant_crm
+msgid "Preferred dealer"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__pricelist_discount_group
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__pricelist_discount_group
+msgid "Pricelist discount group"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_opportunity_analysis_markant_crm
+msgid "Print"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_crm_case_opportunities_filter_inherit_markant_crm
+msgid "Priority"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__probability
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__probability
+msgid "Probability"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order_line__product_image
+#: model_terms:ir.ui.view,arch_db:markant_crm.sale_quotation_order_report_inherit
+msgid "Product Image"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_call_visit_purchase
+msgid "Purchase"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__qty
+msgid "Quantity"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_stage__quotation_stage
+msgid "Quotation Stage?"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__quote_create
+msgid "Quote Created?"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_voip_phonecall__real_creation_group
+msgid "Real Creation Group"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__ref_desc
+msgid "Reference/Description"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__referred
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__referred
+msgid "Referred By"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__parent_id1
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__parent_id1
+msgid "Related Company"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__relation_number
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__relation_number
+msgid "Relation-number (Partner id)"
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,subject:markant_crm.email_template_markant_sale_person
+msgid "Reminder regarding opportunity"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__removed
+msgid "Removed"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_kanban_view
+msgid "Restore"
+msgstr ""
+
+#. module: markant_crm
+#: selection:crm.claim.line,document_type:0
+#: model:ir.model,name:markant_crm.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim_line__so_id
+msgid "Sale Order Number"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.report,name:markant_crm.report_sale_person_email_automation_markant
+msgid "Sale Person Opportunity Report"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_call_visit_sales
+msgid "Sales"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__team_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__team_id
+msgid "Sales Channel"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_crm_team
+msgid "Sales Channels"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Sales person"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__account_manager_id
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__user_id
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__user_id
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,name:markant_crm.group_sale_opportunity
+msgid "See Opportunity Value"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.server,name:markant_crm.ir_cron_send_mail_sale_person_scheduler_ir_actions_server
+#: model:ir.cron,cron_name:markant_crm.ir_cron_send_mail_sale_person_scheduler
+#: model:ir.cron,name:markant_crm.ir_cron_send_mail_sale_person_scheduler
+msgid "Send email to Sale Person"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__partner_seq
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__partner_seq
+msgid "Sequence"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_voip_phonecall__set_from_action
+msgid "Set From Action"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.server,name:markant_crm.schedule_set_color_crm_lead_ir_actions_server
+#: model:ir.cron,cron_name:markant_crm.schedule_set_color_crm_lead
+#: model:ir.cron,name:markant_crm.schedule_set_color_crm_lead
+msgid "Set color for crm lead (opportunity)"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.module.category,description:markant_crm.module_category_call_visit_report
+msgid "Setting group for call/visit report"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__date_shipping
+msgid "Shipping Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__source_id
+msgid "Source"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__stage_id
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__stage_ids
+#: model:ir.model.fields,field_description:markant_crm.field_partner_crm_lead__stage_id
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__stage_ids
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__stage_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "Stage"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__state_id
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "State"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__street
+msgid "Street"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Street 2..."
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "Street..."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__street2
+msgid "Street2"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_sale_person_email_automation
+msgid "Subject"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.claim_form_add_tab_inherit
+#: model_terms:ir.ui.view,arch_db:markant_crm.res_partner_kanban_view_inherit_markant_crm
+msgid "Supplier"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.server,name:markant_crm.sync_old_report_cate_to_new_field_ir_actions_server
+#: model:ir.cron,cron_name:markant_crm.sync_old_report_cate_to_new_field
+#: model:ir.cron,name:markant_crm.sync_old_report_cate_to_new_field
+msgid "Sync old report category to new field"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_calendar_event__todo_ids
+#: model_terms:ir.ui.view,arch_db:markant_crm.markant_crm_view_calendar_event_form
+msgid "TODO"
+msgstr ""
+
+#. module: markant_crm
+#: model:mail.template,subject:markant_crm.email_template_dealer_opportunity_info_created
+msgid "The Dealer Created"
+msgstr ""
+
+#. module: markant_crm
+#: constraint:res.partner:0
+msgid "This contact is influencing other contact(s) and cannot be unticked"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__campaign_id
+msgid "This is a name that helps you keep track of your different campaign efforts, e.g. Fall_Drive, Christmas_Special"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__medium_id
+msgid "This is the method of delivery, e.g. Postcard, Email, or Banner Ad"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__source_id
+msgid "This is the source of the link, e.g. Search Engine, another domain, or name of email list"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__title
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_leads_inherit_markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.crm_case_form_view_oppor_inherit_markant_crm
+msgid "Title"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__title_action_date
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__title_action_date
+msgid "Title Action Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__date_action_to
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__date_deadline_to
+#: model:ir.model.fields,field_description:markant_crm.field_opportunity_analysis__expected_revenue_to
+msgid "To"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "To :"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_lead__lead_att_link
+#: model:ir.model.fields,field_description:markant_crm.field_res_partner__att_link
+#: model:ir.model.fields,field_description:markant_crm.field_res_users__att_link
+msgid "To Google Drive"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:544
+#, python-format
+msgid "To relieve your sales pipe and group all Quotation opportunities, configure one of your sales stage as follow:\n"
+"probability = 100 % and select \"Change Probability Automatically\".\n"
+"Create a specific stage or edit an existing one by editing columns of your opportunity pipe."
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.report_opportunity
+msgid "To:"
+msgstr ""
+
+#. module: markant_crm
+#: selection:dealers.opportunity.info,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__total_revenue
+msgid "Total Revenue"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.actions.act_window,name:markant_crm.action_trouble_responsible
+#: model:ir.model,name:markant_crm.model_trouble_responsible
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__trouble_responsible_id
+#: model:ir.ui.menu,name:markant_crm.menu_trouble_responsible
+#: model_terms:ir.ui.view,arch_db:markant_crm.trouble_responsible_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.trouble_responsible_tree_view
+msgid "Trouble Responsible"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__write_date
+msgid "Update Date"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_voip_phonecall
+msgid "VOIP Phonecall"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/sale_order.py:115
+#, python-format
+msgid "Warning!\n"
+"First set Credit Limit and Payment Term for this partner."
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/sale_order.py:110
+#, python-format
+msgid "Warning!\n"
+"Partner not assign. First create partner first."
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/sale_order.py:94
+#, python-format
+msgid "Warning!\n"
+"Please fill up Customer Name first."
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_crm_claim__Warranty
+msgid "Warranty"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__website
+msgid "Website"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_dealers_opportunity_info__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,help:markant_crm.field_dealers_opportunity_info__website
+msgid "Website of the contact"
+msgstr ""
+
+#. module: markant_crm
+#: selection:crm.claim,Warranty:0
+msgid "Yes"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:610
+#, python-format
+msgid "You can not change this stage without saving data!"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:1085
+#, python-format
+msgid "You can not delete record which link to Parent Pipeline!"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:982
+#, python-format
+msgid "You can not update dealer which used in preffered dealer!"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:846
+#, python-format
+msgid "You cannot assign same dealer in multiple child pipeline of same opportunity."
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/crm_claim.py:47
+#, python-format
+msgid "You cannot delete this claim while trouble responsible is active"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_crm.py:1119
+#, python-format
+msgid "You cannot have create more than one with quotation stage"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_partner.py:548
+#, python-format
+msgid "You don't have permission to archive this contact !"
+msgstr ""
+
+#. module: markant_crm
+#: code:addons/markant_crm/models/markant_partner.py:555
+#, python-format
+msgid "You don't have permission to delete this contact !"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "ZIP"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model.fields,field_description:markant_crm.field_sale_order__zip
+msgid "Zip"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "e.g. Mr."
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealers_opportunity_info_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.partner_crm_lead_bey_bhegu_form_view
+msgid "e.g. Product Pricing"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_partner_form_inherit_markant_crm
+msgid "internal note..."
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:83
+#, python-format
+msgid "is after"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:84
+#, python-format
+msgid "is before"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:85
+#, python-format
+msgid "is between"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:81
+#, python-format
+msgid "is equal to"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:82
+#, python-format
+msgid "is not equal to"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:87
+#, python-format
+msgid "is not set"
+msgstr ""
+
+#. module: markant_crm
+#. openerp-web
+#: code:addons/markant_crm/static/src/js/search_filters.js:86
+#, python-format
+msgid "is set"
+msgstr ""
+
+#. module: markant_crm
+#: model_terms:ir.ui.view,arch_db:markant_crm.dealer_opportunity_info_create_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:markant_crm.view_opportunity_analysis_markant_crm
+msgid "or"
+msgstr ""
+
+#. module: markant_crm
+#: model:ir.model,name:markant_crm.model_report_markant_crm_report_sale_person_email_automation
+msgid "report.markant_crm.report_sale_person_email_automation"
+msgstr ""
+
+#. module: markant_crm
+#: model:res.groups,comment:markant_crm.group_sale_opportunity
+msgid "the user will have access to opportunity value."
+msgstr ""
+

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="product_config_steps_tree_view" model="ir.ui.view">
+        <field name="name">product.config.steps.tree</field>
+        <field name="model">product.config.steps</field>
+        <field name="arch" type="xml">
+            <tree string="Product Configuration Steps" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_config_steps_action" model="ir.actions.act_window">
+        <field name="name">Configuration Steps</field>
+        <field name="res_model">product.config.steps</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_product_config_steps_action"
+              action="markant_product.product_config_steps_action"
+              parent="sale_management.menu_product_settings"
+              groups="base.group_user"/>
+
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <!-- Sale Order Cycle Views -->
+    <record id="markant_order_cycle_tree_view" model="ir.ui.view">
+        <field name="name">Order Cycle Tree</field>
+        <field name="model">order.cycle</field>
+        <field name="arch" type="xml">
+            <tree string="Order Cycle">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="is_default"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_order_cycle_form_view" model="ir.ui.view">
+        <field name="name">Order Cycle Form</field>
+        <field name="model">order.cycle</field>
+        <field name="arch" type="xml">
+            <form string="Order Cycle">
+                <sheet string="Order Cycle">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="is_default"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="markant_order_cycle_search_view" model="ir.ui.view">
+        <field name="name">Order Cycle Search</field>
+        <field name="model">order.cycle</field>
+        <field name="arch" type="xml">
+            <search string="Search Order Cycle">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="is_default"/>
+                <field name="active"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="markant_order_cycle_action" model="ir.actions.act_window">
+        <field name="name">Order Cycle</field>
+        <field name="res_model">order.cycle</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="markant_order_cycle_search_view"/>
+    </record>
+
+    <record id="sequence_view_form_inherit_markant_sale" model="ir.ui.view">
+        <field name="name">base.sequence.view.inherit.markant.sale</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view"/>
+        <field name="arch" type="xml">
+            <field name="number_next_actual" position="after">
+                <field name="apply_order_cycle" attrs="{'invisible': [('code', 'not in', ['sale.order', 'purchase.order'])]}"/>
+            </field>
+        </field>
+    </record>
+    
+    <!-- End Sale order Cycle Views -->
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_webshop_attribute_tree_view" model="ir.ui.view">
+        <field name="name">markant.webshop.attribute.tree</field>
+        <field name="model">webshop.attribute</field>
+        <field name="arch" type="xml">
+            <tree string="Webshop Variant Values" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="create_date"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_webshop_variants_tree_view" model="ir.ui.view">
+        <field name="name">markant.webshop.product.attribute.value.tree</field>
+        <field name="model">webshop.attribute.value</field>
+        <field name="arch" type="xml">
+            <tree string="Webshop Variant Values" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="create_date"/>
+                <field name="attribute_id"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_webshop_attribute_action" model="ir.actions.act_window">
+        <field name="name">Markant Webshop Attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">webshop.attribute</field>
+        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <record id="markant_webshop_attribute_value_action" model="ir.actions.act_window">
+        <field name="name">Markant Webshop Attribute Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">webshop.attribute.value</field>
+        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem name="Webshop"
+              id="main_menu_webshop"
+              sequence="70"
+              groups="markant_webshop.group_documents_manager"
+              web_icon="markant_webshop,static/description/icon.png"/>
+
+    <menuitem name="Configuration" id="menu_webshop_config"
+              action="markant_webshop.markant_webshop_attribute_action"
+              sequence="10" parent="main_menu_webshop"/>
+
+    <menuitem name="Attributes" id="menu_attributes"
+              action="markant_webshop.markant_webshop_attribute_action"
+              sequence="1" parent="menu_webshop_config"/>
+
+    <menuitem name="Attribute Values" id="menu_attribute_values"
+              action="markant_webshop.markant_webshop_attribute_value_action"
+              sequence="2" parent="menu_webshop_config"/>
+
+    <menuitem id="menu_webshop_catalog_categories"
+        action="website_sale.product_public_category_action"
+        parent="menu_webshop_config"/>
+
+</odoo>

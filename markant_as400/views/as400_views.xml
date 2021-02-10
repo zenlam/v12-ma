@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="as400_product_tree" model="ir.ui.view">
+        <field name="name">as400.product.tree</field>
+        <field name="model">as400.product</field>
+        <field name="arch" type="xml">
+            <tree string="AS400 Product">
+                <field name="name"/>
+                <field name="inside_odoo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="as400_product_form" model="ir.ui.view">
+        <field name="name">as400.product.form</field>
+        <field name="model">as400.product</field>
+        <field name="arch" type="xml">
+            <form string="AS400 Product">
+                <sheet>
+                    <group>
+                        <field name="inside_odoo"/>
+                        <field name="name"/>
+                        <field name="default_code"/>
+                        <field name="barcode"/>
+                    </group>
+                    <group>
+                        <field name="vendor"/>
+                    </group>
+                    <group>
+                        <group>
+                            <group class="col-10">
+                                <label for="manufacturing_lead_time"/>
+                                <div >
+                                    <field name="manufacturing_lead_time" class="oe_inline"/> days
+                                </div>
+                            </group>          
+                        </group> 
+                        <group>
+                            <label for="reordering_rules_lead_time"/>
+                            <div>   
+                                <field name="reordering_rules_lead_time" class="oe_inline"/> days
+                            </div>
+                        </group>   
+                    </group>    
+                    <group>
+                        <group>
+                            <field name="minimal_quantity"/>
+                            <field name="qty_multiple"/>
+                            <field name="minimum_quantity"/>
+                            <field name="maximum_quantity"/>
+                        </group>
+                        <group>
+                            <field name="cost"/>
+                            <field name="price"/>
+                            <field name="currency"/>
+                            <field name="salesprice"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="sale_ok"/>
+                        <field name="purchase_ok"/>
+                    </group>
+                    <group>
+                        <field name="taxes_id"/>
+                        <field name="vendor_product_code"/>
+                        <field name="uom_po_id"/>
+                        <field name="uom_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="as400_product_action" model="ir.actions.act_window">
+        <field name="name">AS400 Product</field>
+        <field name="res_model">as400.product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_as400_product_action"
+              action="markant_as400.as400_product_action"
+              parent="stock.menu_stock_inventory_control"
+              groups="base.group_system"/>
+
+</odoo>

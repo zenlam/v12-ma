@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_delivery_tree" model="ir.ui.view">
+        <field name="name">webshop.product.delivery.tree</field>
+        <field name="model">webshop.product.delivery</field>
+        <field name="arch" type="xml">
+            <tree string="Delivery Services" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="webshop_product_delivery_action" model="ir.actions.act_window">
+        <field name="name">Delivery Services</field>
+        <field name="res_model">webshop.product.delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_webshop_delivery"
+              name="Delivery Service "
+              parent="markant_webshop.menu_webshop_config"
+              action="webshop_product_delivery_action"
+              sequence="10"/>
+
+</odoo>

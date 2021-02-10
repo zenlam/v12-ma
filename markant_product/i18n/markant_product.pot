@@ -1,0 +1,902 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-02 05:21+0000\n"
+"PO-Revision-Date: 2020-04-02 05:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__used_in_bom_config_count
+#: model:ir.model.fields,field_description:markant_product.field_product_template__used_in_bom_config_count
+msgid "# of BoM Where is Used"
+msgstr "# Stuklijsten waar gebruikt"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_variants
+msgid "-- Please select --"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "<span class=\"fa fa-chevron-left\" role=\"img\" aria-label=\"Previous\" title=\"Previous\"/>"
+msgstr "<span class=\"fa fa-chevron-left\" role=\"img\" aria-label=\"Vorige\" title=\"Vorige\"/>"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "<span class=\"fa fa-chevron-right\" role=\"img\" aria-label=\"Next\" title=\"Next\"/>"
+msgstr "<span class=\"fa fa-chevron-right\" role=\"img\" aria-label=\"Volgende\" title=\"Volgende\"/>"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "<strong><span>Preview</span></strong>"
+msgstr ""
+
+#. module: markant_product
+#: sql_constraint:product.product:0
+msgid "A barcode can only be assigned to one product !"
+msgstr "Een barcode kan maar aan één product toegewezen worden!"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "Add one"
+msgstr "Voeg één toe"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "All Components"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "All Configurable products must be defined here."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_attribute__allow_image
+msgid "Allow Images for Attribute Values!"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_attribute_value__article_code
+msgid "Article Code"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_line_view_tree
+msgid "Attachments"
+msgstr "Bijlagen"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__attr_mapping_id
+msgid "Attr Mapping"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__attribute_mapping_ids
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_form
+msgid "Attribute Mapping"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_attribute_value
+msgid "Attribute Value"
+msgstr "Kenmerkwaarde"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__attribute_value_mapping_ids
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_form
+msgid "Attribute Value Mapping"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__attribute_ids
+msgid "Attributes"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Auto BoM Components"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_line__auto_create
+msgid "Auto Created"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__auto_map_done
+msgid "Auto Mapping Done"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_mrp_bom_conf_line
+msgid "BOM Configuration Product Line"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Stuklijst"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Stuklijstregel"
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.mrp_bom_line_action_all_components
+#: model:ir.actions.act_window,name:markant_product.mrp_bom_line_action_config
+#: model:ir.actions.act_window,name:markant_product.mrp_bom_line_action_normal
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_line_view_tree
+msgid "Bill of Material line"
+msgstr "Stuklijstregel"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom__configurator_line_ids
+msgid "BoM Conf Lines"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/mrp_bom.py:33
+#, python-format
+msgid "BoM configurable line product %s should not be same as BoM product."
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/mrp_bom.py:20
+#: code:addons/markant_product/models/mrp_bom.py:26
+#, python-format
+msgid "BoM line product %s should not be same as BoM product."
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_attribute.py:110
+#, python-format
+msgid "Can not set `Is display` to `False` as attribute have multiple values."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__bom_ref_id
+msgid "Child BoM"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_res_company
+msgid "Companies"
+msgstr "bedrijven"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__value_ids
+msgid "Components"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_form
+msgid "Conf Line"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__config_selected_attr_ids
+msgid "Config Attrs"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__config_prod_related_value_ids
+msgid "Config Related Values"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__configurable_ok
+#: model:ir.model.fields,field_description:markant_product.field_product_template__configurable_ok
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_search_view
+msgid "Configurable"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__product_tmpl_id
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_tree
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Configurable Product"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__config_prod_attr_id
+msgid "Configurable Product Attribute"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__config_prod_attr_val_id
+msgid "Configurable Product Attribute Value"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.mrp_bom_conf_line_open_tree
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Configurable Products"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Configurable products within the Bill Of Material"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_only_form_view
+msgid "Configuration"
+msgstr "Instellingen"
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.product_config_steps_action
+#: model:ir.model.fields,field_description:markant_product.field_product_product__product_config_steps_ids
+#: model:ir.model.fields,field_description:markant_product.field_product_template__product_config_steps_ids
+#: model:ir.ui.menu,name:markant_product.menu_product_config_steps_action
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_only_form_view
+msgid "Configuration Steps"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_tree
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Copy Line"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__create_uid
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__create_uid
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__create_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__create_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__create_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__create_date
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__create_date
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__create_date
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__create_date
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__create_date
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_sale_product_configurator__product_d_number
+msgid "D-Number"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_template_attribute_line__desc_sequence
+msgid "Desc Seq"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:115
+#, python-format
+msgid "Description Sequence of variants must be unique."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_product_config_steps_attr__sequence
+#: model:ir.model.fields,help:markant_product.field_product_template_attribute_line__sequence
+msgid "Determine the display order"
+msgstr "Bepaal de weergave volgorde"
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_product_template_attribute_line__desc_sequence
+msgid "Determine the sequence ofdisplaying the description"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__display_name
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__display_name
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__display_name
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__display_name
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__display_name
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__display_name
+msgid "Display Name"
+msgstr "Weergave naam"
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_res_company__media_bank_start_url
+msgid "Do not put last / sign"
+msgstr ""
+
+#. module: markant_product
+#: selection:product.manual.creation,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.actions.server,name:markant_product.act_product_template_duplicate_bom
+msgid "Duplicate with BoM"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_res_company__media_bank_end_url
+msgid "Example \n"
+" * jpg \n"
+" * png \n"
+"\n"
+"Do not use . notation"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_template_attribute_line__excl_desc
+msgid "Exclude Description"
+msgstr ""
+
+#. module: markant_product
+#: selection:product.manual.creation,state:0
+msgid "Fail"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__first_digit_article_code
+#: model:ir.model.fields,field_description:markant_product.field_product_template__first_digit_article_code
+msgid "First Digit Article Code"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__free_stock_qty
+#: model:ir.model.fields,field_description:markant_product.field_product_template__free_stock_qty
+msgid "Free Stock"
+msgstr "Vrije Voorraad"
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_mrp_bom_conf_line__sequence
+msgid "Gives the sequence order when displaying."
+msgstr "Geeft de volgorde bij weergave"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.view_product_manual_creation_search
+msgid "Group By"
+msgstr "Groepeer op"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__id
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__id
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__id
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__id
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__id
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__id
+msgid "ID"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "If all attributes are automatically Mapped then the Auto Mapping would be checked. If the checkbox is not ticked, it doesn't mean the configuration is not correct.<br/>You're advised to manually check the mapping through the <strong>OPEN MAPPING VIEW</strong> button, if the check box is not ticked."
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "If configurable products have a BOM of their own, then there may be multilevel Mapping. you may access the lower level BOMs through the <strong>OPEN BOM VIEW</strong> button next to these products."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_attribute_value__image
+msgid "Image"
+msgstr "Afbeelding"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_res_company__media_bank_end_url
+msgid "Image Extension"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_res_company__media_bank_start_url
+msgid "Image URL"
+msgstr ""
+
+#. module: markant_product
+#: model:res.groups,name:markant_product.group_attribute_values_config
+msgid "Import Into Configure Variant List"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_template_attribute_line__include_inside_d
+msgid "Include in D-Number"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/mrp_bom.py:233
+#, python-format
+msgid "Inside %s (Sequence No: %s) there is Attribute Mapping have some attribute but related values of that attribute does not exist inside Attribute Value Mapping."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__default_code
+msgid "Internal Reference"
+msgstr "Interne referentie"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_template_attribute_line__is_display
+msgid "Is display"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping____last_update
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping____last_update
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line____last_update
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps____last_update
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr____last_update
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__write_uid
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__write_uid
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__write_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__write_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__write_uid
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__write_date
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__write_date
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__write_date
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__write_date
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__write_date
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: markant_product
+#. openerp-web
+#: code:addons/markant_product/static/src/xml/base.xml:7
+#, python-format
+msgid "Logo"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_mrp_bom_attr_mapping
+msgid "MRP BoM Attr Mapping"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_mrp_bom_attr_value_mapping
+msgid "MRP BoM Attr Value Mapping"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Manual BoM Components"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__manuf_selected_attr_ids
+msgid "Manuf Attrs"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__manuf_prod_related_value_ids
+msgid "Manuf Related Values"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_mapping__manuf_prod_attr_ids
+msgid "Manufacturing Product Attribute"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__manuf_prod_attr_val_ids
+msgid "Manufacturing Product Attribute Value"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.product_conf_bom_action
+#: model:ir.ui.menu,name:markant_product.menu_product_conf_bom_action
+#: model_terms:ir.ui.view,arch_db:markant_product.product_conf_bom_tree_view
+msgid "Mapping Lines"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.actions.server,name:markant_product.ir_cron_markant_product_manual_creation_ir_actions_server
+#: model:ir.cron,cron_name:markant_product.ir_cron_markant_product_manual_creation
+#: model:ir.cron,name:markant_product.ir_cron_markant_product_manual_creation
+msgid "Markant Product: Create Manual Product Variant"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.actions.server,name:markant_product.ir_cron_markant_product_image_ir_actions_server
+#: model:ir.cron,cron_name:markant_product.ir_cron_markant_product_image
+#: model:ir.cron,name:markant_product.ir_cron_markant_product_image
+msgid "Markant Product: Get Image from Media Bank"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_view_company_form_inherit_social_media
+msgid "Media Bank"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps__name
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__step_id
+msgid "Name"
+msgstr "Naam"
+
+#. module: markant_product
+#: sql_constraint:product.config.steps:0
+msgid "Name must be unique!"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__sequence_no
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_line__sequence_no
+msgid "No"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_line_view_tree
+msgid "No attachment"
+msgstr "Geen bijlage"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_product__old_item_number
+#: model:ir.model.fields,field_description:markant_product.field_product_template__old_item_number
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_search_view
+msgid "Old Item Number"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_tree
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Open BoM View"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_conf_line_tree
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "Open Mapping View"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__bom_id
+msgid "Parent BoM"
+msgstr "Bovenliggende stuklijst"
+
+#. module: markant_product
+#. openerp-web
+#: code:addons/markant_product/static/src/js/product_configurator_mixin.js:323
+#, python-format
+msgid "Please, Choose option(s) first to move forward."
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:922
+#, python-format
+msgid "Please, Select records which are in \"Draft\" stage."
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_variants
+msgid "Preview Image"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__bom_id_product_tmpl_id
+#: model:ir.model.fields,field_description:markant_product.field_sale_product_configurator__product_template_id
+#: model_terms:ir.ui.view,arch_db:markant_product.view_product_manual_creation_search
+msgid "Product"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_attribute
+msgid "Product Attribute"
+msgstr "Productkenmerk"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_template_attribute_value
+msgid "Product Attribute Value"
+msgstr "Productkenmerk waarde"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_config_steps
+msgid "Product Config Steps"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_config_steps_attr
+msgid "Product Config Steps Attr"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.product_config_steps_tree_view
+msgid "Product Configuration Steps"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_image
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "Product Image"
+msgstr "Product afbeelding"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_manual_creation
+msgid "Product Manual Creation"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_template
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__product_tmpl_id
+msgid "Product Template"
+msgstr "Productsjabloon"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_product_template_attribute_line
+msgid "Product Template Attribute Line"
+msgstr "Productsjabloon kenmerk lijn"
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.product_tmpl_attribute_action
+#: model:ir.ui.menu,name:markant_product.menu_product_tmpl_attribute_action
+#: model_terms:ir.ui.view,arch_db:markant_product.product_tmpl_attribute_tree_view
+msgid "Product Template Attribute Lines"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__product_uom_id
+msgid "Product Unit of Measure"
+msgstr "Maateenheid product"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__product_id
+msgid "Product Variant"
+msgstr "Productvariant"
+
+#. module: markant_product
+#: model:ir.actions.act_window,name:markant_product.action_product_variant_manual_creation
+#: model:ir.ui.menu,name:markant_product.menu_product_variant_manual_create
+#: model_terms:ir.ui.view,arch_db:markant_product.view_product_manual_creation_tree
+msgid "Product Variants Manual Creation"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:140
+#, python-format
+msgid "Product and Attribute combination is wrong.\n"
+"\n"
+"Your configuration should follow below steps\n"
+"\n"
+"--> If Product is set to `Configurable` then for Attributes (Create Variant option) only possible values is `Only when the product is added to a sales order`"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_attribute__product_tmpl_ids
+#: model:ir.model.fields,field_description:markant_product.field_product_attribute_value__product_tmpl_ids
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_attribute_view_form
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_variants_form_view
+msgid "Products"
+msgstr "Producten"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__product_qty
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__product_tmpl_id
+msgid "Related Product"
+msgstr "Gekoppeld product"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__remarks
+msgid "Remarks"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "Remove one"
+msgstr "Verwijder een"
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_sale_product_configurator
+msgid "Sale Product Configurator"
+msgstr "Verkoop productconfigurator"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.view_product_manual_creation_search
+msgid "Search Phonecalls"
+msgstr "Zoek telefoongesprekken"
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_conf_line__sequence
+#: model:ir.model.fields,field_description:markant_product.field_product_config_steps_attr__sequence
+#: model:ir.model.fields,field_description:markant_product.field_product_template_attribute_line__sequence
+msgid "Sequence"
+msgstr "Volgorde"
+
+#. module: markant_product
+#: model:ir.actions.server,name:markant_product.server_action_product_variant_manual_creation
+msgid "Set to Waiting Stage"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_product_manual_creation__state
+#: model_terms:ir.ui.view,arch_db:markant_product.view_product_manual_creation_search
+msgid "Stage"
+msgstr "Fase"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_only_form_view
+msgid "Steps"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model,name:markant_product.model_stock_rule
+msgid "Stock Rule"
+msgstr "Voorraadregel"
+
+#. module: markant_product
+#: selection:product.manual.creation,state:0
+msgid "Success"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/mrp_bom.py:299
+#, python-format
+msgid "The Product Unit of Measure you chose has a different category than in the product form."
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:576
+#, python-format
+msgid "The number of variants to generate is too high. You should either not generate variants for each combination or generate them on demand from the sales order. To do so, open the form view of attributes and change the mode of *Create Variants*."
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.mrp_bom_form_view_inherit
+msgid "The system will automatically map selected product attributes with attributes of the product of this BOM."
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/stock_rule.py:222
+#, python-format
+msgid "The user tried to create an invalid variant for the product: %s (Sequence No: %s)\n"
+"BoM reference: %s"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/stock_rule.py:24
+#, python-format
+msgid "There is no Bill of Material found for the product %s. Please define a Bill of Material for this product."
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "This combination does not exist."
+msgstr "Deze combinatie bestaat niet."
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "This product has no valid combination."
+msgstr "Dit product heeft geen geldige combinatie."
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_configurator_configure
+msgid "This product is mark as configurable, but there is no information provided about steps to configure.\n"
+"                        <br/><br/>\n"
+"                        Please, Go to Product Form View &gt; Configuration &amp; assign steps to configure this product."
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,help:markant_product.field_mrp_bom_conf_line__product_uom_id
+msgid "Unit of Measure (Unit of Measure) is the unit of measurement for the inventory control"
+msgstr "Maateenheid voor de voorraad"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_report_mrporder
+msgid "Uom"
+msgstr "Maateenheid"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_template_bom_button_view
+msgid "Used in Config Template"
+msgstr ""
+
+#. module: markant_product
+#: model:ir.model.fields,field_description:markant_product.field_mrp_bom_attr_value_mapping__value_mapping_id
+msgid "Value Mapping"
+msgstr "Waarde verdeling"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_product_attribute_view_form
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_variants_form_view
+msgid "Values"
+msgstr "Waarden"
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_variants_form_view
+msgid "Variant Values"
+msgstr "Variant waardes"
+
+#. module: markant_product
+#: selection:product.manual.creation,state:0
+msgid "Waiting"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/mrp_bom.py:299
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:694
+#, python-format
+msgid "You are trying to create/modify product \n"
+"(%s : %s).\n"
+"\n"
+"There is already an existing active product(s) that exists with the same barcode! \n"
+"(%s)"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:685
+#, python-format
+msgid "You are trying to create/modify product \n"
+"(%s : %s).\n"
+"\n"
+"There is already an existing active product(s) that exists with the same internal reference! \n"
+"(%s)"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:758
+#, python-format
+msgid "You are trying to restore product \n"
+"(%s : %s).\n"
+"\n"
+"There is already an existing active product(s) that exists with the same barcode! \n"
+"(%s)"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:164
+#: code:addons/markant_product/models/product_template.py:749
+#, python-format
+msgid "You are trying to restore product \n"
+"(%s : %s).\n"
+"\n"
+"There is already an existing active product(s) that exists with the same internal reference! \n"
+"(%s)"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:173
+#: code:addons/markant_product/models/product_template.py:178
+#: code:addons/markant_product/models/product_template.py:768
+#, python-format
+msgid "You cannot Archive this product before removing component from the active BOM list"
+msgstr ""
+
+#. module: markant_product
+#: code:addons/markant_product/models/product_template.py:127
+#, python-format
+msgid "You cannot change the unit of measure from ( %s ) to ( %s ) as there are already stock moves for this product ( %s ). If you want to change the unit of measure, you should rather archive this product and create a new one."
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_view_company_form_inherit_social_media
+msgid "https://mediabank.markantoffice.com/files/webshop/large"
+msgstr ""
+
+#. module: markant_product
+#: model_terms:ir.ui.view,arch_db:markant_product.markant_view_company_form_inherit_social_media
+msgid "jpg"
+msgstr ""

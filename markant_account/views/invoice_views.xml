@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="markant_invoice_inherit_report" inherit_id="account.report_invoice_document">
+
+             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[4]/span" position="replace">
+                <span>Price p.p.</span>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[6]" position="replace">
+                <th t-if="not o.company_id.hide_tax_column" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                    <span class="text-right">Taxes</span>
+                </th>
+            </xpath>
+            <xpath expr="//tbody[@class='invoice_tbody']//tr[1]//td[6]" position="replace">
+                <td t-if="not o.company_id.hide_tax_column" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.invoice_line_tax_ids))"/>
+                </td>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[7]" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                    <th t-if="o.report_to_send in ['so_sub_total','so_discount']" class="text-right">Sub Total</th>
+                </t>
+                <t t-else="">
+                    <th class="text-right">
+                        <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                        <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                    </th>
+                </t>
+            </xpath>
+
+
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']/t/tr/t[@t-if='not line.display_type']/td[@class='text-right o_price_total']" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                    <t t-if="o.report_to_send in ['so_sub_total','so_discount']">
+                        <td class="text-right o_price_total">
+                            <span t-field="line.price_subtotal"/>
+                        </td>
+                    </t>
+                </t>
+                <t t-else="">
+                    <td class="text-right o_price_total">
+                        <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                        <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                    </td>
+                </t>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']/t/tr/t[@t-if='not line.display_type']/td/span[@t-field='line.price_unit']" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                    <t t-if="o.report_to_send in ['so_sub_total']">
+                        <t t-if="line.quantity != 0">
+                            <span t-esc="'%.2f' % (line.price_subtotal/line.quantity)"/>
+                        </t>
+                        <t t-else="">
+                            <span t-field="line.price_unit"/>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <span t-field="line.price_unit"/>
+                    </t>    
+                </t>
+                <t t-else="">
+                    <span t-field="line.price_unit"/>
+                </t>
+            </xpath>
+
+
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@t-if='display_discount']" position="before">
+                <t t-if="o.type == 'out_invoice'">
+                    <th t-if="o.report_to_send in ['so_gross_total','so_discount']" class="text-right">Gross Total</th>
+                </t>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']/t/tr/t[@t-if='not line.display_type']/td[@t-if='display_discount']" position="before">
+                <t t-if="o.type == 'out_invoice'">
+                    <td t-if="o.report_to_send in ['so_gross_total','so_discount']" class="text-right">
+                        <span t-field="line.price_gross_total"/>
+                    </td>
+                </t>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@t-if='display_discount']" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                    <t t-if="o.report_to_send in ['so_discount']">
+                        <th t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                            <span>Disc.(%)</span>
+                            <!-- TODO: remove in master -->
+                            <t t-set="colspan" t-value="colspan+1"/>
+                        </th>
+                    </t>
+                </t>
+                <t t-else="">
+                    <th t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                        <span>Disc.(%)</span>
+                        <!-- TODO: remove in master -->
+                        <t t-set="colspan" t-value="colspan+1"/>
+                    </th>
+                </t>
+            </xpath>
+
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']/t/tr/t[@t-if='not line.display_type']/td[@t-if='display_discount']" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                    <t t-if="o.report_to_send in ['so_discount']">
+                        <td t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                            <span t-field="line.discount"/>
+                        </td>
+                    </t>
+                </t>
+                <t t-else="">
+                    <td t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                        <span t-field="line.discount"/>
+                    </td>
+                </t>
+            </xpath>                         
+             <xpath expr="//div[@id='total']/div/table/tr[@class='border-black o_total']/td/strong" position="replace">
+                <strong>Total incl. VAT</strong>
+             </xpath>
+             <xpath expr="//div[@id='total']/div/table/tr[@class='border-black o_total']" position="after">
+                <tr class="border-black o_total">
+                    <td><strong>Currency</strong></td>
+                    <td class="text-right">
+                        <span t-field="o.currency_id"/>
+                    </td>
+                </tr>
+             </xpath>
+            <xpath expr="//div[@id='total']/div/table/tr[@class='border-black o_subtotal']" position="replace">
+                <t t-if="o.type == 'out_invoice'"> 
+                    <tr class="" style="" t-if="o.report_to_send in ['so_gross_total','so_discount']">
+                        <td><strong>Gross Total</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_gross_total"/>
+                        </td>
+                    </tr>
+                    <tr class="" style="" t-if="o.report_to_send in ['so_discount']">
+                        <td><strong>Discount</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_discount_total"/>
+                        </td>
+                    </tr>
+                    <tr class="o_subtotal" style="" t-if="o.report_to_send in ['so_discount','so_sub_total']">
+                        <td><strong>Sum of Subtotal</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_subtotal_total"/>
+                        </td>
+                    </tr>
+                    <tr class="" style="" t-if="o.inv_project_disc_total">
+                        <td><strong>Project Discount</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_project_disc_total"/>
+                        </td>
+                    </tr>
+                    <tr class="" style="" t-if="o.inv_installation_total">
+                        <td><strong>Installation</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_installation_total"/>
+                        </td>
+                    </tr>
+                    <tr class="" style="" t-if="o.inv_admin_total">
+                        <td><strong>Administration Costs</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.inv_admin_total"/>
+                        </td>
+                    </tr>
+                    <tr class="o_subtotal" style="">
+                        <td><strong>Total ex. VAT</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.amount_untaxed"/>
+                        </td>
+                    </tr>
+                    <tr class="" style="">
+                        <td><strong>VAT amount</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.amount_tax"/>
+                        </td>
+                    </tr>
+                </t>
+                <t t-else="">
+                    <tr class="border-black o_subtotal" style="">
+                        <td><strong>Subtotal</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.amount_untaxed"/>
+                        </td>
+                    </tr>
+                </t>
+            </xpath>
+            <xpath expr="//div[@id='total']/div/table/t[@t-foreach='o.amount_by_group']" position="replace">
+                <t t-if="o.type == 'out_invoice'">
+                </t>
+                <t t-else="">
+                    <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                        <tr style="">
+                            <t t-if="len(o.tax_line_ids) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                <td><span t-esc="amount_by_group[0]"/></td>
+                                <td class="text-right o_price_total">
+                                    <span t-esc="amount_by_group[3]" />
+                                </td>
+                            </t>
+                            <t t-else="">
+                                <td>
+                                    <span t-esc="amount_by_group[0]"/>
+                                    <span>&amp;nbsp;<span>on</span>
+                                        <t t-esc="amount_by_group[4]"/>
+                                    </span>
+                                </td>
+                                <td class="text-right o_price_total">
+                                    <span t-esc="amount_by_group[3]"/>
+                                </td>
+                            </t>
+                        </tr>
+                    </t>
+                </t>
+            </xpath>
+            <xpath expr="//t[@t-set='address']/div[@t-if='o.partner_id.vat']" position="attributes">
+                <attribute name="groups">!sale.group_delivery_invoice_address</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]" position="attributes">
+                <attribute name="style">margin-left: 20px; margin-top: 30px;</attribute>
+            </xpath>
+            <xpath expr="//table[1]/thead/tr" position="attributes">
+                <attribute name="class">border-black</attribute>
+            </xpath>
+            <xpath expr="//table[1]/thead/tr/th[1]" position="before">
+                <th>Product Image</th>
+            </xpath>
+            <xpath expr="//tbody[@class='invoice_tbody']//tr[1]//td[1]" position="before">
+                <td>
+                    <img style="padding-left: 13px;" t-att-src="'data:image/png;base64,%s' % to_text(line.product_id.image_small)"/>
+                </td>
+            </xpath>
+            <xpath expr="//tbody[@class='invoice_tbody']//tr[1]//td[4]" position="replace">
+                <td class="text-right">
+                    <span t-field="line.quantity"/>
+                </td>
+            </xpath>
+     <!--        <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[4]" position="after">
+                <th class="text-right">Uom</th>
+            </xpath>
+            <xpath expr="//tbody[@class='invoice_tbody']//tr[1]//td[4]" position="after">
+                <td class="text-right">
+                    <span t-field="line.uom_id"  groups="uom.group_uom"/>
+                </td>
+            </xpath> -->
+  
+
+            <xpath expr="//div[@id='informations']" position="replace">
+                <div id="informations" class="row mt22 mb22 col-xs-12" style="margin-left: -2px;">
+                    <table class="table table-sm table-borderless">
+                        <tr class="" style="" name="date_customer">
+                            <t t-if="o.partner_id.id">
+                                <td width="18%">
+                                    <t t-if="not (o.type == 'in_invoice' or o.type == 'in_refund' or o.type == 'out_refund')">
+                                        <strong>Customer number</strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Vendor ID</strong>
+                                    </t>
+                                </td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span class="m-0" t-field="o.partner_id.id" t-options='{"widget": "payment"}'/>
+                                </td>
+                            </t>
+                            <t t-if="o.date_invoice">
+                                <td width="18%"><strong>Invoice Date</strong></td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span t-field="o.date_invoice"/>
+                                </td>
+                            </t>
+                        </tr>
+                        <tr class="" style="" name="ref_due">
+                            <t t-if="o.name">
+                                <td width="18%"><strong>Your reference</strong></td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span t-field="o.name"/>
+                                </td>
+                            </t>
+                            <t t-if="o.date_due">
+                                <td width="18%"><strong>Due Date</strong></td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span t-field="o.date_due"/>
+                                </td>
+                            </t>
+                        </tr>
+                        <tr class="" style="" name="origin_ref">
+                            <t t-if="o.origin">
+                                <td width="18%"><strong>Order number</strong></td>
+                                <td wisth="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span t-field="o.origin"/>
+                                </td>
+                            </t>
+                            <t t-if="o.create_uid.name">
+                                <td width="18%"><strong>Contact person</strong></td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span class="m-0" t-field="o.contact_person_id"/>
+                                </td>
+                            </t>
+                        </tr>
+                         <tr class="" style="" name="incoterm">
+                            <t t-if="o.incoterm_id">
+                                <td width="18%"><strong>Incoterm</strong></td>
+                                <td width="1%"> :</td>
+                                <td width="40%" style="text-right">
+                                    <span t-field="o.incoterm_id"/>
+                                </td>
+                            </t>
+                        </tr>
+                    </table>
+                </div>
+            </xpath>
+            <xpath expr="//p[@name='payment_term']" position="after">
+                <t t-if="(o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')) or (o.type == 'out_invoice' and o.state == 'draft') or (o.type == 'out_invoice' and o.state == 'cancel')">
+                    <t t-set="rec" t-value="o._get_invoice_term()"/>
+                    <t t-esc="rec.note"/><br/>
+                </t>
+                <t t-if="o.type == 'in_invoice'">
+                    <t t-set="rec" t-value="o._get_vendor_bill_term()"/>
+                    <t t-esc="rec.note"/>
+                </t>
+            </xpath>
+<!--            <xpath expr="//t[@t-set='address']//div[hasclass('mt16')" position="replace"></xpath>-->
+        </template>
+
+        <template id="markant_report_invoice_inherit_sale"
+                  inherit_id="sale.report_invoice_document_inherit_sale">
+            <xpath expr="//div[@t-field='o.partner_id']" position="replace">
+                <t t-if="o.partner_shipping_id">
+                    <strong style="text-decoration: underline;" class="page">Delivery address:</strong>
+                    <div t-field="o.partner_shipping_id"
+                         t-options='{"widget": "contact","fields": ["address", "name"],"no_marker": True}'
+                         groups="sale.group_delivery_invoice_address" class="page"/>
+                </t>
+            </xpath>
+            <xpath expr="//t[@t-if='o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)']" position="replace">
+                <t t-if="o.partner_id">
+                    <t t-set="information_block">
+                        <div groups="sale.group_delivery_invoice_address" class="page">
+                            <t t-if="o.type == 'in_invoice'">
+                                <strong style="margin-left: 60px; text-decoration: underline;">Vendor address:</strong>
+                            </t>
+                            <t t-else="">
+                                <strong style="margin-left: 60px; text-decoration: underline;">Invoice address:</strong>
+                            </t>
+                            <div t-field="o.partner_id"
+                                 t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                 style="margin-left: 60px;"/>
+                            <div t-if="o.partner_id.vat" style="margin-left: 60px;">
+                                <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <t t-esc="o.partner_id.vat"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

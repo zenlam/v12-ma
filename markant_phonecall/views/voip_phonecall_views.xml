@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Markant Phonecalls Tree View -->
+    <record id="markant_voip_phonecall_tree_view" model="ir.ui.view">
+        <field name="name">Phonecalls Tree</field>
+        <field name="model">voip.phonecall</field>
+        <field name="arch" type="xml">
+            <tree string="Phonecalls" default_order="create_date desc">
+                <field name="type"/>
+                <field name="create_date"/>
+                <field name="next_action_date"/>
+                <field name="name"/>
+                <field name="call_date"/>
+                <field name="date_deadline"/>
+                <field name="phone" invisible="1"/>
+                <field name="mobile"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <field name="duration"/>
+                <field name="partner_id" invisible="1"/>
+                <field name="partner_ids" widget="many2many_tags"/>
+                <field name="partner_contact_ids" widget="many2many_tags"/>
+                <field name="in_queue"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Markant Phonecalls Form View -->
+    <record id="markant_voip_phonecall_form_view" model="ir.ui.view">
+        <field name="name">Phonecalls Form</field>
+        <field name="model">voip.phonecall</field>
+        <field name="arch" type="xml">
+            <form string="Phonecalls">
+                <header>
+                    <button name="action_convert2opportunity" type="object"
+                            string="Create Opportunity" class="oe_highlight"
+                            attrs="{'invisible': [('opportunity_id', '!=', False)]}"/>
+                    <field name="state" widget="statusbar"
+                           options="{'clickable': '1'}"/>
+                </header>
+                <sheet string="Phone Call">
+                    <field name="markant_phonecall" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_make_meeting" type="object" icon="fa-calendar fa-fw">
+                            <span>Schedule A Meeting</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <div class="oe_edit_only">
+                            <label for="description"/>
+                        </div>
+                        <h2>
+                            <field name="description" attrs="{'required':[('markant_phonecall', '=', True)]}"/>
+                        </h2>
+                        <div class="oe_edit_only">
+                            <label for="partner_ids" string="Companies"/>
+                        </div>
+                        <h2>
+                            <field name="partner_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </h2>
+                        <div class="oe_edit_only">
+                            <label for="partner_contact_ids" string="Contacts"/>
+                        </div>
+                        <h2>
+                            <field name="partner_contact_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </h2>
+                    </div>
+
+                    <group col="4" name="group_fields">
+                        <field name="call_date"/>
+                        <field name="date_deadline"/>
+                        <field name="user_id"/>
+                        <label for="duration"/>
+                        <div>
+                            <field name="duration" widget="float_time"
+                                   options="{'ignore_default': 1}"
+                                   required="1"
+                                   class="oe_inline"
+                                   style="vertical-align:baseline"/>
+                            <b>min(s)</b>
+                        </div>
+                        <!--<label for="phone"/>-->
+                        <!--<div class="o_row">-->
+                            <!--<field name="phone" widget="phone"/>-->
+                            <!--<button-->
+                                <!--type="action"-->
+                                <!--name="%(sms.send_sms_form_action)d"-->
+                                <!--class="btn-sm btn-link mb4 fa fa-envelope-o"-->
+                                <!--aria-label="Send SMS"-->
+                                <!--title="Send SMS"-->
+                                <!--attrs="{'invisible':[('phone', '=', False)]}"-->
+                                <!--context="{'field_name': 'phone'}"-->
+                            <!--/>-->
+                        <!--</div>-->
+                        <label for="mobile"/>
+                        <div class="o_row">
+                            <field name="mobile" widget="phone"/>
+                            <button
+                                type="action"
+                                name="%(sms.send_sms_form_action)d"
+                                class="btn-sm btn-link mb4 fa fa-envelope-o"
+                                aria-label="Send SMS"
+                                title="Send SMS"
+                                attrs="{'invisible':[('mobile', '=', False)]}"
+                                context="{'field_name': 'mobile'}"
+                            />
+                        </div>
+                        <field name="markant_phonecall_cate_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        <field name="priority" widget="priority"/>
+                        <field name="opportunity_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                        <field name="next_action_date"/>
+                        <field name="next_action_summary"/>
+                    </group>
+                    <notebook>
+                        <page string="Note" name="note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Markant Phonecalls Search View  -->
+    <record id="markant_view_voip_case_phonecalls_filter" model="ir.ui.view">
+        <field name="name">Phonecalls Search</field>
+        <field name="model">voip.phonecall</field>
+        <field name="arch" type="xml">
+            <search string="Search Phonecalls">
+                <field name="name" string="Phonecalls"/>
+                <field name="call_date"/>
+                <field name="next_action_date"/>
+                <field name="opportunity_id" />
+                <field name="partner_id"/>
+                <field name="partner_ids"/>
+                <field name="partner_contact_ids"/>
+                <field name="state"/>
+                <filter string="My Phonecalls" name="my_phonecalls"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter string="Unassigned" name="unassigned"
+                        domain="[('user_id','=',False)]"/>
+                <separator/>
+                <filter name="phonecalls_to_do" string="To Do"
+                        domain="[('state','in',('open','pending'))]"/>
+                <separator/>
+                <field name="user_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Responsible" name="responsible" domain="[]"
+                            context="{'group_by':'user_id'}"/>
+                    <filter string="Creation Date" name="creation"
+                            help="Creation Date" domain="[]"
+                            context="{'group_by':'create_date'}"/>
+                    <filter string="Date" name="month" domain="[]"
+                            context="{'group_by':'call_date'}"
+                            help="Calls Date"/>
+                    <filter string="Companies" name="partner_ids" domain="[]"
+                            context="{'group_by':'partner_group_by'}"/>
+                    <filter string="Contacts" name="partner_contact_ids"
+                            domain="[]"
+                            context="{'group_by':'partner_contact_group_by'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Markant Phonecalls Action -->
+    <record id="markant_voip_phonecall_action" model="ir.actions.act_window">
+        <field name="name">Phonecalls</field>
+        <field name="res_model">voip.phonecall</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('markant_phonecall','=',True)]</field>
+        <field name="context" eval="{'default_markant_phonecall': True}"/>
+        <field name="view_id" ref="markant_voip_phonecall_tree_view"/>
+        <field name="search_view_id"
+               ref="markant_view_voip_case_phonecalls_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Log the summary of a phonecall
+            </p>
+        </field>
+    </record>
+
+    <!-- Add Domain in Existing Action -->
+    <record id="voip.voip_phonecall_view" model="ir.actions.act_window">
+        <field name="domain">[('markant_phonecall','=',False)]</field>
+    </record>
+
+    <!-- Sub Menu: Phonecalls -->
+    <menuitem id="markant_menu_voip_phonecall_view" name="Phonecalls"
+              sequence="10" action="markant_voip_phonecall_action"
+              parent="markant_main_menu_voip_phonecall_view"/>
+
+</odoo>

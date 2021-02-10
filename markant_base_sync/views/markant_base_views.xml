@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main menu -->
+    <menuitem id="menu_main_markant_base" name="Base Integration"
+        parent="crm.crm_menu_root" sequence="4"/>
+
+    <!-- Base Sync Views -->
+    <record id="view_base_synchronization_form" model="ir.ui.view">
+        <field name="name">Base Synchronization</field>
+        <field name="model">base.synchronization</field>
+        <field name="arch" type="xml">
+            <form string="" class="oe_form_configuration">
+                <header>
+                    <button name="synclead" string="Sync" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Describe the name..."/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="base_lead_status"/>
+                            <field name="active"/>
+                            <field name="email_code"/>
+                        </group>
+                        <group>
+                            <field name="base_model"/>
+                            <field name="last_sync_date_time"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Lead">
+                            <group>
+                                <field name="sync_lead"/>
+                            </group>
+                            <group>
+                                <field name="lead_fields" options="{'no_create': True}">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="odoo_field_name"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <group>
+                                <field name="sync_note"/>
+                            </group>
+                            <group>
+                                <field name="note_fields" options="{'no_create': True}"/>
+                            </group>
+                        </page>
+                        <page string="Task">
+                            <group>
+                                <field name="sync_task"/>
+                            </group>
+                            <group>
+                                <field name="task_fields" options="{'no_create': True}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_base_synchronization_tree" model="ir.ui.view">
+            <field name="name">Base Synchronization</field>
+            <field name="model">base.synchronization</field>
+            <field name="type">tree</field>
+            <field name="arch"  type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="action_base_synchronization" model="ir.actions.act_window">
+        <field name="name">Base Synchronization</field>
+        <field name="res_model">base.synchronization</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_markant_base_synchronization" name="Base Synchronization"
+        parent="menu_main_markant_base" sequence="1" action="action_base_synchronization"/>
+
+    <!-- End Base Sync Views -->
+    <record id="markant_voip_phonecall_form_view" model="ir.ui.view">
+        <field name="name">VOIP - Phone Calls Form</field>
+        <field name="inherit_id" ref="markant_phonecall.markant_voip_phonecall_form_view" />
+        <field name="model">voip.phonecall</field>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="base_note_task_id"/>
+                <field name="base_sync_type"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_base_sync_fields_form" model="ir.ui.view">
+        <field name="name">Base Sync Fields</field>
+        <field name="model">base.sync.fields</field>
+        <field name="arch" type="xml">
+            <form string="Base Sync Fields">
+                <group>
+                    <field name="name"/>
+                    <field name="odoo_field_name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="markant_base_sync_inherit_partner" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.markant.base.sync</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="base_group_ids" widget="many2many_tags"/>
+                <field name="base_lead_source_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='child_ids']//form//field[@name='title']" position="after">
+                <field name="base_group_ids" widget="many2many_tags"/>
+                <field name="base_lead_source_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='child_ids']//form//field[@name='title']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_partner_form_inherit_markant_crm_child_address" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.markant.base.sync</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='child_ids_address']//form//field[@name='name']" position="after">
+                <field name="first_name" placeholder="First Name"/>
+                <field name="last_name" placeholder="Last Name"/>
+            </xpath>
+
+            <xpath expr="//field[@name='child_ids_address']//form//field[@name='title']" position="after">
+                <field name="base_group_ids" widget="many2many_tags"/>
+                <field name="base_lead_source_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="markant_base_sync_inherit_res_country" model="ir.ui.view">
+        <field name="name">res.country.form.inherit.markant.base.sync</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_form"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="base_country_name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="markant_base_sync_inherit_res_country_tree" model="ir.ui.view">
+        <field name="name">res.country.tree.inherit.markant.base.sync</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="code" position="after">
+                <field name="base_country_name"/>
+            </field>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="product_conf_bom_tree_view" model="ir.ui.view">
+        <field name="name">configurable.product.bom.tree</field>
+        <field name="model">mrp.bom.conf.line</field>
+        <field name="arch" type="xml">
+            <tree string="Mapping Lines">
+                <field name="product_tmpl_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_conf_bom_action" model="ir.actions.act_window">
+        <field name="name">Mapping Lines</field>
+        <field name="res_model">mrp.bom.conf.line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_product_conf_bom_action"
+              action="markant_product.product_conf_bom_action"
+              parent="mrp.menu_mrp_configuration"
+              groups="base.group_system"/>
+</odoo>

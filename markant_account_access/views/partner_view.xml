@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_account_access_res_partner_view_form" model="ir.ui.view">
+        <field name="name">markant.account.access.res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account_reports.res_partner_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_action_followup']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_partner_view_buttons_report" model="ir.ui.view">
+        <field name="name">markant.account.access.partner.view.buttons.report</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account_reports.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_partner_ledger']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_partner_view_buttons" model="ir.ui.view">
+        <field name="name">markant.account.access.partner.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_view_partners_form_payment_defaultcreditcard" model="ir.ui.view">
+        <field name="name">markant.account.access.view.res.partner.form.payment.defaultcreditcard</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="payment.view_partners_form_payment_defaultcreditcard"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(payment.payment_token_action)d']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_partner_view_button_contracts_count" model="ir.ui.view">
+        <field name="name">markant.account.access.partner.view.button.contracts_count</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_button_contracts_count"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(account.action_open_partner_analytic_accounts)d']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_res_partner_followup_view_buttons" model="ir.ui.view">
+        <field name="name">markant.account.access.res.partner.view.buttons.followup</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="markant_account_reports_followup.markant_res_partner_followup_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='followup_email_history']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_account_access_view_partner_property_form" model="ir.ui.view">
+        <field name="name">markant.account.access.res.partner.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+            <xpath expr="//page[@name='accounting_disabled']" position="attributes">
+                <attribute name="groups">markant_account_access.group_markant_account_access</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_form_minimal_inherit" model="ir.ui.view">
+        <field name="name">mail.template.form.minimal</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Links">
+                    <field name="link_ids">
+                        <tree string="Links" editable="bottom">
+                            <field name="title"/>
+                            <field name="url"/>
+                            <field name="short_url"/>
+                            <field name="count"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mail_mass_mailing_form_inherit" model="ir.ui.view">
+        <field name="name">mail.mass_mailing.form.template</field>
+        <field name="model">mail.mass_mailing</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group class="oe_edit_only">
+                    <field name="model_object_field"
+                            domain="[('model_id','=',mailing_model_id),('ttype','!=','one2many'),('ttype','!=','many2many')]" options="{'no_create_edit': True}"/>
+                    <field name="sub_object" readonly="1" attrs="{'invisible':[('sub_object','=',False)]}" options="{'no_create_edit': True}"/>
+                    <field name="sub_model_object_field"
+                            domain="[('model_id','=',sub_object),('ttype','!=','one2many'),('ttype','!=','many2many')]"
+                            attrs="{'readonly':[('sub_object','=',False)],'required':[('sub_object','!=',False)],'invisible':[('sub_object','=',False)]}" options="{'no_create_edit': True}"/>
+                    <field name="null_value"/>
+                    <field name="copyvalue" class="v_copy_value"/>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Links">
+                    <field name="link_ids">
+                        <tree string="Links" editable="bottom">
+                            <field name="title"/>
+                            <field name="url"/>
+                            <field name="short_url"/>
+                            <field name="count"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Statistics -->
+
+    <record id="view_mail_mail_statistics_search_inherited" model="ir.ui.view">
+        <field name="name">mail.mail.statistics.search.inherited</field>
+        <field name="model">mail.mail.statistics</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mail_statistics_search" />
+        <field name="arch" type="xml">
+            <field name="mass_mailing_id" position="after">
+                <field name="mass_mailing_id" />
+                <field name="mail_template_id" />
+                <field name="partner_id" />
+            </field>
+            <filter name="group_open_date" position="after">
+                <filter string="Mail Mailing" name="group_mass_mail" context="{'group_by': 'mass_mailing_id'}"/>
+                <filter string="Mail Template" name="group_mail_template" context="{'group_by': 'mail_template_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="markant_mass_mailing_action" model="ir.actions.act_window">
+        <field name="name">Mail Statistics</field>
+        <field name="res_model">mail.mail.statistics</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('mass_mailing_id', '!=', False)]</field>
+        <field name="search_view_id" ref="view_mail_mail_statistics_search_inherited" />
+    </record>
+
+    <record id="view_mail_mail_statistics_tree_inherited" model="ir.ui.view">
+        <field name="name">mail.mail.statistics.open.count.tree</field>
+        <field name="model">mail.mail.statistics</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mail_statistics_tree"/>
+        <field name="arch" type="xml">
+            <field name="opened" position="after">
+                <field name="opened_count" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mail_mail_statistics_form_inherited" model="ir.ui.view">
+        <field name="name">mail.mail.statistics.open.count.tree</field>
+        <field name="model">mail.mail.statistics</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mail_statistics_form"/>
+        <field name="arch" type="xml">
+            <field name="opened" position="after">
+                <field name="opened_count" />
+            </field>
+            <field name="mass_mailing_id" position="after">
+                <field name="mail_template_id" />
+            </field>
+
+            <field name="res_id" position="after">
+                <field name="partner_id" />
+                <field name="first_name" />
+                <field name="last_name" />
+                <field name="title_id" />
+                <field name="company_name"/>
+                <field name="ref"/>
+                <field name="email_to"/>
+            </field>
+            <xpath expr="//form" position="inside">
+                <notebook>
+                    <page string="Links">
+                        <field name="link_ids" context="{'mail_id_int': mail_mail_id_int}">
+                            <tree editable="bottom" string="Links">
+                                <field name="url" string="Link"/>
+                                <field name="count"/>
+                                <field name="last_clicked_date" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem name="Mail Statistics" id="menu_mm_email_statistics"
+        parent="mass_mailing.mass_mailing_menu" sequence="50"
+        action="markant_mass_mailing_action"/>
+
+    <menuitem name="Mail Template" id="menu_mass_mail_template"
+        parent="mass_mailing.mass_mailing_menu" sequence="70"
+        action="mail.action_email_template_tree_all" />
+
+    <!-- Contacts -->
+    <record id="view_mail_mass_mailing_contact_tree_add_fields" model="ir.ui.view">
+        <field name="name">mail.mass_mailing.contact.add.fields.tree</field>
+        <field name="model">mail.mass_mailing.contact</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_contact_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree string="Mailing Lists Subscribers" editable="top">
+                    <field name="name" />
+                    <field name="last_name" />
+                    <field name="email"/>
+                    <field name="title_id" />
+                    <field name="company_name"/>
+                    <field name="ref"/>
+                    <field name="list_ids" widget="many2many_tags"/>
+                    <field name="opt_out"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="markant_report_mrporder" inherit_id="mrp.report_mrporder">
+
+        <xpath expr="//div[hasclass('page')]" position="attributes">
+            <attribute name="style">font-family: Ubuntu; font-size: 15px; margin-left: 20px;</attribute>
+        </xpath>
+        <xpath expr="//tr[@t-if='has_product_available']/th[2]" position="after">
+            <th>Uom</th>
+        </xpath>
+        <xpath expr="//td/span[@t-field='ml.product_uom_id']" position="replace"/>
+        <xpath expr="//td[span[@t-if='has_location']]" position="before">
+            <td>
+                <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+            </td>
+        </xpath>
+        <xpath expr="//div/span[@t-field='o.date_planned_start']" position="replace">
+            <span t-esc="o.date_planned_start.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/>
+        </xpath>
+        <xpath expr="//div/span[@t-if='o.date_planned_finished']" position="replace">
+            <span t-if="o.date_planned_finished"> - <span t-esc="o.date_planned_finished.strftime('%Y-%m-%d')" t-options='{"widget": "date"}'/></span>
+        </xpath>
+
+    </template>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" inherit_id="web.assets_backend" >
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/markant_product/static/src/scss/markant_product.scss"/>
+
+            <script type="text/javascript" src="/markant_product/static/src/js/product_configurator_mixin.js"/>
+            <script type="text/javascript" src="/markant_product/static/src/js/product_configurator_controller.js"/>
+        </xpath>
+    </template>
+
+</odoo>

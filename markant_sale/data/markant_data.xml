@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Auto lock Scheduler-->
+        <record model="ir.cron" forcecreate="True" id="markant_sale_autolock_scheduler">
+            <field name="name">Markant Sale: Auto Lock Sales Scheduler</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_lock_scheduler()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+        </record>
+    </data>
+    <data>
+        <record id="email_template_down_payment_invoice" model="mail.template">
+            <field name="name">Down-payment collection Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="email_from">${object.sudo().create_uid.email_formatted | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="subject">Down-payment collection : Invoice (Ref ${object.number or 'n/a'})</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        % if object.number:
+            invoice <strong>${object.number}</strong>
+        % else:
+            invoice
+        %endif
+        has been created for down-payment collection. Please followup on the payment collection.
+        <br /><br />
+        <p style="margin-top: 24px; margin-bottom: 16px;">
+        <p>
+            <a href="/mail/view?model=account.invoice&amp;res_id=${object.id}"
+                    style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                View Invoice
+            </a>
+        </p>
+    </p>
+    </p>
+</div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+
+    <!-- Header & Footer template for mail -->
+    <template id="mail_notification_paynow_sale_order" name="Mail: Pay Now mail notification template">
+<table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;">
+<tbody>
+    <!-- HEADER -->
+    <tr>
+        <td align="center" style="min-width: 590px;">
+            <t t-set="access_action" t-value="record.with_context(force_website=True).get_access_action()"/>
+            <t t-set="is_online" t-value="access_action and access_action['type'] == 'ir.actions.act_url'"/>
+            <t t-set="base_url" t-value="record.get_base_url()"/>
+            <t t-set="share_url" t-value="record._get_share_url(redirect=True, signup_partner=True)"/>
+            <t t-set="access_url" t-value="is_online and share_url and base_url + share_url or ''"/>
+            <t t-set="access_name">
+                View <t t-esc="model_description or 'document'"/>
+            </t>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: white; padding: 0; border-collapse:separate;">
+                <tr><td valign="middle">
+<!--                    <span style="font-size: 10px;">Your <t t-esc="model_description or 'document'"/></span><br/>-->
+                    <span style="font-size: 20px; font-weight: bold;">
+                        <t t-esc="message.record_name"/>
+                    </span>
+                </td><td valign="middle" align="right">
+                    <img t-att-src="'/logo.png?company=%s' % company.id" style="padding: 0px; margin: 0px; height: 48px;" t-att-alt="'%s' % company.name"/>
+                </td></tr>
+                <tr><td colspan="2" style="text-align:center;">
+                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px 0px 32px 0px;"/>
+                </td></tr>
+            </table>
+        </td>
+    </tr>
+    <!-- CONTENT -->
+    <tr>
+        <td style="padding: 0">
+            <t t-raw="message.body"/>
+<!--            <div t-if="is_online and not record._context.get('proforma')" style="margin: 32px 0px 32px 0px; text-align: center;">-->
+<!--                <a t-att-href="access_url"-->
+<!--                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">-->
+<!--                    <t t-esc="access_name"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div style="margin: 0px; padding: 0px; font-size:13px;">-->
+<!--                Best regards,-->
+<!--            </div>-->
+<!--            <div>&amp;nbsp;</div>-->
+<!--            <div t-if="record.user_id and record.user_id.sudo().signature" style="font-size: 13px;">-->
+<!--                <div t-raw="record.user_id.sudo().signature"/>-->
+<!--            </div>-->
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td style="padding: 0; font-size:11px;">
+            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 32px 0px 4px 0px;"/>
+            <b t-esc="company.name"/><br/>
+            <div style="color: #999999">
+                <t t-esc="company.phone"/>
+                <t t-if="company.email"> |
+                    <a t-att-href="'mailto:%s' % company.email" style="text-decoration:none; color: #999999;"><t t-esc="company.email"/></a>
+                </t>
+                <t t-if="company.website"> |
+                    <a t-att-href="'%s' % company.website" style="text-decoration:none; color: #999999;">
+                        <t t-esc="company.website"/>
+                    </a>
+                </t>
+            </div>
+        </td>
+    </tr>
+</tbody>
+</table>
+</td></tr>
+<!-- POWERED BY -->
+<!--<tr><td align="center" style="min-width: 590px; padding: 8px; font-size:11px;">-->
+<!--    Powered by <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>-->
+<!--</td></tr>-->
+</table>
+        </template>
+
+
+    <!--Installation form notification Email-->
+    <data>
+        <record id="email_template_cancelled_so_link_installation" model="mail.template">
+            <field name="name">SO link Installation form cancelled - Send by Email</field>
+            <field name="model_id" ref="markant_sale.model_sale_order"/>
+            <field name="email_from">${object.user_id.email | safe}</field>
+            <field name="partner_to">${ctx.get('email_to') or False}</field>
+            <field name="subject">SO Linked Installation Cancelled</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        % if object.name:
+                            This email is sent to notify that <a href="/mail/view?model=sale.order&amp;res_id=${object.id}"><strong>${object.name}</strong></a> is cancelled.<br/>
+                        %endif
+                        <br/>
+                        This SO is linked with Installation Form
+                        % if object.get_installation_form_email():
+                            % for values in object.get_installation_form_email():
+                                <a href="/mail/view?model=markant.installation.form&amp;res_id=${values.id}"><strong>${values.name}</strong> | </a>
+                            % endfor
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+
+</odoo>

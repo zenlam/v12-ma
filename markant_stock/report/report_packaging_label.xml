@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report
+            string="Packaging Label"
+            id="action_report_label_packaging"
+            model="picking.packaging"
+            report_type="qweb-pdf"
+            name="markant_stock.report_packaging_label"
+            file="markant_stock.report_packaging_label"
+            print_report_name="'Packaging Label - %s - %s' %
+            (object.partner_id.name or '', object.name)"
+    />
+
+    <record id="packaging_label_format" model="report.paperformat">
+        <field name="name">MARKANT: Packaging Label Paper Format</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">160</field>
+        <field name="page_width">105</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+        <field name="report_ids" eval="[(4, ref('action_report_label_packaging'))]"/>
+    </record>
+
+    <template id="report_packaging_label">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+                <t t-set="partner"
+                   t-value="doc.partner_id"/>
+                <t t-set="partner_recipient"
+                   t-value="doc.partner_recipient_id"/>
+                <t t-set="cur_page" t-value="0"/>
+                <t t-set="to_page" t-value="len(doc.packaging_line_ids)"/>
+                <t t-foreach="doc.packaging_line_ids" t-as="line">
+                    <div id="page" class="row mt22 mb22 col-xs-12 font-italic" style="font-family: Lucia Grande">
+                        <p style="page-break-after:always;">
+                            <table class="table table-sm table-borderless" style="position: static">
+                                <tr class="" style="">
+                                    <td><span>From:</span></td>
+                                </tr>
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right; font-size: 20px">
+                                        <span t-field="doc.warehouse_id.partner_id.name"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.street"/><br/>
+                                        <t t-if="doc.warehouse_id.partner_id.zip">
+                                            <span t-field="doc.warehouse_id.partner_id.zip"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.state_id">
+                                            <span t-field="doc.warehouse_id.partner_id.state_id"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.city">
+                                            <span t-field="doc.warehouse_id.partner_id.city"/>
+                                        </t>
+                                        <span t-field="doc.warehouse_id.partner_id.country_id"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="position: static; margin-top: 50px; border-top:1px solid; padding-top: 10px">
+                                <tr class="" style="">
+                                    <td><span>To:</span></td>
+                                </tr>
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right; font-size: 20px">
+                                        <span t-field="doc.partner_recipient_id.name"/><br/>
+                                        <span t-field="doc.partner_recipient_id.street"/><br/>
+                                        <t t-if="doc.partner_recipient_id.zip">
+                                            <span t-field="doc.partner_recipient_id.zip" style="font-size: 25px"/>
+                                        </t>
+                                        <t t-if="doc.partner_recipient_id.state_id">
+                                            <span t-field="doc.partner_recipient_id.state_id"/>
+                                        </t>
+                                        <t t-if="doc.partner_recipient_id.city">
+                                            <span t-field="doc.partner_recipient_id.city"/>
+                                        </t>
+                                        <span t-field="doc.partner_recipient_id.country_id"/>
+                                        <br/>
+                                        <span t-field="doc.partner_recipient_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="position: static; margin-top: 30px; border-top:1px solid; padding-top: 20px">
+                                <tr class="" style=""></tr>
+                                <tr class="" style="">
+                                    <td width="10%"></td>
+                                    <td width="40%" style="text-right; font-size: 20px; padding-top: 16px">
+                                        <span>Order Number: </span><span t-field="doc.order_id" style="font-size: 30px"/><br/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="position: static; margin-top: 50px; border-top:1px solid; padding-top: 40px">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right; font-size: 20px">
+                                        <span t-field="line.description"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <t t-set="cur_page" t-value="cur_page+1"/>
+                            <table class="table table-sm table-borderless" style="position: static; margin-top: 5px">
+                                <tr class="" style="">
+                                    <td width="15%"></td>
+                                    <td width="40%" style="text-right; font-size: 20px">
+                                        <center><span>Package: </span><span t-esc="cur_page" /> of <span t-esc="to_page" /></center>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="position: static; margin-top: 5px">
+                                <tr class="" style="">
+                                    <td width="35%" style="text-right; font-size: 20px">
+                                        <center><span>Shipment date: </span><span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')" t-options='{"widget": "date"}'/></center>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

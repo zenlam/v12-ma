@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="markant_external_layout" inherit_id="web.external_layout">
+        <xpath expr="t[@t-call='{{company.external_report_layout_id.key}}']" position="replace"/>
+        <xpath expr="t[@t-call='web.external_layout_standard']" position="replace">
+            <t t-if="company.allow_report_format">
+                <t t-if="o and 'partner_id' in o.fields_get() and o.partner_id.country_id">
+                    <t t-set="active_country" t-value="o.partner_id.country_id.id"/>
+                </t>
+                <t t-else="">
+                    <t t-if="user and user.partner_id and user.partner_id.country_id">
+                        <t t-set="active_country" t-value="user.partner_id.country_id.id"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="active_country" t-value=""/>
+                    </t>
+                </t>
+
+                <t t-set="set_header" t-value="0"/>
+
+                <div class="header" t-attf-style="background-image: url(data:image/png;base64,#{company.report_header_img}); background-size: contain; background-position: center top; background-repeat: no-repeat; min-height: 142px !important; margin-left: -15px; padding-left: 22px; margin-right: -15px; padding-right: 22px;">
+                    <div class="mt8 mb8">
+                        <t t-foreach="company.country_report_ids" t-as="country_report">
+                            <t t-if="country_report.country_id.id == active_country">
+                                <div t-field="country_report.header_info"/>
+                                <t t-set="set_header" t-value="set_header + 1"/>
+                            </t>
+                        </t>
+                        <t t-if="set_header == 0">
+                            <t t-set="global_country_report" t-value="company.country_report_ids.filtered(lambda country: country.set_as_global)"/>
+                            <t t-foreach="company.country_report_ids" t-as="country_report">
+                                <t t-if="country_report.country_id.id == global_country_report.country_id.id">
+                                    <div t-field="country_report.header_info"/>
+                                    <t t-set="set_header" t-value="set_header + 1"/>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+
+                <div class="article o_report_layout_standard" style="margin-right: 7px; margin-left: 7px;"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <t t-call="web.address_layout"/>
+                    <t t-raw="0"/>
+                </div>
+
+                <t t-set="set_footer" t-value="0"/>
+
+                <div class="footer o_standard_footer" t-attf-style="background-image: url(data:image/png;base64,#{company.report_footer_img}); background-size: contain; background-position: center top; background-repeat: no-repeat; min-height: 142px !important; margin-left: -15px; padding-left: 22px; margin-right: -15px; padding-right: 10px;">
+                    <table class="table-sm table-borderless">
+                        <tr>
+                            <td width="790px">
+                                <div t-foreach="company.country_report_ids" t-as="country_report">
+                                    <t t-if="country_report.country_id.id == active_country">
+                                        <span t-field="country_report.footer_info"/>
+                                        <t t-set="set_footer" t-value="set_footer + 1"/>
+                                    </t>
+                                </div>
+                                <t t-if="set_footer == 0">
+                                    <t t-set="global_country_report" t-value="company.country_report_ids.filtered(lambda country: country.set_as_global)"/>
+                                    <div t-foreach="company.country_report_ids" t-as="country_report">
+                                        <t t-if="country_report.country_id.id == global_country_report.country_id.id">
+                                            <div t-field="country_report.footer_info"/>
+                                            <t t-set="set_footer" t-value="set_footer + 1"/>
+                                        </t>
+                                    </div>
+                                </t>
+                            </td>
+                            <td width="90px">
+                                <div t-if="report_type == 'pdf'" class="text-muted text-right" style="font-weight: bold; padding-bottom:3px; font-size: 12px;">
+                                    <br/><br/>
+                                    Page: <span class="page"/> / <span class="topage"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.key}}"><t t-raw="0"/></t>
+                <t t-else="else" t-call="web.external_layout_standard"><t t-raw="0"/></t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

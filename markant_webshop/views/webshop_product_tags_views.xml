@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_tags_tree" model="ir.ui.view">
+        <field name="name">webshop.product.tags.tree</field>
+        <field name="model">webshop.product.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Product Tags" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="webshop_product_tags_action" model="ir.actions.act_window">
+        <field name="name">Product Tags</field>
+        <field name="res_model">webshop.product.tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_webshop_product_tags"
+              name="Webshop Product Tags"
+              parent="markant_webshop.menu_webshop_config"
+              action="webshop_product_tags_action"
+              sequence="10"/>
+
+</odoo>

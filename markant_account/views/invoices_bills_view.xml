@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add smart button in customer invoice form -->
+    <record id="invoice_form_add_button" model="ir.ui.view">
+        <field name="name">invoice.form.add.button</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_invoice_id"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="invoice_show_credit_note" type="object" icon="fa-book"
+                        attrs="{'invisible': [('type', '!=', 'out_invoice')]}">
+                    <field name="cn_count" string="Credit Notes" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" name="cn_show_invoice" type="object" icon="fa-book"
+                        attrs="{'invisible': [('type', '!=', 'out_refund')]}">
+                    <span>Invoice</span>
+                </button>
+            </xpath>
+            <field name="payment_term_id" position="after">
+                <field name="is_import" readonly="1"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="report_to_send_readonly" invisible="1"/>
+                <field name="report_to_send_required" invisible="1"/>
+                <field name="report_to_send" attrs="{'readonly': [('report_to_send_readonly', '=', True)], 'required': [('report_to_send_required', '=', True)]}"/>
+
+
+                <field name="inv_gross_total" invisible="1"/>
+                <field name="inv_discount_total" invisible="1"/>
+                <field name="inv_subtotal_total" invisible="1"/>
+                <field name="inv_project_disc_total" invisible="1"/>
+                <field name="inv_installation_total" invisible="1"/>
+                <field name="inv_admin_total" invisible="1"/>
+
+            </field>
+            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="before">
+
+                <div class="oe_right" style="color:blue;">NOTE : Gross Total &amp; Total Discount Lines Exclude Project Discount, Installation and Administration.
+                </div>
+                <div class="oe_clear"/>
+                <group>
+                    <group class="oe_subtotal_footer" style="margin-bottom: 0px;border-top: 0px;" name="sale_markant_total">
+                        <field name="inv_gross_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="inv_discount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="inv_subtotal_total"/>
+                        </div>
+                        <field name="inv_subtotal_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="inv_project_disc_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="inv_installation_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="inv_admin_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </group>
+                
+                <div class="oe_clear"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_invoice_filter_markant_account" model="ir.ui.view">
+        <field name="name">account.invoice.markant.account</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="after">
+                <filter string="Is Import" name="isimport" domain="[('is_import', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- add smart button in vendor bill form -->
+    <record id="invoice_supplier_form_add_button" model="ir.ui.view">
+        <field name="name">supplier.invoice.form.add.button</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" name="invoice_show_credit_note" type="object" icon="fa-book"
+                            attrs="{'invisible': [('type', '!=', 'in_invoice')]}">
+                        <field name="cn_count" string="Refunds" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" name="cn_show_invoice" type="object" icon="fa-book"
+                            attrs="{'invisible': [('type', '!=', 'in_refund')]}">
+                        <span>Vendor Bills</span>
+                    </button>
+                    <button class="oe_stat_button" name="invoice_show_journal_entries" type="object" icon="fa-book"
+                            attrs="{'invisible': [('je_count', '=', 0)]}">
+                        <field name="je_count" string="Journal Entries" widget="statinfo"/>
+                    </button>
+                </div>
+            </xpath>
+            <field name="vendor_bill_id" position="after">
+                <field name="is_import" readonly="1"/>
+            </field>
+            <field name="partner_bank_id" position="after">
+                <field name="backdated_post" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="backdated_date" attrs="{'invisible': [('backdated_post', '=', False)], 'required': [('backdated_post', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="interim_account_id" attrs="{'invisible': [('backdated_post', '=', False)], 'required': [('backdated_post', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- add actions for both new menu items -->
+    <record id="action_invoice_credit_note" model="ir.actions.act_window">
+        <field name="name">Invoices and Credit Notes</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+               (0, 0, {'view_mode': 'tree', 'view_id': ref('account.invoice_tree')}),
+               (0, 0, {'view_mode': 'form', 'view_id': ref('account.invoice_form')})]"/>
+        <field name="domain">[('type','in', ['out_invoice', 'out_refund'])]</field>
+        <field name="context">{'default_type': 'out_invoice', 'type': 'out_invoice', 'journal_type': 'sales'}</field>
+    </record>
+    <record id="action_vendor_bill_refund" model="ir.actions.act_window">
+        <field name="name">Bills and Refund</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+               (0, 0, {'view_mode': 'tree', 'view_id': ref('account.invoice_supplier_tree')}),
+               (0, 0, {'view_mode': 'form', 'view_id': ref('account.invoice_supplier_form')})]"/>
+        <field name="domain">[('type','in', ['in_invoice', 'in_refund'])]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase'}</field>
+    </record>
+
+    <!-- add new menu item for Accounting/Customers & Accounting/Vendors-->
+    <menuitem id="menu_invoice_credit_note" name="Invoices and Credit Notes"
+              parent="account.menu_finance_receivables"
+              sequence="5" action="action_invoice_credit_note"/>
+    <menuitem id="menu_vendor_bill_refund" name="Bills and Refunds"
+              parent="account.menu_finance_payables"
+              sequence="10" action="action_vendor_bill_refund"/>
+</odoo>

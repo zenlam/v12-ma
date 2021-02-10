@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_opportunity_markant"
+        string="Opportunity Report by Currency"
+        model="opportunity.analysis"
+        report_type="qweb-pdf"
+        file="markant_crm.report_opportunity"
+        name="markant_crm.report_opportunity"
+    />
+
+    <report
+        id="report_sale_person_email_automation_markant"
+        model="res.users"
+        string="Sale Person Opportunity Report"
+        report_type="qweb-pdf"
+        name="markant_crm.report_sale_person_email_automation"
+        file="markant_crm.report_sale_person_email_automation"
+    />
+
+</odoo>

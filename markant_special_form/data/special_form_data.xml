@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--Sequence for Special Form-->
+    <record id="seq_markant_special_form" model="ir.sequence">
+        <field name="name">Special Form</field>
+        <field name="code">markant.special.form</field>
+        <field name="prefix">SP</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!--Data for Special Form Stage-->
+    <record id="special_form_draft" model="markant.special.stage">
+        <field name="name">Draft</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="special_form_submit" model="markant.special.stage">
+        <field name="name">Submit</field>
+        <field name="sequence">2</field>
+        <field name="assign_mail">1</field>
+    </record>
+
+    <record id="special_form_approved" model="markant.special.stage">
+        <field name="name">Approved</field>
+        <field name="sequence">3</field>
+        <field name="approve_mail">1</field>
+    </record>
+
+    <record id="special_form_rejected" model="markant.special.stage">
+        <field name="name">Rejected</field>
+        <field name="sequence">4</field>
+        <field name="reject_mail">1</field>
+    </record>
+
+    <!-- Assignment Mail Template -->
+    <record id="email_template_special_assign" model="mail.template">
+        <field name="name">Special Form Assignment - Send by Email</field>
+        <field name="email_from">${(object.create_uid.company_id.email or '')|safe}</field>
+        <field name="subject">Special Form Assignment Ref - ${object.name or 'n/a' }</field>
+        <field name="partner_to">${ctx.get('follower_partner') or False}</field>
+        <field name="model_id" ref="markant_special_form.model_markant_special_form"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.assignee_id.lang}</field>
+        <field name="body_html">
+<![CDATA[
+<p>Dear ${ctx['follower_name']},
+</p>
+
+<p>
+You have been assign to special form reference <strong>${object.name}</strong> from ${object.create_uid.company_id.name}.
+</p>
+
+<br/><br/>
+<center>
+    <a href="/mail/view?model=markant.special.form&amp;res_id=${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Special Form</a>
+    <br/><br/><br/>
+</center>
+<br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you.</p>
+]]>
+        </field>
+    </record>
+
+    <!-- Approval Mail Template -->
+    <record id="email_template_special_approve" model="mail.template">
+        <field name="name">Special Form Approval - Send by Email</field>
+        <field name="email_from">${(object.create_uid.company_id.email or '')|safe}</field>
+        <field name="subject">Special Form Approval Ref - ${object.name or 'n/a' }</field>
+        <field name="partner_to">${ctx.get('follower_partner') or False}</field>
+        <field name="model_id" ref="markant_special_form.model_markant_special_form"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.create_uid.lang}</field>
+        <field name="body_html">
+<![CDATA[
+<p>Dear ${ctx['follower_name']},
+</p>
+
+<p>
+Your special form reference <strong>${object.name}</strong> is approved.
+</p>
+
+<br/><br/>
+<center>
+    <a href="/mail/view?model=markant.special.form&amp;res_id=${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Special Form</a>
+    <br/><br/><br/>
+</center>
+<br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you.</p>
+]]>
+        </field>
+    </record>
+
+    <!-- Reject Mail Template -->
+    <record id="email_template_special_reject" model="mail.template">
+        <field name="name">Special Form Reject - Send by Email</field>
+        <field name="email_from">${(object.create_uid.company_id.email or '')|safe}</field>
+        <field name="subject">Special Form Reject Ref - ${object.name or 'n/a' }</field>
+        <field name="partner_to">${ctx.get('follower_partner') or False}</field>
+        <field name="model_id" ref="markant_special_form.model_markant_special_form"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.create_uid.lang}</field>
+        <field name="body_html">
+<![CDATA[
+<p>Dear ${ctx['follower_name']},
+</p>
+
+<p>
+Your special form reference <strong>${object.name}</strong> is rejected.
+</p>
+
+<br/><br/>
+<center>
+    <a href="/mail/view?model=markant.special.form&amp;res_id=${object.id}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Special Form</a>
+    <br/><br/><br/>
+</center>
+<br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you.</p>
+]]>
+        </field>
+    </record>
+
+</odoo>

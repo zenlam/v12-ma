@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_mass_mail_smart_button" model="ir.ui.view">
+        <field name="name">res.partner.form.mass.mail.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_inline oe_stat_button"
+                    type="action" icon="fa-envelope-o"
+                    name="%(mass_mailing.action_view_mail_mail_statistics)d"
+                    context="{'search_default_partner_id': active_id}">
+                    <field string="Mail Statistics" name="mass_mail_count" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <field name="title" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </field>
+
+            <field name="type" position="before">
+                <field name="first_name" placeholder="First Name" attrs="{'invisible': [('is_company','=',True)]}"/>
+                <field name="last_name" placeholder="Last Name" attrs="{'invisible': [('is_company','=',True)]}"/>
+            </field>
+
+            <xpath expr="//field[@name='child_ids']//form//field[@name='name']" position="after">
+                <field name="first_name" placeholder="First Name"/>
+                <field name="last_name" placeholder="Last Name"/>
+            </xpath>
+
+            <field name="ref" position="after">
+                <field name="partner_unique_tag" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

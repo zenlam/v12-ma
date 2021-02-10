@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View: Installation Form -->
+    <record id="view_installation_form_tree" model="ir.ui.view">
+        <field name="name">markant.installation.form.tree</field>
+        <field name="model">markant.installation.form</field>
+        <field name="arch" type="xml">
+            <tree string="Installation Form">
+                <field name="name"/>
+                <field name="submit_date"/>
+                <field name="user_id"/>
+                <field name="stage_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Installation Form -->
+    <record id="view_installation_form_form" model="ir.ui.view">
+        <field name="name">markant.installation.form.form</field>
+        <field name="model">markant.installation.form</field>
+        <field name="arch" type="xml">
+            <form string="Installation Form" duplicate="0">
+                <header>
+                    <button name="preview_installation_form"
+                            attrs="{'invisible': [('enable_preview', '=', False)]}"
+                            string="Preview &amp; Sign"
+                            type="object" class="btn-primary"/>
+                    <button name="action_send_mail" string="Send Email"
+                            attrs="{'invisible': [('enable_mail', '=', False)]}"
+                            type="object" class="btn-primary"/>
+
+                    <field name="stage_id" widget="statusbar" clickable="True"/>
+                    <field name="enable_mail" invisible="1"/>
+                    <field name="enable_preview" invisible="1"/>
+                    <field name="enable_required" invisible="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_linked_installation"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-cog"
+                                attrs="{'invisible': [('linked_installation_count', '=', 0)]}">
+                            <field name="linked_installation_count" widget="statinfo" string="Installation Form"/>
+                        </button>
+                        <button name="action_view_sale"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-dollar"
+                                attrs="{'invisible': [('order_count', '=', 0)]}">
+                            <field name="order_count" widget="statinfo" string="Sales Order"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="name" class="oe_inline" readonly="1"/>
+                    </h1>
+
+                    <group>
+                        <group>
+                            <field name="sale_order_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"
+                                   attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="as400_order_ref" class="as400-tokenizer"/>
+                            <field name="top_lock" invisible="1" class="mi_top_lock"/>
+                            <field name="bottom_lock" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="submit_date"/>
+                            <field name="installation_date" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="end_user_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="address_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <label for="street_name" string=""/>
+                            <div class="o_address_format">
+                                <div class="o_row">
+                                    <span class="o_form_label"><i>House: </i></span>
+                                    <field name="street_number" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                    <span>  </span>
+                                    <span class="o_form_label"><i>Door: </i></span>
+                                    <field name="street_number2" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                </div>
+                                <field name="street_name" placeholder="Street Name..." class="o_address_street" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <field name="city" placeholder="City" class="o_address_city" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create": True, "no_create_edit": True}' attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True, "no_create_edit": True}' attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            </div>
+                            <field name="linked_installation_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"
+                                   attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="end_contact_id" context="{'markant_display_only_name': True}"
+                                   options="{'no_create_edit': True, 'no_create': True,
+                                   'no_open': True, 'always_reload'': True}"
+                                   attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="phone" widget="phone" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="mobile" widget="phone" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="email" widget="email" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="opportunity_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="installation_type_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="require_initial_so" invisible="1"/>
+                            <field name="initial_so_id"
+                                   attrs="{'invisible': [('require_initial_so', '=', False)],
+                                   'required': [('require_initial_so', '=', True)]}"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="calculation_type_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="dealer_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="dealer_contact_id"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True, 'always_reload'': True}" attrs="{'readonly': [('top_lock', '!=', False)]}"
+                                   context="{'markant_display_only_name': True}"/>
+                            <field name="phone_dealer" widget="phone" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="mobile_dealer" widget="phone" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="email_dealer" widget="email" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <label for="proposed_date_from" string="Proposed Date"/>
+                            <div>
+                                <field name="proposed_date_from" class="oe_inline" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>
+                                <field name="proposed_date_to" class="oe_inline" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            </div>
+
+                            <label for="planned_date_from" string="Planned Date"/>
+                            <div>
+                                <field name="planned_date_from" class="oe_inline" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                                <span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>
+                                <field name="planned_date_to" class="oe_inline" attrs="{'readonly': [('top_lock', '!=', False)]}"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="site_drawing_avail"
+                                   attrs="{'required': [('enable_required', '=', True)],'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="drawing_included"
+                                   attrs="{'required': [('enable_required', '=', True)],'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="pre_assembly"
+                                   attrs="{'required': [('enable_required', '=', True)],'readonly': [('top_lock', '!=', False)]}"/>
+                            <field name="back_order"
+                                   attrs="{'required': [('enable_required', '=', True)],'readonly': [('top_lock', '!=', False)]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <group colspan="5">
+                                <field name="survey_needed"
+                                       attrs="{'required': [('enable_required', '=', True)],'readonly': [('bottom_lock', '!=', False)]}"/>
+                                <field name="survey_id" attrs="{'invisible': [('survey_needed', '!=', 'yes')], 'readonly': [('bottom_lock', '!=', False)]}" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                                <field name="survey_date" attrs="{'invisible': [('survey_needed', '!=', 'yes')],'readonly': [('bottom_lock', '!=', False)]}"/>
+                                <field name="staircase_available" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                                <field name="lift_available" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                                <field name="distance_place_unloading" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="user_id" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="assignee_id" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <separator/>
+                            <field name="any_empty_clean_zone" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="total_number_floors" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="floor_of_installation" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="claim_ids" widget="many2many_tags" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="installation_installers_ids" nolabel="1" attrs="{'readonly': [('bottom_lock', '!=', False)]}">
+                            <tree string="" editable="bottom" name="installers">
+                                <field name="days"/>
+                                <field name="arrival_time"/>
+                                <field name="departure_time"/>
+                                <field name="number_installer"/>
+                                <field name="number_assistant_installer"/>
+                                <field name="number_of_hours"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <group string="Comment">
+                        <field name="note" nolabel="1" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                    </group>
+
+                    <group string="Internal Note">
+                        <field name="internal_note" nolabel="1" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                    </group>
+
+                    <group string="Return Goods">
+                        <field name="return_good_ids" nolabel="1" attrs="{'readonly': [('bottom_lock', '!=', False)]}">
+                            <tree string="Return Goods" editable="bottom">
+                                <field name="product_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                                <field name="name"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <group string="Used Goods">
+                        <field name="used_good_ids" nolabel="1" attrs="{'readonly': [('bottom_lock', '!=', False)]}">
+                            <tree string="Used Goods" editable="bottom">
+                                <field name="product_id"
+                                       options="{'no_create_edit': True,
+                                       'no_create': True, 'no_open': True}"/>
+                                <field name="name"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <group>
+                        <group string="Customer">
+                            <field name="name_customer" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="signature_customer" widget="image" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                        </group>
+                        <group string="Head of installation team">
+                            <field name="name_mechanic" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                            <field name="signature_mechanic" widget="image" attrs="{'readonly': [('bottom_lock', '!=', False)]}"/>
+                        </group>
+                    </group>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View: Installation Form -->
+    <record id="markant_installation_search" model="ir.ui.view">
+        <field name="name">markant.installation.form.search</field>
+        <field name="model">markant.installation.form</field>
+        <field name="arch" type="xml">
+            <search string="Search Installation Form">
+                <field name="name" string="Document Number"/>
+                <field name="survey_needed"/>
+                <field name="signature_customer"/>
+
+                <field name="installation_type_id"/>
+                <field name="end_user_id"/>
+                <field name="dealer_id"/>
+                <field name="stage_id"/>
+                <field name="user_id"/>
+                <field name="calculation_type_id"/>
+
+                <filter name="my_installation" string="My Installation" domain="[('user_id', '=', uid)]"/>
+                <filter name="survey_necessary" string="Survey Necessary" domain="[('survey_needed', '=', 'yes')]"/>
+                <filter name="signed" string="Signed" domain="[('signature_customer', '!=', False)]"/>
+                <filter name="unsigned" string="Unsigned" domain="[('signature_customer', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="type" string="Type" domain="[]" context="{'group_by':'installation_type_id'}"/>
+                    <filter name="end_user" string="End User" domain="[]" context="{'group_by':'end_user_id'}"/>
+                    <filter name="dealer" string="Dealer" domain="[]" context="{'group_by':'dealer_id'}"/>
+                    <filter name="stage" string="Stage" domain="[]" context="{'group_by':'stage_id'}"/>
+                    <filter name="user" string="User" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter name="calculation" string="Calculation" domain="[]" context="{'group_by':'calculation_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action: Installation Form -->
+    <record id="action_markant_installation_form" model="ir.actions.act_window">
+        <field name="name">Installation Form</field>
+        <field name="res_model">markant.installation.form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="markant_installation.markant_installation_search"/>
+    </record>
+
+    <!-- Sub Menu: Installation Form -->
+    <menuitem name="Installation Form" id="menu_markant_installation_form"
+              sequence="10" action="action_markant_installation_form"
+              parent="menu_markant_installation"/>
+
+</odoo>

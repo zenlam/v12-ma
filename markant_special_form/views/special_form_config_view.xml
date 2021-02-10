@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View for Special Form Stages -->
+    <record id="view_special_form_stage_tree" model="ir.ui.view">
+        <field name="name">markant.special.stage.tree</field>
+        <field name="model">markant.special.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stages" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="assign_mail"/>
+                <field name="approve_mail"/>
+                <field name="reject_mail"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Special Form Stages -->
+    <record id="action_markant_special_form_stage" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">markant.special.stage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Main Menu for Markant Special Form -->
+    <menuitem name="Special Form" id="menu_markant_special"
+              web_icon="markant_special_form,static/description/icon.png"/>
+
+    <!-- Sub Menu for Configuration -->
+    <menuitem name="Configuration" id="menu_markant_special_config"
+              sequence="20" groups="base.group_no_one"
+              parent="menu_markant_special"/>
+
+    <!-- Sub Menu for Configuration > Stages -->
+    <menuitem name="Stages" id="menu_markant_special_stage"
+              sequence="10" groups="group_markant_special_manager"
+              action="action_markant_special_form_stage"
+              parent="menu_markant_special_config"/>
+</odoo>

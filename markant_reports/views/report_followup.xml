@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="markant_followup_filter_info_template" inherit_id="account_reports.followup_filter_info_template">
+        <xpath expr="//div[hasclass('col-5')]" position="attributes">
+            <attribute name="class">col-5</attribute>
+        </xpath>
+    </template>
+
+</odoo>

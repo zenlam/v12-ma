@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_form_inherit_markant_purchase" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.markant.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <!-- Inherit related Order Cycle -->
+            <field name="date_order" position="after">
+                <field name="purchase_order_cycle_id" attrs="{'invisible':[('apply_order_cycle', '=', False)], 'required':[('apply_order_cycle', '=', True)], 'readonly': [('state', 'in', [ 'purchase', 'done', 'cancel'])]}"/>
+                <field name="apply_order_cycle" invisible="1"/>
+                <field name="purchase_order_cycle_prefix" invisible="1"/>
+            </field>
+
+            <xpath expr="//field[@name='company_id']" position="before">
+                <field name="origin_link" attrs="{'invisible': [('origin_link','=',False)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <field name="name" position="after">
+                <field name="name" invisible="1"/>
+            </field>
+
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group/group" position="inside">
+                <field name="opportunity_ids" widget="many2many_tags"/>
+            </xpath>
+
+             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="show_purchase_lead_opportunities"
+                        icon="fa-star">
+                        <field string="Opportunities" name="opportunity_count"
+                               widget="statinfo"/>
+                </button>
+             </xpath>
+
+            <!-- add new fields in tree view of purchase orderlines -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_planned']" position="before">
+                <field name="confirmation_date"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_planned']" position="after">
+                <field name="goods_available_date"/>
+                <field name="ex_works_date"/>
+            </xpath>
+            <xpath expr="///field[@name='order_line']/tree//field[@name='product_id']" position="before">
+                <field name="product_vendor_code"/>
+            </xpath>
+
+            <!-- pre Pre-Payment -->
+      
+            <field name="date_order" position="after">
+                <field name="need_prepayment"/>
+                <field name="hide_confirm_button" invisible="1"/>
+            </field>
+            <xpath expr="//button[@id='bid_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('hide_confirm_button', '=', True), ('state','!=','sent')]}</attribute>
+                <attribute name="states"></attribute>
+            </xpath>
+            <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('hide_confirm_button', '=', True), ('state','!=','draft')]}</attribute>
+                <attribute name="states"></attribute>
+            </xpath>
+            <!-- End Pre-Payment -->
+            
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group/group" position="inside">
+                <field name="opportunity_ids" widget="many2many_tags"/>
+            </xpath>
+
+             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="show_purchase_lead_opportunities"
+                        icon="fa-star">
+                        <field string="Opportunities" name="opportunity_count"
+                               widget="statinfo"/>
+                </button>
+             </xpath>
+
+            <xpath expr="//field[@name='notes']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='notes']" position="before">
+                <group>
+                    <label for="terms_note" class="oe_inline"/>
+                    <br/>
+                    <div>
+                        <field name="terms_note"/>
+                    </div>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="markant_crm_case_form_view_oppor_inherit_markant_purchase"
+            model="ir.ui.view">
+        <field name="name">crm.lead.purchase_order_categorize</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id"
+               ref="markant_crm.crm_case_form_view_oppor_inherit_markant_crm"/>
+        <field name="arch" type="xml">
+             <xpath expr="//button[@name='action_schedule_meeting']"
+                    position="before">
+                <button class="oe_stat_button"
+                        type="object"
+                        name="show_purchase_order_list"
+                        icon="fa-archive"
+                        groups="purchase.group_purchase_user">
+                        <field string="Purchase Order"
+                               name="purchase_order_number"
+                               widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button"
+                        type="object"
+                        name="show_rfq_list"
+                        icon="fa-archive"
+                        groups="purchase.group_purchase_user">
+                        <field string="RFQ" name="rfq_number"
+                               widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_crm_case_form_view_oppor_inherit_markant_purchase"
+            model="ir.ui.view">
+        <field name="name">crm.lead.purchase_order_categorize</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id"
+               ref="markant_crm.crm_case_form_view_oppor_inherit_markant_crm"/>
+        <field name="arch" type="xml">
+             <xpath expr="//button[@name='action_schedule_meeting']"
+                    position="before">
+                <button class="oe_stat_button"
+                        type="object"
+                        name="show_purchase_order_list"
+                        icon="fa-archive"
+                        groups="purchase.group_purchase_user">
+                        <field string="Purchase Order"
+                               name="purchase_order_number"
+                               widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button"
+                        type="object"
+                        name="show_rfq_list"
+                        icon="fa-archive"
+                        groups="purchase.group_purchase_user">
+                        <field string="RFQ" name="rfq_number"
+                               widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="markant_order_cycle_purchase_menu" name="Order Cycle"
+        action="markant_generic.markant_order_cycle_action"
+        parent="purchase.menu_purchase_config" sequence="99"/>
+
+
+    <!-- Start Order Line by PO -->
+    <record id='purchase_order_line_tree_inherit_markant_purchase_tree_view' model='ir.ui.view'>
+        <field name='name'>purchase.order.line.tree.inehrit.markant.purchase</field>
+        <field name='model'>purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name='arch' type='xml'>
+            <field name="product_qty" position="after">
+                <field name="qty_received"/>
+                <field name="is_qty_remain_receive" invisible="1"/>
+            </field>
+            <field name="date_planned" position="after">
+                <field name="ex_works_date" widget="date"/>
+                <field name="confirmation_date" widget="date"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_po_order_line_by_po_filter" model="ir.ui.view">
+        <field name="name">po.order.line.po.filter.markant.purchase</field>
+        <field name="model">purchase.order.line</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="Order Lines">
+                <field name="product_qty" invisible="1"/>
+                <field name="qty_received" invisible="1"/>
+                <field name="is_qty_remain_receive" invisible="1"/>
+                <filter name="orderline_by_po" domain="[('is_qty_remain_receive', '=', True)]"  string="Order Line By PO" help="Order Line By PO"/>
+                <group expand="0" string="Group By" colspan="10" col="8">
+                    <filter string="Order Line By PO" name="orderline_by_po" domain="[]" context="{'group_by' : 'order_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_po_line_by_po_markant_purchase" model="ir.actions.act_window">
+        <field name="name">Order Line By PO</field>
+        <field name="res_model">purchase.order.line</field>
+        <field name="search_view_id" ref="view_po_order_line_by_po_filter"/>
+        <field name="context">{"group_by": 'order_id' ,"search_default_orderline_by_po": 1}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_po_line_by_po_markant_purchase" 
+        name="Order Line By PO"
+        action="action_po_line_by_po_markant_purchase"
+        parent="purchase.menu_procurement_management" sequence="25"/>
+    <!-- End Order Line by PO -->
+
+    <!-- Start Shipment by PO -->
+    <record id="search_view_shipment_by_po_markant_purchase" model="ir.ui.view">
+        <field name="name">stock.picking.search.by.po.markant.purchase</field>
+        <field name="model">stock.picking</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="Shipments">
+                <field name="purchase_id_stored" invisible="1"/>
+                <filter name="shipment_by_po" domain="[('purchase_id_stored', '!=', False)]"  string="Shipment By PO"/>
+                <group expand="0" string="Group By" colspan="10" col="8">
+                    <filter string="Shipment By PO" name="shipment_by_po" domain="[]" context="{'group_by' : 'purchase_id_stored'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_shipment_by_po_markant_purchase" model="ir.actions.act_window">
+        <field name="name">Shipment By PO</field>
+        <field name="res_model">stock.picking</field>
+        <field name="search_view_id" ref="search_view_shipment_by_po_markant_purchase"/>
+        <field name="context">{"search_default_shipment_by_po": 1}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_shipment_by_po_markant_purchase" name="Shipment By PO"
+        action="action_shipment_by_po_markant_purchase"
+        parent="purchase.menu_procurement_management" sequence="24"/>
+    <!-- End Shipment by PO -->
+
+
+    <record id="markant_view_purchase_bill_union_filter" model="ir.ui.view">
+        <field name="name">markant.purchase.bill.union.select</field>
+        <field name="model">purchase.bill.union</field>
+        <field name="inherit_id" ref="purchase.view_purchase_bill_union_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount']" position="after">
+                <field name="reference" string="Source"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

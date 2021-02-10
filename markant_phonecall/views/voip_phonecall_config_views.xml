@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Markant Phonecall Category Tree View -->
+    <record id="markant_voip_phonecall_categ_tree_view" model="ir.ui.view">
+        <field name="name">Phonecall Category Tree</field>
+        <field name="model">markant.voip.phonecall.category</field>
+        <field name="arch" type="xml">
+            <tree string="Phonecalls" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Markant Phonecall Category Action -->
+    <record id="markant_voip_phonecall_categ_action" model="ir.actions.act_window">
+        <field name="name">Phonecall Category</field>
+        <field name="res_model">markant.voip.phonecall.category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create new Phonecall Category
+            </p>
+        </field>
+    </record>
+
+    <!-- Phonecalls Main Menu -->
+    <menuitem id="markant_main_menu_voip_phonecall_view"
+              name="Call / Visit Report"
+              web_icon="markant_phonecall,static/description/icon.png"/>
+
+    <!-- Sub Menu: Configuration -->
+    <menuitem id="markant_menu_voip_phonecall_configuration" name="Configuration"
+              sequence="20" parent="markant_main_menu_voip_phonecall_view"/>
+
+    <!-- Sub Menu: Configuration/Phonecall Category -->
+    <menuitem id="markant_menu_voip_phonecall_category"
+              name="Phonecall Category" sequence="10"
+              groups="base.group_system" action="markant_voip_phonecall_categ_action"
+              parent="markant_menu_voip_phonecall_configuration"/>
+
+</odoo>

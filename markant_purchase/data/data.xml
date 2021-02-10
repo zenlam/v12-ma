@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="ir_cron_po_prepayment_markant_purchase" model="ir.cron">
+            <field name="name">Markant Purchase Order Pre-Payment Email Cron</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="model_purchase_order"/>
+            <field name="code">model._run_prepayment_po()</field>
+            <field name="state">code</field>
+        </record>
+    </data>
+    <data noupdate="0">
+        <record id="email_template_po_need_prepayment_markant_purchase" model="mail.template">
+            <field name="name">Markant Purchase Order Pre-Payment</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="email_from">${object.sudo().create_uid.email_formatted | safe}</field>
+            <field name="subject">Markant Purchase Order Need Pre-Payment: </field>
+            <field name="partner_to">${object.partner_id.id or ''}</field>
+            <field name="body_html" type="html">
+<table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+    <tr>
+        <td valign="top">
+            <div>
+                Hello,<br/>
+                Please confirm the following PO that requires pre-payment.
+                <br/>
+                Thank you,
+                <div>
+                    <br/>
+                    % set poorders = ctx['orders']
+                    % for order in poorders:
+                        <a href="/mail/view?model=purchase.order&amp;res_id=${order.id}" style="background-color:#875A7B; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px;" target="_blank">
+                            View ${order.name}
+                        </a>
+                        <br/><br/><br/>
+                    % endfor
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>         
+            </field>
+        </record>
+    </data>
+</odoo>

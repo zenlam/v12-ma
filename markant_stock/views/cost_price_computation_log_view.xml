@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View: Variant Cost Price Computation Log -->
+    <record id="view_markant_variant_cost_price_computation_log_tree" model="ir.ui.view">
+        <field name="name">auto.variant.cost.price.computation.log.tree</field>
+        <field name="model">product.variant.compute.price.log</field>
+        <field name="arch" type="xml">
+            <tree string="Product Variant Cost Price Computation Log" delete="0" create="0" default_order="date desc">
+                <field name="date"/>
+                <field name="total_record"/>
+                <field name="record_passed"/>
+                <field name="record_failed"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Variant Cost Price Computation Log -->
+    <record id="view_markant_variant_cost_price_computation_log_form" model="ir.ui.view">
+        <field name="name">auto.variant.cost.price.computation.log.form</field>
+        <field name="model">product.variant.compute.price.log</field>
+        <field name="arch" type="xml">
+            <form string="Product Variant Cost Price Computation Log" delete="0" create="0" edit="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b><label for="date" style="font-size: 30px"/></b>
+                            <b><field name="date" nolabel="1"/></b>
+                        </h1>
+                    </div>
+                    <div>
+                        <label for="total_record"/>
+                        <field name="total_record" nolabel="1"/><br/>
+                        <label for="record_passed"/>
+                        <field name="record_passed" nolabel="1"/><br/>
+                        <label for="record_failed"/>
+                        <field name="record_failed" nolabel="1"/><br/>
+                        <label for="record_no_changes"/>
+                        <field name="record_no_changes" nolabel="1"/>
+                    </div>
+                    <field name="log_line_ids">
+                        <tree string="Computation Log Lines">
+                            <field name="product_id"/>
+                            <field name="old_price"/>
+                            <field name="new_price"/>
+                            <field name="variance"/>
+                            <field name="qty_on_hand"/>
+                            <field name="total_variance"/>
+                            <field name="journal_entry_link"/>
+                            <field name="status"/>
+                            <field name="error_log" invisible="1"/>
+                            <button name="action_show_error_message" string="Error Log" class="oe_link" type="object"
+                                    attrs="{'invisible': [('error_log', '=', False)]}"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action: Variant Cost Price Computation Log -->
+    <record id="action_markant_variant_cost_price_computation_log" model="ir.actions.act_window">
+        <field name="name">Auto Variant Cost Price Computation Log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.variant.compute.price.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Menu: Variant Cost Price Computation Log -->
+    <menuitem parent="markant_stock.menu_markant_automation_log"
+              name="Cost Price Computation Log"
+              id="menu_markant_variant_cost_price_computation_log"
+              action="action_markant_variant_cost_price_computation_log"/>
+
+</odoo>

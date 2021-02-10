@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <function name="deactive_ir_rule" model="post.object.data"/>
+    </data>
+    
+    <data noupdate="1">
+        <record id="hr_holidays_shift1" model="hr.holidays.shift">
+            <field name="name">Fullday</field>
+            <field name="dtype">fullday</field>
+            <field name="stype"></field>
+            <field name="tfrom">10.00</field>
+            <field name="tto">19.00</field>
+            <field name="nod">1.0</field>
+            <field name="leave_day_calc">1.0</field>
+        </record>
+        <record id="hr_holidays_shift2" model="hr.holidays.shift">
+            <field name="name">Halfday Morning</field>
+            <field name="dtype">halfday</field>
+            <field name="stype">morning</field>
+            <field name="tfrom">10.00</field>
+            <field name="tto">13.00</field>
+            <field name="nod">0.5</field>
+            <field name="leave_day_calc">0.5</field>
+        </record>
+        <record id="hr_holidays_shift3" model="hr.holidays.shift">
+            <field name="name">Halfday Evening</field>
+            <field name="dtype">halfday</field>
+            <field name="stype">evening</field>
+            <field name="tfrom">14.00</field>
+            <field name="tto">19.00</field>
+            <field name="nod">0.5</field>
+            <field name="leave_day_calc">0.5</field>
+        </record>
+
+        <record model="ir.cron" forcecreate="True" id="ir_cron_leaves_brought_forward">
+            <field name="name">Leaves brought forward</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="code">model.leaves_brought_forward()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">12</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+        </record>
+    </data>
+</odoo>

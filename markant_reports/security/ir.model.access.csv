@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_country_report_formats_user,country_report_formats_user,model_country_report_formats,base.group_user,1,0,0,0
+access_country_report_formats_manager,country_report_formats_manager,model_country_report_formats,base.group_system,1,1,1,1

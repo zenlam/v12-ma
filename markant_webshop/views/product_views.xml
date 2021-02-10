@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="markant_product_template_form_view_procurement_button">
+        <field name="name">markant_webshop.product.template_procurement</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <header position="inside" >
+                     <button name="action_update_webshop_attributes"
+                             string="Update Webshop Attributes"
+                             type="object"
+                             groups="markant_webshop.group_documents_manager"/>
+                </header>
+            </data>
+        </field>
+    </record>
+
+    <record id="markant_product_form_view_inherit" model="ir.ui.view">
+        <field name="name">markant.product.form.view.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <header position="inside">
+                    <button name="action_update_variant_webshop_attributes"
+                            string="Update Variant Webshop Attributes"
+                            type="object"
+                            groups="markant_webshop.group_documents_manager"/>
+                </header>
+            </data>
+        </field>
+    </record>
+
+    <record id="markant_webshop_product_template_form_view" model="ir.ui.view">
+        <field name="name">markant.webshop.product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='inventory_availability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='inventory_availability']" position="after">
+                <field name="webshop_inventory_availability" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='alternative_product_ids']" position="replace"></xpath>
+            <xpath expr="//field[@name='accessory_product_ids']" position="replace"></xpath>
+            <xpath expr="//field[@name='public_categ_ids']" position="replace"></xpath>
+            <xpath expr="//group[@name='extra_images']" position="after">
+                <notebook groups="markant_webshop.group_documents_user,markant_webshop.group_documents_manager">
+                    <page name="general_info" string="General">
+                        <group name="general">
+                            <field name="webshop_boolean" readonly="1" invisible="1"/>
+                            <field name="brand_id" readonly="1"/>
+                            <field name="brand_id_pass_to_variant" readonly="1"/>
+                            <field name="order_quantity" readonly="1"/>
+                            <field name="min_order_quantitiy" readonly="1"/>
+                            <field name="delivery_service_id" readonly="1"/>
+                        </group>
+                    </page>
+                    <page name="catalog" string="Catalog">
+                        <group name="catalog">
+                            <field name="catalog" readonly="1"/>
+                            <field name="catalog_pass_to_variant" readonly="1"/>
+                        </group>
+                    </page>
+                    <page name="trees" string="Trees">
+                        <group name="trees">
+                            <field name="public_categ_ids" readonly="1"
+                                   widget="many2many_tags" string="Categories"/>
+                            <field name="public_categ_ids_pass_to_variant" readonly="1"/>
+                        </group>
+                    </page>
+                    <page name="texts" string="Texts">
+                        <group name="texts">
+                            <field name="search_keyword" readonly="1"/>
+                        </group>
+                    </page>
+                    <page name="assets" string="Assets">
+                        <group name="main_picture" string="Main Picture Setting">
+                            <field name="main_pic_article_number" readonly="1"/>
+                            <field name="main_pic_extension_id" readonly="1"/>
+                            <field name="main_filename" readonly="1"/>
+                            <field name="main_pic_pass_to_variant" readonly="1"/>
+                        </group>
+                        <group name="more_picture" string="More Picture Setting">
+                            <field name="more_pic_ids" nolabel="1" readonly="1">
+                                <tree string="More Pictures" editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="product_tmpl_id" invisible="1"/>
+                                    <field name="article_number"/>
+                                    <field name="extension_id"/>
+                                    <field name="more_filename" readonly="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group name="extra_asset" string="Extra Asset Setting">
+                            <field name="extra_asset_ids" nolabel="1" readonly="1">
+                                <tree string="Extra Assets" editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="product_tmpl_id" invisible="1"/>
+                                    <field name="article_number"/>
+                                    <field name="extension_id"/>
+                                    <field name="extra_filename" readonly="1"/>
+                                    <field name="lang"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="more_extra_pass_to_variant" readonly="1"/>
+                        </group>
+                        <group name="template_videos" string="Video Setting">
+                            <field name="template_video_ids" nolabel="1" readonly="1">
+                                <tree string="Video Setting" editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="product_tmpl_id" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="identifier"/>
+                                    <field name="provider"/>
+                                    <field name="link"/>
+                                    <field name="video_embed"/>
+                                    <field name="lang"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="template_video_pass_to_variant" readonly="1"/>
+                        </group>
+                    </page>
+                    <page name="attributes" string="Attributes">
+                        <field name="webshop_attribute_line_ids" widget="one2many_list" context="{'show_attribute': False}">
+                            <tree string="Variants" editable="bottom">
+                                <field name="attribute_id"/>
+                                <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                            </tree>
+                        </field>
+                        <field name="regular_attribute_line_ids" widget="one2many_list" context="{'show_attribute': False}">
+                            <tree string="Variants" editable="bottom">
+                                <field name="attribute_id"/>
+                                <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="up_cross" string="Up/Cross">
+                        <group name="up_cross">
+                            <field name="template_alternative_product_ids" readonly="1" widget="many2many_tags" domain="[('id', '!=', active_id)]"/>
+                            <field name="template_accessory_product_ids" readonly="1" widget="many2many_tags" domain="[('id', '!=', active_id)]"/>
+                        </group>
+                    </page>
+                    <page name="tags" string="Tags">
+                        <group name="tags">
+                            <field name="webshop_tags_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_webshop_groups_product_template_form_view" model="ir.ui.view">
+        <field name="name">markant.webshop.groups.product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="markant_webshop.markant_webshop_product_template_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('markant_webshop.group_documents_manager') ])]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='webshop_inventory_availability']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='brand_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='brand_id_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_quantity']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='min_order_quantitiy']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='catalog']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='catalog_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='public_categ_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='public_categ_ids_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='search_keyword']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='template_alternative_product_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='template_accessory_product_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='webshop_tags_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_pic_article_number']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_pic_extension_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_pic_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='more_pic_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='extra_asset_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='template_video_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='more_extra_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='template_video_pass_to_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='delivery_service_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_webshop_product_normal_form_view" model="ir.ui.view">
+        <field name="name">markant.webshop.product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="webshop_boolean" position="after">
+                <field name="webshop_boolean_variant" readonly="1"/>
+            </field>
+
+            <field name="webshop_inventory_availability" position="after">
+                <field name="webshop_inventory_availability_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+
+            <field name="webshop_inventory_availability" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="brand_id" position="after">
+                <field name="brand_id_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="brand_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="brand_id_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="delivery_service_id" position="after">
+                <field name="delivery_service_variant_id" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+                <field name="pcf_max_producible_qty" readonly="1"
+                       attrs="{'invisible': ['|', ('is_product_variant', '=', False),
+                       ('configurable_ok', '=', False)]}"/>
+            </field>
+            <field name="delivery_service_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="delivery_service_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="template_alternative_product_ids" position="after">
+                <field name="variant_alternative_product_ids" readonly="1"
+                       widget="many2many_tags" domain="[('id', '!=', active_id)]"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="template_alternative_product_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="template_accessory_product_ids" position="after">
+                <field name="variant_accessory_product_ids" readonly="1"
+                       widget="many2many_tags" domain="[('id', '!=', active_id)]"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="template_accessory_product_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+
+            <field name="order_quantity" position="after">
+                <field name="order_quantity_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="order_quantity" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="min_order_quantitiy" position="after">
+                <field name="min_order_quantitiy_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="min_order_quantitiy" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="catalog" position="after">
+                <field name="catalog_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="catalog" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="catalog_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="public_categ_ids" position="after">
+                <field name="public_categ_variant_ids" readonly="1" widget="many2many_tags" string="Categories"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="public_categ_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="public_categ_ids_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="search_keyword" position="before">
+                <field name="ecommerce_name" readonly="1"/>
+                <field name="intro_text" readonly="1"/>
+                <field name="category_text" readonly="1"/>
+                <field name="product_desc" readonly="1"/>
+                <field name="search_keyword_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="search_keyword" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="webshop_tags_ids" position="after">
+                <field name="webshop_tags_ids_variant" widget="many2many_tags" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="webshop_tags_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="main_pic_article_number" position="after">
+                <field name="main_pic_article_number_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="main_filename" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="main_pic_article_number" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="main_pic_extension_id" position="after">
+                <field name="main_pic_extension_id_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+                <field name="main_filename_variant" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+            </field>
+            <field name="main_pic_extension_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="main_pic_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="webshop_attribute_line_ids" position="after">
+                <newline/>
+                <field name="variant_webshop_attribute_line_ids" widget="one2many_list" context="{'show_attribute': False}"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                    <tree string="Variants" editable="bottom">
+                        <field name="attribute_id"/>
+                        <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                    </tree>
+                </field>
+            </field>
+
+            <field name="regular_attribute_line_ids" position="after">
+                <newline/>
+                <field name="variant_regular_attribute_line_ids" widget="one2many_list" context="{'show_attribute': False}"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                    <tree string="Variants" editable="bottom">
+                        <field name="attribute_id"/>
+                        <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                    </tree>
+                </field>
+            </field>
+
+            <field name="more_pic_ids" position="after">
+                <newline/>
+                <field name="more_pic_ids_variant" nolabel="1" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                    <tree string="More Pictures" editable="bottom">
+                        <field name="sequence"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="article_number"/>
+                        <field name="extension_id"/>
+                        <field name="more_filename"/>
+                    </tree>
+                </field>
+            </field>
+            <field name="webshop_attribute_line_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="regular_attribute_line_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="more_pic_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+
+            <field name="extra_asset_ids" position="after">
+                <newline/>
+                <field name="extra_asset_ids_variant" nolabel="1" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                    <tree string="Extra Assets" editable="bottom">
+                        <field name="sequence"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="article_number"/>
+                        <field name="extension_id"/>
+                        <field name="lang"/>
+                        <field name="extra_filename"/>
+                    </tree>
+                </field>
+            </field>
+            <field name="extra_asset_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="more_extra_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="template_video_ids" position="after">
+                <newline/>
+                <field name="variant_video_ids" nolabel="1" readonly="1"
+                       attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                    <tree string="Video Settings" editable="bottom">
+                        <field name="sequence"/>
+                        <field name="product_tmpl_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="identifier"/>
+                        <field name="provider"/>
+                        <field name="link"/>
+                        <field name="video_embed"/>
+                        <field name="lang"/>
+                    </tree>
+                </field>
+            </field>
+            <field name="template_video_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+            <field name="template_video_pass_to_variant" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_product_variant', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="markant_webshop_groups_product_normal_form_view" model="ir.ui.view">
+        <field name="name">markant.webshop.groups.product.normal.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="markant_webshop.markant_webshop_product_normal_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('markant_webshop.group_documents_manager') ])]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='webshop_inventory_availability_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='webshop_boolean_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='brand_id_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='delivery_service_variant_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_quantity_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='min_order_quantitiy_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='catalog_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='public_categ_variant_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ecommerce_name']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='intro_text']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_text']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_desc']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='search_keyword_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='webshop_tags_ids_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_pic_article_number_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_pic_extension_id_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='more_pic_ids_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='extra_asset_ids_variant']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='variant_video_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='variant_alternative_product_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='variant_accessory_product_ids']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="act_pcf_max_qty" model="ir.actions.server">
+        <field name="name">Recompute Max Producible Qty</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_compute_pcf_max_qty()</field>
+    </record>
+
+</odoo>

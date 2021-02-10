@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="dealer_opportunity_info_create_wizard_form_view" model="ir.ui.view">
+        <field name="name">dealer.opportunity.info.create.wizard.form</field>
+        <field name="model">dealer.opportunity.info.create.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Dealers">
+                <group>
+                    <field name="partner_ids" domain="[('customer', '=', True)]" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="create_dealer_opportunity_info" string="Add" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dealer_opportunity_info_create_wizard" model="ir.actions.act_window">
+        <field name="name">Add dealers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dealer.opportunity.info.create.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dealer_opportunity_info_create_wizard_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

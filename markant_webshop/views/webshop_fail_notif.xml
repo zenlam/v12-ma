@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='markant_webshop_api_fail_notif_tree' model='ir.ui.view'>
+        <field name="name">markant.webshop.api.fail.notification.tree</field>
+        <field name="model">webshop.fail.notification</field>
+        <field name="arch" type="xml">
+            <tree string="API Notification Email Creation" editable="bottom">
+                <field name="user_id"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_webshop_api_fail_notif_action' model='ir.actions.act_window'>
+        <field name="name">Webshop Api Fail Notification</field>
+        <field name="res_model">webshop.fail.notification</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="markant_webshop_fail_notif" name="API Failure Notification"
+              action="markant_webshop_api_fail_notif_action"
+              parent="markant_webshop.menu_markant_webshop_api"
+              sequence="10"/>
+
+</odoo>

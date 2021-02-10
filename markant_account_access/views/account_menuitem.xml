@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="account_accountant.menu_accounting">
+        <field name="groups_id" eval="[(6, 0, [ref('markant_account_access.group_markant_account_access')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="account.menu_finance">
+        <field name="groups_id" eval="[(6, 0, [ref('markant_account_access.group_markant_account_access')])]"/>
+    </record>
+
+</odoo>

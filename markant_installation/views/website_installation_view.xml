@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Change the sidebar footer logo -->
+    <template id="portal_record_sidebar_markant" inherit_id="portal.portal_record_sidebar">
+        <xpath expr="//div[hasclass('card-footer')]" position="replace">
+            <div class="card-footer small text-center text-muted border-top-0 pt-1 pb-1 d-none d-lg-block">
+                Powered by <img src="/markant_installation/static/src/img/logo.png" alt="Markant Logo" height="30"/>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Complete website page of the Installation Form -->
+    <template id="installation_preview" name="Installation Form" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-set="o_portal_fullwidth_alert" t-if="session_user">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t t-set="backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (installation._name, installation.id, action)"/>
+                </t>
+            </t>
+
+            <div class="row mt16 o_portal_sale_sidebar">
+
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-12 col-lg flex-lg-grow-0 d-print-none'"/>
+
+                    <t t-set="title">
+                        <h2 class="mb-0"><b t-field="installation.name"/> </h2>
+                    </t>
+
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li class="list-group-item flex-grow-1">
+                                <a t-if="session_user and not installation.signature_mechanic" role="button" class="btn btn-primary btn-block mb8" data-toggle="modal" data-target="#modalacceptmechanic" href="#">
+                                    <i class="fa fa-check"/> Sign as Installation Head
+                                </a>
+                                <a t-if="not installation.signature_customer" role="button" class="btn btn-primary btn-block mb8" data-toggle="modal" data-target="#modalacceptcustomer" href="#">
+                                    <i class="fa fa-check"/> Accept &amp; Sign
+                                </a>
+                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_download_btn" t-att-href="installation.get_portal_url(report_type='pdf', download=True, query_string='&amp;language=EN')" title="Download"><i class="fa fa-download"/> Download<br/><sub>English</sub></a>
+                                    </div>
+
+                                    <div class="btn-group flex-grow-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_download_btn" t-att-href="installation.get_portal_url(report_type='pdf', download=True, query_string='&amp;language=NL')" title="Download"><i class="fa fa-download"/> Download<br/><sub>Dutch</sub></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li t-if="installation.assignee_id" class="list-group-item flex-grow-1">
+                                <div class="small mb-1"><strong class="text-muted">Your Contact</strong></div>
+                                <div class="row flex-nowrap">
+                                    <div class="col flex-grow-0 pr-2">
+                                        <img class="rounded-circle mr4 float-left o_portal_contact_img" t-if="installation.assignee_id.image" t-att-src="image_data_uri(installation.assignee_id.image)" alt="Contact"/>
+                                        <img class="rounded-circle mr4 float-left o_portal_contact_img" t-if="not installation.assignee_id.image" src="/web/static/src/img/placeholder.png" alt="Contact"/>
+                                    </div>
+                                    <div class="col pl-0" style="min-width: 150px">
+                                        <span t-field="installation.assignee_id" t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
+                                        <a href="#discussion" class="small"><i class="fa fa-comment"></i> Send message</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+                <!-- Page content -->
+                <div id="installation_content" class="col-12 col-lg justify-content-end">
+
+                    <!-- Modal for Customer Signature -->
+                    <div class="modal fade" id="modalacceptcustomer" role="dialog">
+                        <div class="modal-dialog" t-if="not installation.signature_customer">
+                            <form id="accept" method="POST"
+                                  t-att-data-installation-id="installation.id"
+                                  t-att-data-token="installation.access_token"
+                                  class="js_accept_json modal-content js_website_submit_form">
+                                <input type="hidden" name="csrf_token"
+                                       t-att-value="request.csrf_token()"/>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Validate Installation Form - (Customer)</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                </div>
+                                <div class="modal-body" id="sign-dialog">
+                                    <p>
+                                        <span>I (as customer) agree that by signing this
+                                            installation form, I
+                                            accept it on the behalf of
+                                        </span>
+                                    </p>
+                                    <t t-call="portal.portal_signature">
+                                        <t t-set="object" t-value="installation"/>
+                                        <t t-set="callUrl"
+                                           t-value="'/installation/accept/customer'"/>
+                                        <t t-set="accessToken"
+                                           t-value="installation.access_token"/>
+                                    </t>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Installation Head Signature -->
+                    <div class="modal fade" id="modalacceptmechanic" role="dialog">
+                        <div class="modal-dialog">
+                            <form id="accept" method="POST"
+                                  t-att-data-installation-id="installation.id"
+                                  t-att-data-token="installation.access_token"
+                                  class="js_accept_json modal-content js_website_submit_form">
+                                <input type="hidden" name="csrf_token"
+                                       t-att-value="request.csrf_token()"/>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Validate Installation Form - (Installation Head)</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                </div>
+                                <div class="modal-body" id="sign-dialog">
+                                    <p>
+                                        <span>I (as installation head) agree that by signing this
+                                            installation form, I
+                                            accept it on the behalf of
+                                        </span>
+                                    </p>
+                                    <t t-call="portal.portal_signature">
+                                        <t t-set="object" t-value="installation"/>
+                                        <t t-set="callUrl"
+                                           t-value="'/installation/accept/mechanic'"/>
+                                        <t t-set="accessToken"
+                                           t-value="installation.access_token"/>
+                                    </t>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- main content -->
+                    <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}">
+                        <!-- Intro -->
+                        <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+                            <h2 class="my-0">
+                                <span>Installation Form</span>
+                                <em t-esc="installation.name"/>
+                            </h2>
+                        </div>
+
+                        <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+
+                            <div id="informations">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Order Numbers: </strong></div>
+                                            <t t-set="ts" t-value="0"/>
+                                            <t t-set="total_sale" t-value="len(installation.sale_order_ids)"/>
+                                            <div class="col-auto">
+                                                <span t-foreach="installation.sale_order_ids" t-as="sale_order">
+                                                    <span t-field="sale_order.name"/><t t-set="ts" t-value="ts+1"/><t t-if="ts &lt; total_sale"><span>,</span></t>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>AS400 Order: </strong></div>
+                                            <div class="col-auto" t-field="installation.as400_order_ref"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Submit Date: </strong></div>
+                                            <div class="col-auto" t-field="installation.submit_date"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Installation Date: </strong></div>
+                                            <div class="col-auto" t-field="installation.installation_date"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>End User: </strong></div>
+                                            <div class="col-auto" t-field="installation.end_user_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Delivery Address: </strong></div>
+                                            <div class="col-auto" t-field="installation.address_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto">
+                                                <span><i>House: </i></span>
+                                                <span t-field="installation.street_number"/>
+                                                <span><i>Door: </i></span>
+                                                <span t-field="installation.street_number2"/>
+                                            </div>
+                                            <div class="col-auto" t-field="installation.street_name"/>
+                                            <div class="col-auto" t-field="installation.street2"/>
+                                            <div class="col-auto">
+                                                <span t-field="installation.zip"/>
+                                                <span t-field="installation.city"/>
+                                            </div>
+                                            <div class="col-auto">
+                                                <span t-field="installation.state_id.name"/>
+                                                <span t-field="installation.country_id.name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Contact Person: </strong></div>
+                                            <div class="col-auto" t-field="installation.end_contact_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Phonenumber: </strong></div>
+                                            <div class="col-auto" t-field="installation.phone"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Mobile Number: </strong></div>
+                                            <div class="col-auto" t-field="installation.mobile"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Email: </strong></div>
+                                            <div class="col-auto" t-field="installation.email"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Opportunities: </strong></div>
+                                            <t t-set="to" t-value="0"/>
+                                            <t t-set="total_opp" t-value="len(installation.opportunity_ids)"/>
+                                            <div class="col-auto">
+                                                <span t-foreach="installation.opportunity_ids" t-as="opp">
+                                                    <span t-field="opp.name"/><t t-set="to" t-value="to+1"/><t t-if="to &lt; total_opp"><span>,</span></t>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Type: </strong></div>
+                                            <div class="col-auto" t-field="installation.installation_type_id.name"/>
+                                        </div>
+                                        <div class="mt8" t-if="installation.initial_so_id">
+                                            <div class="col-auto"><strong>Initial SO: </strong></div>
+                                            <div class="col-auto" t-field="installation.initial_so_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Calculation: </strong></div>
+                                            <div class="col-auto" t-field="installation.calculation_type_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Dealer: </strong></div>
+                                            <div class="col-auto" t-field="installation.dealer_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Dealer Contact: </strong></div>
+                                            <div class="col-auto" t-field="installation.dealer_contact_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Phonenumber: </strong></div>
+                                            <div class="col-auto" t-field="installation.phone_dealer"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Mobile Number: </strong></div>
+                                            <div class="col-auto" t-field="installation.mobile_dealer"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Email: </strong></div>
+                                            <div class="col-auto" t-field="installation.email_dealer"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Proposed Date: </strong></div>
+                                            <div class="col-auto">
+                                                <span t-field="installation.proposed_date_from"/>
+                                                <b>To</b> <span t-field="installation.proposed_date_to"/>
+                                            </div>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Planned Date: </strong></div>
+                                            <div class="col-auto">
+                                                <span t-field="installation.planned_date_from"/>
+                                                <b>To</b> <span t-field="installation.planned_date_to"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="col-auto mt8">
+                                            <span><strong>Site Drawing Necessary: </strong></span>
+                                            <span t-field="installation.site_drawing_avail"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Drawing Included: </strong></span>
+                                            <span t-field="installation.drawing_included"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Pre Assembly: </strong></span>
+                                            <span t-field="installation.pre_assembly"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Back Order: </strong></span>
+                                            <span t-field="installation.back_order"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-6">
+                                        <div class="col-auto mt8">
+                                            <span><strong>Survey Necessary: </strong></span>
+                                            <span t-field="installation.survey_needed"/>
+                                        </div>
+                                        <t t-if="installation.survey_needed == 'yes'">
+                                            <div class="mt8">
+                                                <div class="col-auto"><strong>Survey Date: </strong></div>
+                                                <div class="col-auto" t-field="installation.survey_date"/>
+                                            </div>
+                                            <div class="mt8">
+                                                <div class="col-auto"><strong>Survey Form: </strong></div>
+                                                <div class="col-auto" t-field="installation.survey_id.name"/>
+                                            </div>
+                                        </t>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Staircase Available: </strong></span>
+                                            <span t-field="installation.staircase_available"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Lift Available: </strong></span>
+                                            <span t-field="installation.lift_available"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Distance to Place of Unloading (in Meter): </strong></div>
+                                            <div class="col-auto" t-field="installation.distance_place_unloading"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Empty/Clean rooms available: </strong></span>
+                                            <span t-field="installation.any_empty_clean_zone"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Total Number of Floors: </strong></span>
+                                            <span t-field="installation.total_number_floors"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Floor of installation: </strong></span>
+                                            <span t-field="installation.floor_of_installation"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Created By: </strong></div>
+                                            <div class="col-auto" t-field="installation.user_id.name"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Assignee: </strong></div>
+                                            <div class="col-auto" t-field="installation.assignee_id.name"/>
+                                        </div>
+                                        <div class="mt16">
+                                            <div class="col-auto"><strong>Arrival Time: </strong></div>
+                                            <div class="col-auto" t-field="installation.arrival_time"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <div class="col-auto"><strong>Departure Time: </strong></div>
+                                            <div class="col-auto" t-field="installation.departure_time"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Number of Installers: </strong></span>
+                                            <span t-field="installation.number_installer"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Number of Assistant Installers: </strong></span>
+                                            <span t-field="installation.number_assistant_installer"/>
+                                        </div>
+                                        <div class="col-auto mt8">
+                                            <span><strong>Number of Hours: </strong></span>
+                                            <span t-field="installation.number_of_hours"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-12">
+                                        <div class="col-auto"><strong>Claims: </strong></div>
+                                        <t t-set="tc" t-value="0"/>
+                                        <t t-set="total_claims" t-value="len(installation.claim_ids)"/>
+                                        <div class="col-auto">
+                                            <span t-foreach="installation.claim_ids" t-as="claim">
+                                                <span t-field="claim.name"/><t t-set="tc" t-value="tc+1"/><t t-if="tc &lt; total_claims"><span>,</span></t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-12">
+                                        <h4 class="col-auto"><strong>Comment: </strong></h4>
+                                        <div class="col-auto" t-field="installation.note"/>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-12">
+                                        <h4 class="col-auto"><strong>Return Goods: </strong></h4>
+                                        <div class="col-auto">
+                                            <table class="table table-hover wq-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product</th>
+                                                        <th>Description</th>
+                                                        <th class="text-right">Quantity</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr t-foreach="installation.return_good_ids" t-as="option">
+                                                        <td>
+                                                            <t t-if="option.product_id">
+                                                                <div t-field="option.product_id.name"/>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-info" t-field="option.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-right" t-field="option.qty"/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-12">
+                                        <h4 class="col-auto"><strong>Used Goods: </strong></h4>
+                                        <div class="col-auto">
+                                            <table class="table table-hover wq-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product</th>
+                                                        <th>Description</th>
+                                                        <th class="text-right">Quantity</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr t-foreach="installation.used_good_ids" t-as="option">
+                                                        <td>
+                                                            <t t-if="option.product_id">
+                                                                <div t-field="option.product_id.name"/>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-info" t-field="option.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-right" t-field="option.qty"/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt16">
+                                    <div class="col-6">
+                                        <div class="mt16 text-center">
+                                            <t t-if="installation.signature_mechanic">
+                                                <h4 class="col-auto"><strong>Head of installation team</strong></h4>
+                                                <div t-field="installation.signature_mechanic" t-options="{'widget': 'image'}"/>
+                                                <h3 class="col-auto" t-field="installation.name_mechanic"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt16 text-center">
+                                            <t t-if="installation.signature_customer">
+                                                <h4 class="col-auto"><strong>Customer</strong></h4>
+                                                <div t-field="installation.signature_customer" t-options="{'widget': 'image'}"/>
+                                                <h3 class="col-auto" t-field="installation.name_customer"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Action -->
+                    <div class="col-12 mt16 mb32 text-center">
+                        <a t-if="not installation.signature_customer" role="button" class="btn btn-primary mb8" data-toggle="modal" data-target="#modalacceptcustomer" href="#">
+                            <i class="fa fa-check"/> Accept &amp; Sign
+                        </a>
+                        <a href="#discussion" role="button" class="btn btn-info mb8">
+                            <i class="fa fa-comment"/> Discussion
+                        </a>
+                    </div>
+
+                    <!-- Chatter -->
+                    <div id="installation_form_communication" class="mt-4">
+                        <h2>Communication</h2>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="installation"/>
+                        </t>
+                    </div>
+
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

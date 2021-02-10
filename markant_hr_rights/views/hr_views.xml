@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_org_chart.hr_employee_view_form_inherit_org_chart" model="ir.ui.view">
+        <field name="groups_id" eval="[(6, 0, [ref('markant_hr_rights.group_hr_super_manager')])]"/>
+    </record>
+</odoo>

@@ -1,0 +1,301 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-15 06:40+0000\n"
+"PO-Revision-Date: 2015-10-15 06:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_hr
+#: field:hr.holidays.public,name:0
+#: field:hr.holidays.public.line,name:0
+#: view:hr.holidays.shift:markant_hr.view_holidays_shift_form
+#: view:hr.holidays.shift:markant_hr.view_holidays_shift_tree
+msgid "Name"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.public,year:0
+#: field:hr.holidays.public.line,year_id:0
+msgid "Calendar Year"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.public,line_ids:0
+msgid "Holiday Dates"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.public.line,date:0
+#: view:hr.holidays:markant_hr.edit_holiday_new_inherit_markant_hr
+msgid "Date"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.employee,marital:0
+msgid "Marital Status"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.employee,marital:0
+msgid "Single"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.employee,marital:0
+msgid "Married"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.employee,marital:0
+msgid "Widower"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.employee,marital:0
+msgid "Divorced"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.employee,marital:0
+msgid "Living Together"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.leave.todo.task,name:0
+msgid "Description"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.leave.todo.task,state:0
+msgid "Status"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.leave.todo.task,state:0
+msgid "Done"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.leave.todo.task,state:0
+msgid "Not Done"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.leave.todo.task,date_done:0
+msgid "Date Done"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.leave.todo.task,hr_holiday_id:0
+msgid "Holidays"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays,number_of_days_temp1:0
+msgid "Number of Days"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays,hr_leave_todo_task_ids:0
+msgid "Todo Tasks"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays,c_manager:0
+msgid "Manager?"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays,holiday_hours_ids:0
+msgid "Holiday Schedule"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.shift,name:0
+#: field:hr.holidays.shift,stype:0
+#: field:hr.holidays.hours,holidays_shift_id:0
+#: view:hr.holidays.shift:markant_hr.view_holidays_shift_tree
+msgid "Shift"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.shift,dtype:0
+msgid "DType"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.shift,dtype:0
+#: model:hr.holidays.shift,name:markant_hr.hr_holidays_shift1
+msgid "Fullday"
+msgstr ""
+
+#. module: markant_hr
+#: model:hr.holidays.shift,name:markant_hr.hr_holidays_shift2
+msgid "Halfday Morning"
+msgstr ""
+
+#. module: markant_hr
+#: model:hr.holidays.shift,name:markant_hr.hr_holidays_shift3
+msgid "Halfday Evening"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.shift,dtype:0
+msgid "Halfday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.shift,stype:0
+msgid "Morning"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.shift,stype:0
+msgid "Evening"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.shift,tfrom:0
+#: view:hr.holidays:markant_hr.edit_holiday_new_inherit_markant_hr
+msgid "From"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.shift,tto:0
+#: view:hr.holidays:markant_hr.edit_holiday_new_inherit_markant_hr
+msgid "To"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.shift,nod:0
+msgid "No of days"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,dayofweek:0
+msgid "Day of Week"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Monday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Tuesday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Wednesday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Thirsday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Friday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Saturday"
+msgstr ""
+
+#. module: markant_hr
+#: selection:hr.holidays.hours,dayofweek:0
+msgid "Sunday"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,date_from:0
+msgid "Starting Date"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,hour_from:0
+msgid "Work from"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,hour_to:0
+msgid "Work to"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,holiday_id:0
+msgid "Holiday"
+msgstr ""
+
+#. module: markant_hr
+#: field:hr.holidays.hours,nod:0
+msgid "Day"
+msgstr ""
+
+#. module: markant_hr
+#: code:addons/markant_hr/models/markant_hr.py:29
+#, python-format
+msgid "You can not create duplicate year for public holiday %s."
+msgstr ""
+
+#. module: markant_hr
+#: code:addons/markant_hr/models/markant_hr.py:66
+#, python-format
+msgid "Dates of holidays should be the same year"
+msgstr ""
+
+#. module: markant_hr
+#: code:addons/markant_hr/models/markant_hr.py:68
+#, python-format
+msgid "You can not create duplicate public holiday for date %s."
+msgstr "U kunt geen dubbele feestdag voor datum %s."
+
+#. module: markant_hr
+#: code:addons/markant_hr/models/markant_hr.py:172
+#, python-format
+msgid "Warning!"
+msgstr ""
+
+#. module: markant_hr
+#: code:addons/markant_hr/models/markant_hr.py:172
+#, python-format
+msgid "The start date must be anterior to the end date."
+msgstr ""
+
+#. module: markant_hr
+#: view:hr.holidays.public:markant_hr.view_public_holidays_form
+#: view:hr.holidays.public:markant_hr.view_public_holidays_tree
+#: model:ir.actions.act_window,name:markant_hr.open_public_holidays_view
+#: model:ir.ui.menu,name:markant_hr.menu_public_holidays_view
+msgid "Public Holidays"
+msgstr ""
+
+#. module: markant_hr
+#: view:hr.holidays:markant_hr.edit_holiday_new_inherit_markant_hr
+msgid "Todo List"
+msgstr ""
+
+#. module: markant_hr
+#: view:hr.holidays:markant_hr.edit_holiday_new_inherit_markant_hr
+msgid "Time"
+msgstr ""
+
+#. module: markant_hr
+#: model:ir.actions.act_window,name:markant_hr.action_holidays_shift
+#: model:ir.ui.menu,name:markant_hr.menu_action_holidays_shift
+msgid "Leaves Config"
+msgstr ""

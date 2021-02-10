@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_advice_sql_view,purchase_advice_sql_view,model_purchase_advice_sql_view,,1,0,1,1
+access_purchase_advice_log,purchase_advice_log,model_purchase_advice_log,,1,0,1,0
+access_purchase_advice_log_item,purchase_advice_log_item,model_purchase_advice_log_item,,1,0,1,0

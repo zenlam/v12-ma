@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Enable the Create/Import option -->
+    <record id="markant_view_translation_dialog_tree" model="ir.ui.view">
+        <field name="model">ir.translation</field>
+        <field name="inherit_id" ref="base.view_translation_dialog_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">true</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Act as both Menu Action & Multi Action -->
+    <record id="action_product_tmpl_name_translation" model="ir.actions.server">
+        <field name="name">Markant: Translate Product Name</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="code">
+if records:
+    action = records.action_translate_product_tmpl_name()
+else:
+    action = model.search([]).action_translate_product_tmpl_name()
+        </field>
+    </record>
+
+    <!-- Menu under `Settings > Translation > Application Terms` -->
+    <menuitem action="action_product_tmpl_name_translation"
+              id="menu_action_product_tmpl_name_translation"
+              parent="base.menu_translation_app" />
+
+    <!-- Multi Action `Translate` -->
+    <record id="action_multi_translation_translated" model="ir.actions.server">
+        <field name="name">Translate</field>
+        <field name="model_id" ref="base.model_ir_translation"/>
+        <field name="binding_model_id" ref="base.model_ir_translation"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_change_state_translate()</field>
+    </record>
+
+    <!-- Multi Action `Reset` -->
+    <record id="action_multi_translation_reset" model="ir.actions.server">
+        <field name="name">Reset</field>
+        <field name="model_id" ref="base.model_ir_translation"/>
+        <field name="binding_model_id" ref="base.model_ir_translation"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_change_state_reset()</field>
+    </record>
+</odoo>

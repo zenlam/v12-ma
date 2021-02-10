@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View: PCF Max Qty Log -->
+    <record id="view_markant_pcf_max_qty_log_tree" model="ir.ui.view">
+        <field name="name">pcf.max.qty.log.tree</field>
+        <field name="model">pcf.max.qty.log</field>
+        <field name="arch" type="xml">
+            <tree string="PCF Max Qty Log" delete="0" create="0" default_order="date desc">
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="log_item_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: PCF Max Qty Log -->
+    <record id="view_markant_pcf_max_qty_log_form" model="ir.ui.view">
+        <field name="name">pcf.max.qty.log.form</field>
+        <field name="model">pcf.max.qty.log</field>
+        <field name="arch" type="xml">
+            <form string="PCF Max Qty Log" delete="0" create="0" edit="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="date"/>
+                        </h1>
+                        <br/>
+                        <h2>
+                            <field name="user_id"/>
+                        </h2>
+                    </div>
+                    <separator string="Log Items"/>
+                    <field name="log_item_ids" nolabel="1">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="status"/>
+                            <field name="reason"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View: PCF Max Qty Log -->
+    <record id="view_markant_pcf_max_qty_log_search" model="ir.ui.view">
+        <field name="name">pcf.max.qty.log.search</field>
+        <field name="model">pcf.max.qty.log</field>
+        <field name="arch" type="xml">
+            <search string="Search PCF Max Qty Log">
+                <field name="date"/>
+                <field name="user_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action: PCF Max Qty Log -->
+    <record id="action_markant_pcf_max_qty_log" model="ir.actions.act_window">
+        <field name="name">PCF Max Qty Logs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pcf.max.qty.log</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_markant_pcf_max_qty_log_search"/>
+    </record>
+
+    <!-- Log Menu -->
+    <menuitem id="menu_markant_pcf_max_qty_log"
+              action="action_markant_pcf_max_qty_log"
+              name="PCF Max Qty Logs"
+              parent="markant_stock.menu_markant_automation_log"/>
+
+</odoo>

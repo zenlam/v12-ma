@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="HomeMenu.Content">
+        <t t-jquery="div.o_home_menu_footer" t-operation="replace">
+            <div class="o_home_menu_footer">
+                <img src="/markant_product/static/src/img/logo_inverse_white_206px.png" alt="Logo"/>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="UserMenu.Actions">
+        <t t-jquery="a[data-menu='documentation']" t-operation="replace"/>
+        <t t-jquery="a[data-menu='support']" t-operation="replace"/>
+        <t t-jquery="a[data-menu='account']" t-operation="replace"/>
+    </t>
+
+    <t t-name="display_selected_values_on_each_steps_with_image">
+        <t t-if="data_is_custom">
+            <div t-attf-class='#{current_step} mb16 col-auto row'>
+                <label class='col-auto css_attribute_color'
+                       t-attf-style='background-image: url(#{image_url});
+                       width: 90px; height: 90px; max-width: 100%; max-height: 100%;'>
+                    <input type='hidden' t-attf-class='#{current_step}'
+                           t-attf-value='#{value}'
+                           t-attf-data-value_id='#{data_value_id}'
+                           t-attf-data-value_name='#{data_value_name}'
+                           t-attf-data-attribute_name='#{data_attribute_name}'/>
+                </label>
+                <span class='col-lg-6 ml-2'>
+                    <strong><t t-esc='data_attribute_name'/> (<t t-esc='data_value_name'/>)</strong>
+                    <span class="badge badge-pill badge-secondary" t-if="data_price_extra > 0">
+                        <t t-esc="data_price_extra > 0 and '+' or '-'"/>
+                        <span t-esc="abs(value_obj.price_extra)" class="variant_price_extra" style="white-space: nowrap;">
+                            <t t-esc="data_display_currency_symbol"/> <t t-esc="data_price_extra"/>
+                        </span>
+                    </span>
+                    <input type='text' class='variant_custom_value form-control'
+                           t-attf-value='#{data_custom_value}'
+                           t-attf-data-attribute_value_id='#{data_value_id}'
+                           t-attf-data-attribute_value_name='#{data_value_name}' readonly='readonly'/>
+                </span>
+            </div>
+        </t>
+        <t t-else="">
+            <div t-attf-class='#{current_step} mb16 col-auto row'>
+                <label class='col-auto css_attribute_color'
+                       t-attf-style='background-image: url(#{image_url});
+                       width: 90px; height: 90px; max-width: 100%; max-height: 100%;'>
+                    <input type='hidden' t-attf-class='#{current_step}'
+                           t-attf-value='#{value}'
+                           t-attf-data-value_id='#{data_value_id}'
+                           t-attf-data-value_name='#{data_value_name}'
+                           t-attf-data-attribute_name='#{data_attribute_name}'/>
+                </label>
+                <span class='col-lg-6 ml-2'>
+                    <strong><t t-esc='data_attribute_name'/> (<t t-esc='data_value_name'/>)</strong>
+                    <span class="badge badge-pill badge-secondary" t-if="data_price_extra > 0">
+                        <t t-esc="data_price_extra > 0 and '+' or '-'"/>
+                        <span t-esc="abs(value_obj.price_extra)" class="variant_price_extra" style="white-space: nowrap;">
+                            <t t-esc="data_display_currency_symbol"/> <t t-esc="data_price_extra"/>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="display_selected_values_on_each_steps_without_image">
+        <t t-if="data_is_custom">
+            <div t-attf-class='#{current_step} mb16'>
+                <i class='fa fa-circle'/>
+                <input t-attf-class='d-none #{current_step}'
+                       t-attf-value='#{value}'
+                       t-attf-data-value_id='#{data_value_id}'
+                       t-attf-data-value_name='#{data_value_name}'
+                       t-attf-data-attribute_name='#{data_attribute_name}'/>
+                <span class='ml-2'>
+                    <strong><t t-esc='data_attribute_name'/> (<t t-esc='data_value_name'/>)</strong>
+                    <span class="badge badge-pill badge-secondary" t-if="data_price_extra > 0">
+                        <t t-esc="data_price_extra > 0 and '+' or '-'"/>
+                        <span t-esc="abs(value_obj.price_extra)" class="variant_price_extra" style="white-space: nowrap;">
+                            <t t-esc="data_display_currency_symbol"/> <t t-esc="data_price_extra"/>
+                        </span>
+                    </span>
+                    <input type='text' class='variant_custom_value form-control'
+                           t-attf-value='#{data_custom_value}'
+                           t-attf-data-attribute_value_id='#{data_value_id}'
+                           t-attf-data-attribute_value_name='#{data_value_name}' readonly='readonly'/>
+                </span>
+            </div>
+        </t>
+        <t t-else="">
+            <div t-attf-class='#{current_step} mb16'>
+                <i class='fa fa-circle'/>
+                <input t-attf-class='d-none #{current_step}'
+                       t-attf-value='#{value}'
+                       t-attf-data-value_id='#{data_value_id}'
+                       t-attf-data-value_name='#{data_value_name}'
+                       t-attf-data-attribute_name='#{data_attribute_name}'/>
+                <span class='ml-2'>
+                    <strong><t t-esc='data_attribute_name'/> (<t t-esc='data_value_name'/>)</strong>
+                    <span class="badge badge-pill badge-secondary" t-if="data_price_extra > 0">
+                        <t t-esc="data_price_extra > 0 and '+' or '-'"/>
+                        <span class="variant_price_extra" style="white-space: nowrap;">
+                            <t t-esc="data_display_currency_symbol"/> <t t-esc="data_price_extra"/>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </t>
+    </t>
+
+</templates>

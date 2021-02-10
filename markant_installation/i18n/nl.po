@@ -1,0 +1,1505 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_installation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-20 08:43+0000\n"
+"PO-Revision-Date: 2019-03-20 08:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_installation
+#: model:mail.template,body_html:markant_installation.email_template_edi_installation
+msgid "\n"
+"\n"
+"<p>Dear\n"
+"% if ctx.get('email_to_name')\n"
+"${ctx.get('email_to_name')},\n"
+"% else\n"
+"Customer,\n"
+"% endif\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"Here is your installation form reference <strong>${object.name}</strong> from ${object.user_id.company_id.name}.\n"
+"</p>\n"
+"\n"
+"<br/><br/>\n"
+"<center>\n"
+"    <a href=\"${object.get_portal_url()}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Installation Form</a>\n"
+"    <br/><br/><br/>\n"
+"    <span style=\"color:#888888\">(or view attached PDF)</span>\n"
+"</center>\n"
+"<br/>\n"
+"\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you.</p>\n"
+"\n"
+"        "
+msgstr ""
+
+#. module: markant_installation
+#: model:mail.template,body_html:markant_installation.email_template_edi_installation_followers
+msgid "\n"
+"\n"
+"<p>Dear ${ctx['follower_name']},\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"You have been assign to installation form reference <strong>${object.name}</strong> from ${object.user_id.company_id.name}.\n"
+"</p>\n"
+"\n"
+"<br/><br/>\n"
+"<center>\n"
+"    <a href=\"${object.get_portal_url()}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Installation Form</a>\n"
+"    <br/><br/><br/>\n"
+"</center>\n"
+"<br/>\n"
+"\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you.</p>\n"
+"\n"
+"        "
+msgstr ""
+
+#. module: markant_installation
+#: model:mail.template,report_name:markant_installation.email_template_edi_installation
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "&amp;times;"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<b>To</b>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-check\"/> Accept &amp; Sign"
+msgstr "<i class=\"fa fa-check\"/> Accepteer &amp; Onderteken"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-check\"/> Sign as Installation Head"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-comment\"/> Discussion"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-comment\"/> Send message"
+msgstr "<i class=\"fa fa-comment\"/> Vertuur bericht"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-download\"/> Download<br/><sub>Dutch</sub>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<i class=\"fa fa-download\"/> Download<br/><sub>English</sub>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "<span class=\"o_form_label\"><i>House: </i></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "<span>  </span>\n"
+"                                    <span class=\"o_form_label\"><i>Door: </i></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><i>Door: </i></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><i>House: </i></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "<span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Aantal Hulp Monteurs: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Aantal Monteurs: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Aantal Uren: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Back Order: </strong></span>"
+msgstr "<span><strong>Deellevering: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Deellevering: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Drawing Included: </strong></span>"
+msgstr "<span><strong>Project Tekeningen Aanwezig: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Empty/Clean rooms available: </strong></span>"
+msgstr "<span><strong>Kamers Leeg/Schoon: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Floor of installation: </strong></span>"
+msgstr "<span><strong>Verdieping van installatie: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Kamers Leeg/ Schoon: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Lift Available: </strong></span>"
+msgstr "<span><strong>Lift aanwezig: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Lift aanwezig: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Number of Assistant Installers: </strong></span>"
+msgstr "<span><strong>Aantal Hulp Monteurs: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Number of Hours: </strong></span>"
+msgstr "<span><strong>Aantal Uren: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Number of Installers: </strong></span>"
+msgstr "<span><strong>Aantal Monteurs: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Pre Assembly: </strong></span>"
+msgstr "<span><strong>Voormontage: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Project Tekeningen Noodzakelijk: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Site Drawing Necessary: </strong></span>"
+msgstr "<span><strong>Project Tekeningen Noodzakelijk: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Staircase Available: </strong></span>"
+msgstr "<span><strong>Trappenhuis aanwezig: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Survey Benodigd: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Survey Necessary: </strong></span>"
+msgstr "<span><strong>Survey Benodigd: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Tekening Bijgevoegd: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Totaal Aantal Verdiepingen: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<span><strong>Total Number of Floors: </strong></span>"
+msgstr "<span><strong>Totaal Aantal Verdiepingen: </strong></span>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Trappenhuis aanwezig: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Verdieping van installatie: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<span><strong>Voormontage: </strong></span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<span>I (as customer) agree that by signing this\n"
+"                                            installation form, I\n"
+"                                            accept it on the behalf of\n"
+"                                        </span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<span>I (as installation head) agree that by signing this\n"
+"                                            installation form, I\n"
+"                                            accept it on the behalf of\n"
+"                                        </span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<span>Installation Form</span>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "<strong class=\"text-muted\">Your Contact</strong>"
+msgstr "<strong class=\"text-muted\">Uw contactpersoon</strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>AS400 Order: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>AS400 Ordernummer: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Aangemaakt Door: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Aankomsttijd: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Aanmaak Datum: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Afleveradres: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Afstand losplaats tot pand (in Meter): </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Arrival Time: </strong>"
+msgstr "<strong>Aankomsttijd: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Assignee: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Berekening: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Calculation: </strong>"
+msgstr "<strong>Berekening: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Claims: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Comment: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Contact Person: </strong>"
+msgstr "<strong>Contactpersoon: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Contactpersoon: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Created By: </strong>"
+msgstr "<strong>Aangemaakt Door: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Customer</strong>"
+msgstr "<strong>Klant</strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Dealer Contact: </strong>"
+msgstr "<strong>Handelaar Contactpersoon: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Dealer: </strong>"
+msgstr "<strong>Handelaar: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Delivery Address: </strong>"
+msgstr "<strong>Afleveradres: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Departure Time: </strong>"
+msgstr "<strong>Vertrektijd: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Distance to Place of Unloading (in Meter): </strong>"
+msgstr "<strong>Afstand losplaats tot pand (in Meter): </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Eindgebruiker: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>End User: </strong>"
+msgstr "<strong>Eindgebruiker: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Geplande Datum: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Handelaar Contactpersoon: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Handelaar: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Head of installation team</strong>"
+msgstr "<strong>Hoofdmonteur</strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Hoofdmonteur</strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Installatie Datum: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Installation Date: </strong>"
+msgstr "<strong>Installatie Datum: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Klant</strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Opportunities: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Order Numbers: </strong>"
+msgstr "<strong>Ordernummer: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Ordernummer: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Phonenumber: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Planned Date: </strong>"
+msgstr "<strong>Geplande Datum: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Proposed Date: </strong>"
+msgstr "<strong>Voorgestelde Datum: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Retour Goederen: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Return Goods: </strong>"
+msgstr "<strong>Retour Goederen: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Gebruikte Goederen: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Used Goods: </strong>"
+msgstr "<strong>Gebruikte Goederen: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Submit Date: </strong>"
+msgstr "<strong>Aanmaak Datum: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Survey Date: </strong>"
+msgstr "<strong>Survey Datum: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Survey Datum: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "<strong>Survey Form: </strong>"
+msgstr "<strong>Survey Formulier: </strong>"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Survey Formulier: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Type: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Vertrektijd: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "<strong>Voorgestelde Datum: </strong>"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__as400_order_ref
+msgid "AS400 Order"
+msgstr "AS400 Ordernummer"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "Aantal"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__access_warning
+msgid "Access warning"
+msgstr "Toegang waarschuwing"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_needaction
+msgid "Action Needed"
+msgstr "Vereist actie"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_ids
+msgid "Activities"
+msgstr "Activiteiten"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_state
+msgid "Activity State"
+msgstr "Activiteitsfase"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__arrival_time
+msgid "Arrival Time"
+msgstr "Aankomsttijd"
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:285
+#, python-format
+msgid "Arrival Time is missing!"
+msgstr "Aankomsttijd ontbreekt!"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "Artikel"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__assignee_id
+msgid "Assignee"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_attachment_count
+msgid "Attachment Count"
+msgstr "Aantal bijlagen"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__back_order
+msgid "Back Order"
+msgstr "Deellevering"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__calculation_type_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Calculation"
+msgstr "Berekening"
+
+#. module: markant_installation
+#: model:ir.actions.act_window,name:markant_installation.action_markant_calculation_type
+#: model:ir.model,name:markant_installation.model_markant_calculation_type
+#: model:ir.ui.menu,name:markant_installation.menu_markant_calculation_type
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_calculation_type_tree
+msgid "Calculation Type"
+msgstr "Berekening Type"
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:253
+#, python-format
+msgid "Can not select Order which contains different Customers/Contacts."
+msgstr "Kan geen bestelling selecteren die verschillende klanten / contacten bevat."
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__city
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "City"
+msgstr "Plaats"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__claim_ids
+msgid "Claims"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Close"
+msgstr "Sluiten"
+
+#. module: markant_installation
+#: model:markant.installation.stage,name:markant_installation.installation_closed
+msgid "Closed"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__note
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Comment"
+msgstr "Opmerking"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Communication"
+msgstr "Communicatie"
+
+#. module: markant_installation
+#: model:ir.ui.menu,name:markant_installation.menu_markant_installation_config
+msgid "Configuration"
+msgstr "Instellingen"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Contact"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__end_contact_id
+msgid "Contact Person"
+msgstr "Contactpersoon"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__country_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Country"
+msgstr "Land"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__user_id
+msgid "Created By"
+msgstr "Aangemaakt door"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__create_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__create_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__create_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__create_uid
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__create_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__create_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__create_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__create_date
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Customer"
+msgstr "Klant"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__access_url
+msgid "Customer Portal URL"
+msgstr "Klant portaal URL"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__dealer_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Dealer"
+msgstr "Handelaar"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__dealer_contact_id
+msgid "Dealer Contact"
+msgstr "Handelaar Contactpersoon"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__address_id
+msgid "Delivery Address"
+msgstr "Afleveradres"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__departure_time
+msgid "Departure Time"
+msgstr "Vertrektijd"
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:292
+#, python-format
+msgid "Departure Time should always greater than Arrival Time."
+msgstr "De vertrektijd moet altijd na de aankomsttijd zijn."
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__name
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__display_name
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__display_name
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__display_name
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__display_name
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__display_name
+msgid "Display Name"
+msgstr "Weergave naam"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__distance_place_unloading
+msgid "Distance to Place of Unloading (in Meter)"
+msgstr "Afstand losplaats tot pand (in Meter)"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__name
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Document Number"
+msgstr ""
+
+#. module: markant_installation
+#: model:markant.installation.stage,name:markant_installation.installation_done
+msgid "Done"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__street_number2
+msgid "Door"
+msgstr "Toevoeging"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Download"
+msgstr "Downloaden"
+
+#. module: markant_installation
+#: model:markant.installation.stage,name:markant_installation.installation_draft
+msgid "Draft"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__drawing_included
+msgid "Drawing Included"
+msgstr "Tekening Bijgevoegd"
+
+#. module: markant_installation
+#: model:res.groups,name:markant_installation.group_markant_installation_editor
+msgid "Editor"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__any_empty_clean_zone
+msgid "Empty/Clean rooms available"
+msgstr "Kamers Leeg/ Schoon"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__enable_preview
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__enable_preview
+msgid "Enable Preview & Sign Button"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__enable_required
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__enable_required
+msgid "Enable Required Fields"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__enable_mail
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__enable_mail
+msgid "Enable Send Mail Button"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__end_user_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "End User"
+msgstr "Eindgebruiker"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__floor_of_installation
+msgid "Floor of installation"
+msgstr "Verdieping van installatie"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_follower_ids
+msgid "Followers"
+msgstr "Volgers"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Volgers (Kanalen)"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Volgers (Relaties)"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__planned_date_from
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__proposed_date_from
+msgid "From"
+msgstr "Van"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__google_drive_link
+msgid "Google Drive"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Group By"
+msgstr "Groepeer op"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Head of installation team"
+msgstr "Hoofdmonteur"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__street_number
+msgid "House"
+msgstr "Huisnr."
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__id
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__id
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__id
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__id
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__id
+msgid "ID"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Indien aangevinkt zullen nieuwe berichten uw aandacht vragen."
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Indien aangevinkt vragen nieuwe berichten uw aandacht."
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "indien aangevinkt hebben sommige leveringen een fout."
+
+#. module: markant_installation
+#: model:ir.ui.menu,name:markant_installation.menu_markant_installation
+msgid "Installation"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__installation_date
+msgid "Installation Date"
+msgstr "Installatie Datum"
+
+#. module: markant_installation
+#: model:ir.actions.act_window,name:markant_installation.action_markant_installation_form
+#: model:ir.actions.report,name:markant_installation.action_report_installation
+#: model:ir.model,name:markant_installation.model_markant_installation_form
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__installation_id
+#: model:ir.ui.menu,name:markant_installation.menu_markant_installation_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_tree
+msgid "Installation Form"
+msgstr "Installatie Datum:"
+
+#. module: markant_installation
+#: model:ir.actions.report,name:markant_installation.action_report_installation_dutch
+msgid "Installation Form (Dutch)"
+msgstr ""
+
+#. module: markant_installation
+#: code:addons/markant_installation/controllers/main.py:68
+#, python-format
+msgid "Installation Form Signed Successfully by Customer."
+msgstr ""
+
+#. module: markant_installation
+#: code:addons/markant_installation/controllers/main.py:92
+#, python-format
+msgid "Installation Form Signed Successfully by Head of Installation Team."
+msgstr ""
+
+#. module: markant_installation
+#: model:mail.template,subject:markant_installation.email_template_edi_installation
+#: model:mail.template,subject:markant_installation.email_template_edi_installation_followers
+msgid "Installation Ref - ${object.name or 'n/a' }"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.actions.act_window,name:markant_installation.action_markant_installation_type
+#: model:ir.model,name:markant_installation.model_markant_installation_type
+#: model:ir.ui.menu,name:markant_installation.menu_markant_installation_type
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_type_tree
+msgid "Installation Type"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__internal_note
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Internal Note"
+msgstr "Interne notitie"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_is_follower
+msgid "Is Follower"
+msgstr "Is een volger"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type____last_update
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form____last_update
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage____last_update
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type____last_update
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__write_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__write_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__write_uid
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__write_uid
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__write_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__write_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__write_date
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__write_date
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__lift_available
+msgid "Lift Available"
+msgstr "Lift aanwezig"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Hoofd bijlage"
+
+#. module: markant_installation
+#: model:res.groups,name:markant_installation.group_markant_installation_manager
+msgid "Manager"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.module.category,name:markant_installation.module_category_markant_installation
+msgid "Markant Installation/Survey"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.portal_record_sidebar_markant
+msgid "Markant Logo"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_has_error
+msgid "Message Delivery error"
+msgstr "Bericht afleverfout"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_ids
+msgid "Messages"
+msgstr "Berichten"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "My Installation"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_calculation_type__name
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__name_customer
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__name_mechanic
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_type__name
+msgid "Name"
+msgstr "Naam"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Volgende activiteit deadline"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_summary
+msgid "Next Activity Summary"
+msgstr "Omschrijving volgende actie"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_type_id
+msgid "Next Activity Type"
+msgstr "Volgende activiteit type"
+
+#. module: markant_installation
+#: selection:markant.installation.form,any_empty_clean_zone:0
+#: selection:markant.installation.form,back_order:0
+#: selection:markant.installation.form,drawing_included:0
+#: selection:markant.installation.form,lift_available:0
+#: selection:markant.installation.form,pre_assembly:0
+#: selection:markant.installation.form,site_drawing_avail:0
+#: selection:markant.installation.form,staircase_available:0
+#: selection:markant.installation.form,survey_needed:0
+msgid "No"
+msgstr ""
+
+#. module: markant_installation
+#: selection:markant.installation.form,survey_needed:0
+msgid "Not applicable"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Aantal acties"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__number_assistant_installer
+msgid "Number of Assistant Installers"
+msgstr "Aantal Hulp Monteurs"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__number_of_hours
+msgid "Number of Hours"
+msgstr "Aantal Uren"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__number_installer
+msgid "Number of Installers"
+msgstr "Aantal Monteurs"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_has_error_counter
+msgid "Number of error"
+msgstr "Aantal foutmeldingen"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Aantal berichten die actie vereisen"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Aantal berichten met leveringsfout"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Aantal ongelezen berichten"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form_dutch
+msgid "Omschrijving"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__opportunity_ids
+msgid "Opportunities"
+msgstr "Prospects"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__sale_order_ids
+msgid "Order Numbers"
+msgstr "Ordernummer"
+
+#. module: markant_installation
+#: selection:markant.installation.form,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__phone
+msgid "Phonenumber"
+msgstr ""
+
+#. module: markant_installation
+#: selection:markant.installation.form,activity_state:0
+#: model:markant.installation.stage,name:markant_installation.installation_planned
+msgid "Planned"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Planned Date"
+msgstr "Datum gepland"
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:302
+#, python-format
+msgid "Please, select Dealer first in order to select its contact."
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__access_url
+msgid "Portal Access URL"
+msgstr "Portaal toegang URL"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.portal_record_sidebar_markant
+msgid "Powered by"
+msgstr "Aangeboden door"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__pre_assembly
+msgid "Pre Assembly"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Preview & Sign"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__product_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "Product"
+msgstr ""
+
+#. module: markant_installation
+#: model:markant.installation.stage,name:markant_installation.installation_proposal_to_plan
+msgid "Proposal To Plan"
+msgstr ""
+
+#. module: markant_installation
+#: model:markant.installation.stage,name:markant_installation.installation_proposal_to_sale
+msgid "Proposal To Sale"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Proposed Date"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_return_good_line__qty
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+#: model_terms:ir.ui.view,arch_db:markant_installation.report_installation_form
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:235
+#, python-format
+msgid "Required fields are missing!"
+msgstr "Vereiste velden ontbreken!"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__activity_user_id
+msgid "Responsible User"
+msgstr "Verantwoordelijke gebruiker"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__return_good_ids
+msgid "Return Good Lines"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Return Goods"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Search Installation Form"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__access_token
+msgid "Security Token"
+msgstr "Veiligheidstoken"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Send Email"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__sequence
+msgid "Sequence"
+msgstr "Volgorde"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__signature_customer
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__signature_mechanic
+msgid "Signature"
+msgstr "Handtekening"
+
+#. module: markant_installation
+#: code:addons/markant_installation/controllers/main.py:54
+#: code:addons/markant_installation/controllers/main.py:77
+#, python-format
+msgid "Signature is missing."
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Signed"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__site_drawing_avail
+msgid "Site Drawing Necessary"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__stage_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Stage"
+msgstr "Fase"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_stage__name
+msgid "Stage Name"
+msgstr "Naam fase"
+
+#. module: markant_installation
+#: model:ir.actions.act_window,name:markant_installation.action_markant_installation_stage
+#: model:ir.ui.menu,name:markant_installation.menu_markant_installation_stage
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_stage_tree
+msgid "Stages"
+msgstr "Fases"
+
+#. module: markant_installation
+#: model:ir.model,name:markant_installation.model_markant_installation_stage
+msgid "Stages for Installation"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__staircase_available
+msgid "Staircase Available"
+msgstr "Trappenhuis aanwezig"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__state_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "State"
+msgstr "Provincie"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Status gebaseerd op activiteiten\n"
+"Te laat: Datum is al gepasseerd\n"
+"Vandaag: Activiteit datum is vandaag\n"
+"Gepland: Toekomstige activiteiten."
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Street 2..."
+msgstr "Straat 2..."
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__street_name
+msgid "Street Name"
+msgstr "Straatnaam"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "Street Name..."
+msgstr "Straatnaam..."
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__street2
+msgid "Street2"
+msgstr "Straat2"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__submit_date
+msgid "Submit Date"
+msgstr "Aanmaak Datum"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__survey_date
+msgid "Survey Date"
+msgstr "Survey Datum"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__survey_id
+msgid "Survey Form"
+msgstr "Survey Formulier"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__survey_needed
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Survey Necessary"
+msgstr "Survey Benodigd"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__planned_date_to
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__proposed_date_to
+msgid "To"
+msgstr "Aan"
+
+#. module: markant_installation
+#: selection:markant.installation.form,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__total_number_floors
+msgid "Total Number of Floors"
+msgstr "Totaal Aantal Verdiepingen"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__installation_type_id
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Type"
+msgstr "Soort"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_unread
+msgid "Unread Messages"
+msgstr "Ongelezen berichten"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Aantal ongelezen berichten"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+msgid "Unsigned"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_stage__sequence
+msgid "Used to order stages. Lower is better."
+msgstr "Wordt gebruikt om fases te sorteren. Lager is beter."
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.markant_installation_search
+#: model:res.groups,name:markant_installation.group_markant_installation_viewer
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Validate Installation Form - (Customer)"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.installation_preview
+msgid "Validate Installation Form - (Installation Head)"
+msgstr ""
+
+#. module: markant_installation
+#: code:addons/markant_installation/models/installation.py:284
+#: code:addons/markant_installation/models/installation.py:291
+#: code:addons/markant_installation/models/installation.py:301
+#, python-format
+msgid "Warning!"
+msgstr ""
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__website_message_ids
+msgid "Website Messages"
+msgstr "Website berichten"
+
+#. module: markant_installation
+#: model:ir.model.fields,help:markant_installation.field_markant_installation_form__website_message_ids
+msgid "Website communication history"
+msgstr "Website communicatie geschiedenis"
+
+#. module: markant_installation
+#: selection:markant.installation.form,any_empty_clean_zone:0
+#: selection:markant.installation.form,back_order:0
+#: selection:markant.installation.form,drawing_included:0
+#: selection:markant.installation.form,lift_available:0
+#: selection:markant.installation.form,pre_assembly:0
+#: selection:markant.installation.form,site_drawing_avail:0
+#: selection:markant.installation.form,staircase_available:0
+#: selection:markant.installation.form,survey_needed:0
+msgid "Yes"
+msgstr ""
+
+#. module: markant_installation
+#: model_terms:ir.ui.view,arch_db:markant_installation.view_installation_form_form
+msgid "ZIP"
+msgstr "Postcode"
+
+#. module: markant_installation
+#: model:ir.model.fields,field_description:markant_installation.field_markant_installation_form__zip
+msgid "Zip"
+msgstr "Postcode"
+
+#. module: markant_installation
+#: model:ir.model,name:markant_installation.model_return_good_line
+msgid "return.good.line"
+msgstr ""
+

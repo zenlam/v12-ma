@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="markant_project_create_sale_order_view_form" model="ir.ui.view">
+        <field name="name">markant.project.create.sale.order.wizard.form</field>
+        <field name="model">project.create.sale.order</field>
+        <field name="inherit_id" ref="sale_timesheet.project_create_sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="so_commitment_date" required="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

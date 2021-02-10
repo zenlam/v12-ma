@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_carrier_user,access_carrier_user,model_carrier,base.group_user,1,0,0,0
+access_survey_user,access_survey_user,model_survey,base.group_user,1,0,0,0
+access_survey_manager,access_survey_manager,model_survey,base.group_system,1,1,1,1
+access_carrier_restrict,access_carrier_restrict,model_carrier,markant_survey.group_markant_create_edit_carrier,1,1,1,1

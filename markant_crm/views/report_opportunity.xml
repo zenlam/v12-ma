@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_opportunity">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br/>
+                        <div class="oe_structure"/>
+                        <h2>Opportunity Report by Currency</h2>
+
+                        <div class="mt32 mb32" id="informations"
+                             style="padding-left: 10px;">
+                            <div class="row">
+                                <div t-if="o.user_id" class="col-xs-3">
+                                    <strong>Salesperson:</strong>
+                                    <p t-field="o.user_id.name"/>
+                                </div>
+                                <div t-if="o.dealer_id" class="col-xs-3">
+                                    <strong>Dealer:</strong>
+                                    <p t-field="o.dealer_id.name"/>
+                                </div>
+                                <div t-if="o.influencer_id" class="col-xs-3">
+                                    <strong>Influencer:</strong>
+                                    <p t-field="o.influencer_id.name"/>
+                                </div>
+                                <div t-if="o.stage_ids" class="col-xs-3">
+                                    <strong>Stages:</strong>
+                                    <p t-esc="', '.join(o.stage_ids.mapped('name'))"/>
+                                </div>
+                                <div t-if="o.currency_ids" class="col-xs-3">
+                                    <strong>Currency:</strong>
+                                    <p t-esc="','.join(o.currency_ids.mapped('name'))"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div t-if="o.expected_revenue_from or o.expected_revenue_to"
+                                     class="col-xs-3">
+                                    <strong>Expected Revenue:</strong>
+                                    <table class="table">
+                                        <tr>
+                                            <td>From :
+                                                <p t-field="o.expected_revenue_from"/>
+                                            </td>
+                                            <br/>
+                                            <td>To :
+                                                <p t-field="o.expected_revenue_to"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.date_action_from and o.date_action_to"
+                                     class="col-xs-3">
+                                    <strong>Next Action:</strong>
+                                    <table class="table">
+                                        <tr>
+                                            <td>From:
+                                                <p t-field="o.date_action_from"/>
+                                            </td>
+                                            <td>To:
+                                                <p t-field="o.date_action_to"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.date_deadline_from and o.date_deadline_to"
+                                     class="col-xs-3">
+                                    <strong>Expected Closing:</strong>
+                                    <table class="table">
+                                        <tr>
+                                            <td>From:
+                                                <p t-field="o.date_deadline_from"/>
+                                            </td>
+                                            <td>To:
+                                                <p t-field="o.date_deadline_to"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <t t-if="not o.user_id">
+                                        <th>Sales person</th>
+                                    </t>
+                                    <th>Subject</th>
+                                    <th class="text-right">Expected Revenue
+                                    </th>
+                                    <t t-if="not o.other_currency_id">
+                                        <th>Currency</th>
+                                    </t>
+                                    <t t-if="o.in_base_currency and not o.other_currency_id">
+                                        <th class="text-right">Expected Revenue
+                                            in Base(<span
+                                                    t-esc="o.env.user.company_id.currency_id.name"/>
+                                            )
+                                        </th>
+                                    </t>
+                                    <t t-if="o.other_currency_id and o.in_base_currency">
+                                        <th class="text-right">Expected Revenue
+                                            in Base(<span
+                                                    t-esc="o.env.user.company_id.currency_id.name"/>
+                                            )
+                                        </th>
+                                    </t>
+                                    <th>Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-set="lines" t-value="o.get_oppo_lines()"/>
+                                <tr t-foreach="lines" t-as="l">
+                                    <t t-if="not o.user_id">
+                                        <td>
+                                            <span t-esc="l['salesperson']"/>
+                                        </td>
+                                    </t>
+                                    <td>
+                                        <span t-esc="l['subject']"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="l['planned_revenue_other_currency']"/>
+                                    </td>
+                                    <t t-if="not o.other_currency_id">
+                                        <td>
+                                            <span t-esc="l['other_currency_id']"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="o.in_base_currency and not o.other_currency_id">
+                                        <td class="text-right">
+                                            <span t-esc="l['planned_revenue']"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="o.other_currency_id and o.in_base_currency">
+                                        <td class="text-right">
+                                            <span t-esc="l['planned_revenue']"/>
+                                        </td>
+                                    </t>
+                                    <td>
+                                        <span t-esc="l['stage']"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_packaging_config"
+              name="Packaging"
+              parent="stock.menu_stock_config_settings"
+              sequence="100"/>
+
+    <record id="stock_packaging_table_tree" model="ir.ui.view">
+        <field name="name">stock.packaging.tree</field>
+        <field name="model">stock.packaging.table.code.desc</field>
+        <field name="arch" type="xml">
+            <tree string="Packaging">
+                <field name="sequence" widget="handle" />
+                <field name="code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_packaging_table_form_view" model="ir.ui.view">
+        <field name="name">stock.packaging.form</field>
+        <field name="model">stock.packaging.table.code.desc</field>
+        <!--            <field eval="7" name="priority" />-->
+        <field name="arch" type="xml">
+            <form string="Packaging">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="toggle_active"
+                                icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="code"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_packaging_table_view_search" model="ir.ui.view">
+        <field name="name">stock.packaging.search</field>
+        <field name="model">stock.packaging.table.code.desc</field>
+        <field name="arch" type="xml">
+            <search string="Packaging">
+                <field name="code"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_packaging_table_form" model="ir.actions.act_window">
+        <field name="name">Packaging</field>
+        <field name="res_model">stock.packaging.table.code.desc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="stock_packaging_table_tree" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new packaging entry.
+            </p><p>
+            You can define here the packaging. These
+            packaging can be assigned to a Picking.
+        </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_packaging_sub_config"
+              action="action_packaging_table_form"
+              name="Packaging"
+              parent="markant_stock.menu_packaging_config"/>
+
+</odoo>

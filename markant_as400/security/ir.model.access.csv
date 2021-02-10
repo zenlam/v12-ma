@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_as400_product_manager,as400_product_manager,model_as400_product,base.group_system,1,1,1,1

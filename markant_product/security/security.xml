@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="group_attribute_values_config" model="res.groups">
+        <field name="name">Import Into Configure Variant List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!--
+        Users Groups by Markant Create Variant Manual (Server Action)
+    -->
+    <record id="group_markant_manual_product_variant_sa" model="res.groups">
+        <field name="name">Markant Create Manual Product Variant (Server Action)</field>
+    </record>
+
+</odoo>

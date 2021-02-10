@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resource_calendar_attendance_employee,resource.calendar.attendance.employee,resource.model_resource_calendar_attendance,base.group_user,1,1,1,1
+access_weely_hours_basis_employee,weekly.hours.basis.employee,markant_hr.model_weekly_hours_basis,base.group_user,1,1,1,1
+access_weekly_hours_basis_supervisor,weekly.hours.basis.supervisor,markant_hr.model_weekly_hours_basis,markant_hr_rights.group_hr_supervisor,1,1,1,1
+access_hr_holidays_supervisor,hr.holidays.superuser,hr_holidays.model_hr_leave,markant_hr_rights.group_hr_supervisor,1,1,1,1
+access_hr_holidays_status_supervisor,hr.holidays.status.superuser,hr_holidays.model_hr_leave_type,markant_hr_rights.group_hr_supervisor,1,1,1,1

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_markant_order_cycle_user,access_markant_order_cycle_user,model_order_cycle,base.group_user,1,1,1,1

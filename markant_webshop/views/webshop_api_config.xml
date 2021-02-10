@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='markant_webshop_api_config_tree' model='ir.ui.view'>
+        <field name="name">markant.webshop.api.config.tree</field>
+        <field name="model">webshop.api.config</field>
+        <field name="arch" type="xml">
+            <tree string="Webshop Api Config">
+                <field name="api_party"/>
+                <field name="short_code"/>
+                <field name="api_url"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='markant_webshop_api_config_form' model='ir.ui.view'>
+        <field name="name">markant.webshop.api.config.form</field>
+        <field name="model">webshop.api.config</field>
+        <field name="arch" type="xml">
+            <form string="Webshop Api Config">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="test_api_connection"
+                                    type="object"
+                                    string="Test API Connection"
+                                    icon="fa-television"/>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="api_party"/>
+                            <field name="short_code"/>
+                            <field name="company_id"/>
+                            <field name="api_attempts"/>
+                            <field name="api_log_keeping"/>
+                        </group>
+                        <group>
+                            <field name="api_url"/>
+                            <field name="token"/>
+                            <field name="origin_code"/>
+                            <field name="api_company"/>
+                            <field name="api_warehouse"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="api_product" string="Product">
+                            <group>
+                                <group>
+                                    <field name="product_end_point"/>
+                                    <field name="brand_end_point"/>
+                                    <field name="uom_end_point"/>
+                                    <field name="product_category_end_point"/>
+                                    <field name="tree_category_end_point"/>
+                                    <field name="attribute_property_end_point"/>
+                                    <field name="attribute_list_end_point"/>
+                                    <field name="tag_end_point"/>
+                                    <field name="catalog_end_point"/>
+                                </group>
+                                <group>
+                                    <field name="sync_method"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="api_assets" string="Assets">
+                            <group>
+                                <group>
+                                    <field name="assets_end_point"/>
+                                    <field name="more_assets_path"/>
+                                </group>
+                                <group>
+                                    <field name="asset_sync_method"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="api_prices" string="Prices">
+                            <group>
+                                <group>
+                                    <field name="pricelist_end_point"/>
+                                </group>
+                                <group>
+                                    <field name="pricelist_sync_method"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="api_customers" string="Customers">
+                            <group>
+                                <group>
+                                    <field name="customer_end_point"/>
+                                </group>
+                                <group>
+                                    <field name="customer_sync_method"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="api_address" string="Address">
+                            <group>
+                                <group>
+                                    <field name="address_end_point"/>
+                                </group>
+                                <group>
+                                    <field name="address_sync_method"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="api_users" string="Users">
+                            <group>
+                                <group>
+                                    <field name="user_end_point"/>
+                                    <field name="default_web_id"/>
+                                </group>
+                                <group>
+                                    <field name="address_sync_method"/>
+                                    <field name="default_role_id"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='markant_webshop_api_config_action' model='ir.actions.act_window'>
+        <field name="name">Webshop Api Config</field>
+        <field name="res_model">webshop.api.config</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Webshop Api Config
+          </p>
+        </field>
+    </record>
+
+    <!-- Menu: API -->
+    <menuitem parent="base.menu_custom"
+              name="Markant: API"
+              id="menu_markant_webshop_api"/>
+
+    <menuitem parent="markant_webshop.menu_markant_webshop_api"
+              id="menu_markant_api_config"
+              action="markant_webshop_api_config_action" sequence="1"/>
+
+</odoo>

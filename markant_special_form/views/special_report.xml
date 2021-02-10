@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+            id="action_report_special"
+            string="Special Form"
+            model="markant.special.form"
+            report_type="qweb-pdf"
+            file="markant_special_form.report_special_form"
+            name="markant_special_form.report_special_form"
+    />
+
+    <template id="report_special_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+
+                        <div class="container">
+                            <div class="row mt16 mb16 col-xs-12">
+                                <h1>
+                                    <em t-field="doc.name"/>
+                                    <small t-field="doc.stage_id.name"/>
+                                </h1>
+                            </div>
+
+                            <div class="row mt16">
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Description: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.description"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Created By: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.create_uid"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Project: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.project_id"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>End User Name: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.end_user_id"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Dealer: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.dealer_id"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Submit Date: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.create_date"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Product Manager: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.product_manager_id"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Article Number: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.article_no"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Assigned to: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.assignee_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Product Line: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.product_line_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <span class="mt8 col-xs-6"><strong>Quantity: </strong></span>
+                                        <span class="mt8 col-xs-6" t-field="doc.quantity"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt16 col-xs-12">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h3><strong>General</strong></h3>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4><strong>&#160;Info: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.info"/>
+                                    </div>
+                                    <div t-if="doc.measurement != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Measurements: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.measurement"/>
+                                    </div>
+                                    <div t-if="doc.material != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Material: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.material"/>
+                                    </div>
+                                    <div t-if="doc.color != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Color: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.color"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h3><strong>Product Management</strong></h3>
+                                    </div>
+                                    <div t-if="doc.comments != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Comments: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.comments"/>
+                                    </div>
+                                    <div t-if="doc.purchase_comments != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Purchase Comments: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.purchase_comments"/>
+                                    </div>
+                                    <div t-if="doc.r_d_comments != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;R&amp;D Comments: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.r_d_comments"/>
+                                    </div>
+                                    <div t-if="doc.conclusion != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" class="col-xs-12">
+                                        <h4><strong>&#160;Conclusion: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.conclusion"/>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h4><strong>&#160;Gross Sale Price: </strong></h4>
+                                        <span class="mt8 col-xs-12" t-field="doc.gross_sale_price"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

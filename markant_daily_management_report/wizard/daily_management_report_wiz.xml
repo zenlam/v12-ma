@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="daily_management_report_wizard_view" model="ir.ui.view">
+        <field name="name">daily.management.report.wizard.view</field>
+        <field name="model">daily.management.report.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Daily Management Report">
+                <group>
+                    <field name="start_date"/>
+                </group>
+                <footer>
+                    <button name="action_print" string="Print" class="oe_highlight" type="object"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_daily_management_report_wiz" model="ir.actions.act_window">
+        <field name="name">Daily Management Report Wizard</field>
+        <field name="res_model">daily.management.report.wiz</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="target">new</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_daily_management_report_wiz"
+              name="Print Daily Management Report"
+              action="action_daily_management_report_wiz"
+              parent="sale.menu_sale_report"
+              sequence="4"/>
+</odoo>

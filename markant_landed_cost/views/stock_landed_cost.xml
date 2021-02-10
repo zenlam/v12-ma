@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_stock_landed_cost_form_inherit">
+        <field name="name">view.stock.landed.cost.form.inherit</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button type="object" string="Journal Items" name="action_view_journal_item" class="oe_stat_button" icon="fa-book"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='account_move_id']" position="after">
+                <field name="purchase_order_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

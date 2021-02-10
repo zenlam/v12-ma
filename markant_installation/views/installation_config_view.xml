@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View: Installation Stages -->
+    <record id="view_installation_stage_tree" model="ir.ui.view">
+        <field name="name">markant.installation.stage.tree</field>
+        <field name="model">markant.installation.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stages" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="enable_mail"/>
+                <field name="enable_preview"/>
+                <field name="enable_required"/>
+                <field name="top_lock"/>
+                <field name="bottom_lock"/>
+                <field name="cancel_stage"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View: Installation Type -->
+    <record id="view_installation_type_tree" model="ir.ui.view">
+        <field name="name">markant.installation.type.tree</field>
+        <field name="model">markant.installation.type</field>
+        <field name="arch" type="xml">
+            <tree string="Installation Type" editable="bottom">
+                <field name="name"/>
+                <field name="require_initial_so"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View: Calculation Type -->
+    <record id="view_calculation_type_tree" model="ir.ui.view">
+        <field name="name">markant.calculation.type.tree</field>
+        <field name="model">markant.calculation.type</field>
+        <field name="arch" type="xml">
+            <tree string="Calculation Type" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action: Stages -->
+    <record id="action_markant_installation_stage" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">markant.installation.stage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Action: Installation Type -->
+    <record id="action_markant_installation_type" model="ir.actions.act_window">
+        <field name="name">Installation Type</field>
+        <field name="res_model">markant.installation.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Action: Calculation Type -->
+    <record id="action_markant_calculation_type" model="ir.actions.act_window">
+        <field name="name">Calculation Type</field>
+        <field name="res_model">markant.calculation.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Main Menu for Markant Installation -->
+    <menuitem name="Installation" id="menu_markant_installation" sequence="69"
+              web_icon="markant_installation,static/description/icon.png"
+              groups="group_markant_installation_viewer"/>
+
+    <!-- Sub Menu: Configuration -->
+    <menuitem name="Configuration" id="menu_markant_installation_config"
+              sequence="20" groups="base.group_system"
+              parent="menu_markant_installation"/>
+
+    <!-- Sub Menu: Configuration > Stages -->
+    <menuitem name="Stages" id="menu_markant_installation_stage"
+              sequence="10" groups="base.group_system"
+              action="action_markant_installation_stage"
+              parent="menu_markant_installation_config"/>
+
+    <!-- Sub Menu: Configuration > Installation Type -->
+    <menuitem name="Installation Type" id="menu_markant_installation_type"
+              sequence="20" groups="base.group_system"
+              action="action_markant_installation_type"
+              parent="menu_markant_installation_config"/>
+
+    <!-- Sub Menu: Configuration > Calculation Type -->
+    <menuitem name="Calculation Type" id="menu_markant_calculation_type"
+              sequence="30" groups="base.group_system"
+              action="action_markant_calculation_type"
+              parent="menu_markant_installation_config"/>
+
+    <!-- Inherit Survey -->
+    <menuitem id="markant_survey.main_menu_survey_form" name="Survey Form"
+              groups="group_markant_installation_viewer"/>
+
+    <!-- Inherit Carrier -->
+    <menuitem id="markant_survey.menu_carrier" name="Carrier" parent="markant_survey.main_menu_survey_form"
+              groups="group_markant_installation_manager"/>
+
+</odoo>

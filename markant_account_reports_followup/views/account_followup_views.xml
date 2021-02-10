@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="markant_followup_view_mail_form">
+        <field name="name">markant.followup.mail.mail.form</field>
+        <field name="model">mail.mail</field>
+        <field name="inherit_id" ref="mail.view_mail_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scheduled_date']" position="after">
+                <field name="markant_followup_mail" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="markant_res_partner_followup_view_buttons">
+        <field name="name">res.partner.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_inline oe_stat_button" type="object" string="Followup Emails"
+                        attrs="{'invisible': [('customer', '=', False), ('end_user', '=', False )]}"
+                        name="followup_email_history" icon="fa-envelope-open"
+                        groups="account.group_account_user"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--
+        User Groups Category
+    -->
+    <record id="module_category_markant_special" model="ir.module.category">
+        <field name="name">Special Form</field>
+        <field name="sequence">103</field>
+    </record>
+
+    <!--
+        Users Groups by Markant Special Form
+    -->
+    <record id="group_markant_special_viewer" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_markant_special"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_markant_special_editor" model="res.groups">
+        <field name="name">Editor</field>
+        <field name="category_id" ref="module_category_markant_special"/>
+        <field name="implied_ids" eval="[(4, ref('group_markant_special_viewer'))]"/>
+    </record>
+
+    <record id="group_markant_special_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_markant_special"/>
+        <field name="implied_ids" eval="[(4, ref('group_markant_special_editor'))]"/>
+    </record>
+
+</odoo>

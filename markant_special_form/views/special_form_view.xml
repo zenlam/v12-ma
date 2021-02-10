@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Tree View for Special Form -->
+    <record id="view_special_form_tree" model="ir.ui.view">
+        <field name="name">markant.special.form.tree</field>
+        <field name="model">markant.special.form</field>
+        <field name="arch" type="xml">
+            <tree string="Special Form">
+                <field name="name"/>
+                <field name="stage_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View for Special Form-->
+    <record id="view_special_form_form" model="ir.ui.view">
+        <field name="name">markant.special.form.form</field>
+        <field name="model">markant.special.form</field>
+        <field name="arch" type="xml">
+            <form string="Special Form">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" class="oe_inline" readonly="1"/>
+                    </h1>
+
+                    <group>
+                        <group>
+                            <field name="description"/>
+                            <field name="create_uid" string="Created By" readonly="1"/>
+                            <field name="project_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="end_user_id" domain="[('end_user', '=', True)]" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="dealer_id" domain="[('customer', '=', True)]" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="create_date" string="Submit Date" readonly="1"/>
+                            <field name="product_manager_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="article_no"/>
+                            <field name="assignee_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="product_line_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="quantity"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="General">
+                            <group string="Info">
+                                <field name="info" nolabel="1"/>
+                            </group>
+
+                            <group string="Measurements">
+                                <field name="measurement" nolabel="1"/>
+                            </group>
+
+                            <group string="Material">
+                                <field name="material" nolabel="1"/>
+                            </group>
+
+                            <group string="Color">
+                                <field name="color" nolabel="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Product Management">
+                            <group string="Comments">
+                                <field name="comments" nolabel="1"/>
+                            </group>
+
+                            <group string="Purchase Comments">
+                                <field name="purchase_comments" nolabel="1"/>
+                            </group>
+
+                            <group string="R&amp;D Comments">
+                                <field name="r_d_comments" nolabel="1"/>
+                            </group>
+
+                            <group string="Conclusion">
+                                <field name="conclusion" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="gross_sale_price"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View: Special Form -->
+    <record id="markant_special_form_search" model="ir.ui.view">
+        <field name="name">markant.special.form.search</field>
+        <field name="model">markant.special.form</field>
+        <field name="arch" type="xml">
+            <search string="Search Special Form">
+                <field name="name" string="Document Number"/>
+                <field name="description"/>
+                <field name="assignee_id"/>
+                <field name="dealer_id"/>
+                <field name="end_user_id"/>
+                <field name="stage_id"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="end_user" string="End User" domain="[]" context="{'group_by':'end_user_id'}"/>
+                    <filter name="dealer" string="Dealer" domain="[]" context="{'group_by':'dealer_id'}"/>
+                    <filter name="stage" string="Stage" domain="[]" context="{'group_by':'stage_id'}"/>
+                    <filter name="assignee" string="Assignee" domain="[]" context="{'group_by':'assignee_id'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <!--Action for Special Form-->
+    <record id="action_markant_special_form" model="ir.actions.act_window">
+        <field name="name">Special Form</field>
+        <field name="res_model">markant.special.form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="markant_special_form.markant_special_form_search"/>
+    </record>
+
+    <!--Sub Menu for Special Form-->
+    <menuitem name="Special Form" id="menu_markant_special_form"
+              sequence="10" action="action_markant_special_form"
+              parent="markant_special_form.menu_markant_special"/>
+</odoo>

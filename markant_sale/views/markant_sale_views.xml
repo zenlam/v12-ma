@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Down Payment -->
+    <record id="view_sale_advance_payment_inv_markant_sale" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Sales Order">
+                <p class="oe_grey">
+                    Invoices will be created in draft so that you can review
+                    them before validation.
+                </p>
+                <group>
+                    <field name="count" invisible="[('count','=',1)]" readonly="True"/>
+                    <field name="advance_payment_method" class="oe_inline" widget="radio" invisible="1"/>
+                    <field name="advance_payment_method_temp" class="oe_inline" widget="radio"
+                           attrs="{'invisible': [('count','&gt;',1)]}"/>
+                    <field name="product_id"
+                           context="{'search_default_services': 1, 'default_type': 'service', 'default_invoice_policy': 'order'}" class="oe_inline"
+                           invisible="1"/>
+                    <label for="amount" attrs="{'invisible': [('advance_payment_method', 'not in', ('fixed','percentage'))]}"/>
+                    <div attrs="{'invisible': [('advance_payment_method', 'not in', ('fixed','percentage'))]}">
+                        <field name="amount"
+                               attrs="{'required': [('advance_payment_method', 'in', ('fixed','percentage'))]}" class="oe_inline" widget="monetary"/>
+                        <span
+                                attrs="{'invisible': [('advance_payment_method', '!=', 'percentage')]}" class="oe_inline">%</span>
+                    </div>
+                    <field name="deposit_account_id" class="oe_inline"
+                           attrs="{'invisible': ['|', ('advance_payment_method', 'not in', ('fixed', 'percentage')), ('product_id', '!=', False)]}" groups="account.group_account_manager"/>
+                    <field name="deposit_taxes_id" class="oe_inline" widget="many2many_tags"
+                           domain="[('type_tax_use','=','sale')]"
+                           attrs="{'invisible': ['|', ('advance_payment_method', 'not in', ('fixed', 'percentage')), ('product_id', '!=', False)]}"/>
+                </group>
+                <footer>
+                    <button name="create_invoices" string="Create and View Invoices" type="object"
+                            context="{'open_invoices': True}" class="btn-primary"/>
+                    <button name="create_invoices" string="Create Invoices" type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_sale_advance_payment_inv_markant_sale" model="ir.actions.act_window">
+        <field name="name">Invoice Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.advance.payment.inv</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_sale_advance_payment_inv_markant_sale"/>
+        <!-- <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman'))]"/> -->
+        <!-- TODO: check if we need this -->
+        <!-- <field name="binding_model_id" ref="sale.model_sale_order" /> -->
+    </record>
+
+    <record id="markant_downpayment_email_alert_tree_view" model="ir.ui.view">
+        <field name="name">Down-Payment Alert</field>
+        <field name="model">downpayment.email.alert</field>
+        <field name="arch" type="xml">
+            <tree string="Down-Payment Alert" editable="bottom">
+                <field name="name" options="{'no_create': True}"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_downpayment_email_alert_form_view" model="ir.ui.view">
+        <field name="name">Down-Payment Alert</field>
+        <field name="model">downpayment.email.alert</field>
+        <field name="arch" type="xml">
+            <form string="Down-Payment Alert">
+                <sheet string="Down-Payment Alert">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="markant_downpayment_email_alert_action" model="ir.actions.act_window">
+        <field name="name">Down-Payment Alert</field>
+        <field name="res_model">downpayment.email.alert</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="markant_downpayment_email_alert_menu" name="Down-Payment Alert"
+              action="markant_downpayment_email_alert_action"
+              parent="base.menu_email"/>
+    <!-- End down Payment -->
+
+    <record id="markant_sale_order_form_quote" model="ir.ui.view">
+        <field name="name">markant.sale.order.form.payment</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_option_ids']/tree//field[@name='sequence']" position="after">
+                <field name="product_image_small" widget="image" class="oe_avatar"/>
+            </xpath>
+            <xpath expr="//page/field[@name='sale_order_option_ids']" position="attributes">
+                <attribute name="widget">section_and_note_one2many</attribute>
+            </xpath>
+            <xpath expr="//page/field[@name='sale_order_option_ids']/tree/control" position="inside">
+                <create string="Configure a product" context="{'open_product_configurator': True}" groups="product.group_product_variant"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_sale_order_option_form_view" model="ir.ui.view">
+        <field name="name">markant.sale.order.option.form.view</field>
+        <field name="model">sale.order.option</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="uom_id" groups="uom.group_uom"/>
+                            <field name="price_unit"/>
+                            <field name="discount" groups="sale.group_discount_per_so_line"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+    <record id="view_sale_order_form_inherit_markant_sale" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.markant.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <!-- Installation Tab-->
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                        name="action_view_installation"
+                        class="oe_stat_button"
+                        icon="fa-cog"
+                        attrs="{'invisible': [('installation_count', '=', 0)]}" groups="base.group_user">
+                    <field name="installation_count" widget="statinfo" string="Installations"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="installation_checked" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="after">
+                <page string="Installation" name="installation"
+                      attrs="{'invisible': ['|', ('installation_checked', '!=', True), ('state', '!=', 'draft')]}">
+                    <group>
+                        <group>
+                            <label for="inst_from_proposed_date" string="Proposed Date"/>
+                            <div>
+                                <field name="inst_from_proposed_date" class="oe_inline"/>
+                                <span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>
+                                <field name="inst_to_proposed_date" class="oe_inline"/>
+                            </div>
+
+                            <label for="inst_from_planned_date" string="Planned Date"/>
+                            <div>
+                                <field name="inst_from_planned_date" class="oe_inline"/>
+                                <span><strong>&amp;nbsp; To &amp;nbsp;</strong></span>
+                                <field name="inst_to_planned_date" class="oe_inline"/>
+                            </div>
+
+                            <field name="inst_survey_necessary"/>
+                            <field name="inst_survey_id" attrs="{'invisible': [('inst_survey_necessary', '!=', 'yes')]}" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="inst_survey_date" attrs="{'invisible': [('inst_survey_necessary', '!=', 'yes')]}"/>
+                            <field name="inst_staircase_avail"/>
+                            <field name="inst_lift_available"/>
+                            <field name="inst_distance_place_unloading"/>
+                            <field name="inst_any_empty_clean_zone"/>
+                            <field name="inst_total_number_floors"/>
+                            <field name="calculation_type_id"/>
+                        </group>
+                        <group>
+                            <field name="inst_floor_of_installation"/>
+                            <field name="inst_site_drawing_avail"/>
+                            <field name="inst_drawing_included"/>
+                            <field name="inst_pre_assembly"/>
+                            <field name="inst_back_order"/>
+                            <field name="inst_installation_type_id"/>
+                            <field name="inst_require_initial_so" invisible="1"/>
+                            <field name="inst_initial_so_id" attrs="{'required': [('inst_require_initial_so', '=', True)], 'invisible': [('inst_require_initial_so', '=', False)]}"
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="inst_note"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <!-- Make the client order ref fields required on the UI level only-->
+            <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="installation_form_ids" widget="many2many_tags"
+                       options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+            </xpath>
+
+            <!-- Sheet Full width -->
+            <xpath expr="//form" position="attributes">
+                <attribute name="class">o_sheet_width</attribute>
+            </xpath>
+            <!-- End Sheet Full width -->
+
+            <!-- Move tax_id after the subtotal , so first remove and then change -->
+            <xpath expr="//field[@name='order_line']//tree//field[@name='tax_id']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="after">
+                <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                <field name="margin_in_per" string="Margin (%)"/>
+            </xpath>
+
+            <!-- Add new field gross total before the discount field -->
+            <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="before">
+                <field name="price_gross_total"/>
+                <field name="is_project_discount_line" invisible="1"/>
+                <field name="is_min_admin_cost_rule_line" invisible="1"/>
+                <field name="is_montage_install_rule_line" invisible="1"/>
+            </xpath>
+
+            <!-- Note in Sum section -->
+            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="before">
+
+                <div class="oe_right" style="color:blue;">NOTE : Gross Total &amp; Total Discount Lines Exclude Project Discount, Installation and Administration.
+                </div>
+                <div class="oe_clear"/>
+                <group>
+                    <group>
+                        <label for="is_project_discount" style="font-weight: bold;"/>
+                        <div class="o_row">
+
+                            <field name="is_project_discount" attrs="{'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                            <button name="update_project_discount" type="object" class="oe_inline oe_link" attrs="{'invisible':['|', ('is_project_discount','=',False), ('state','in', ['sent', 'sale','done', 'cancel'])]}"><i class="fa fa-arrow-right"/> Add to order</button>
+                        </div>
+
+                        <field name="project_discount_type" attrs="{'invisible':[('is_project_discount', '=', False)], 'required':[('is_project_discount', '=', True)], 'readonly': [('state', 'in', ['disc_approv', 'sent', 'sale', 'done', 'cancel'])]}"/>
+                        <field name="project_discount_amount" attrs="{'invisible':[('is_project_discount', '=', False)], 'required':[('is_project_discount', '=', True)],
+                        'readonly': [('state', 'in', ['disc_approv', 'sent', 'sale', 'done', 'cancel'])]}"/>
+                        <field name="project_discount_apply_on" attrs="{'invisible':['|', ('project_discount_type', '!=', 'percentage'), ('is_project_discount', '=', False)], 'required':[('is_project_discount', '=', True), ('project_discount_type', '=', 'percentage')], 'readonly': [('state', 'in', ['disc_approv', 'sent', 'sale', 'done', 'cancel'])]}"/>
+                    </group>
+                    <group class="oe_subtotal_footer" style="margin-bottom: 0px;border-top: 0px;" name="sale_markant_total">
+                        <field name="amount_gross_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_discount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_subtotal_total"/>
+                        </div>
+                        <field name="amount_subtotal_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_project_disc_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_installation_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_admin_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </group>
+
+                <div class="oe_clear"/>
+            </xpath>
+
+            <!-- Project Discount Approval Flow  -->
+            <xpath expr="//button[@id='action_confirm']" position="before">
+                <button name="action_submit_aprroval" id="action_submit_aprroval"
+                        string="Submit Approval" class="btn-primary" type="object"
+                        attrs="{'invisible': ['|', ('is_project_discount', '=', False), ('state', 'not in', ['draft'])]}"/>
+                <button name="action_pd_approve" id="action_pd_approve"
+                        string="Approve" class="btn-primary" type="object"
+                        attrs="{'invisible': ['|', ('is_project_discount', '=', False), ('state', 'not in', ['draft_disc_approv'])]}" groups="markant_sale.group_approve_project_discount"/>
+                <button name="action_pd_reject" id="action_pd_reject"
+                        string="Reject" class="btn-primary" type="object"
+                        attrs="{'invisible': ['|', ('is_project_discount', '=', False), ('state', 'not in', ['draft_disc_approv'])]}" groups="markant_sale.group_approve_project_discount"/>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+                <attribute name="attrs">{'invisible':  ['|', '&amp;', ('is_project_discount', '=', True), '|','&amp;',('is_abandoned_cart', '=', True), ('cart_recovery_email_sent', '=', False), ('state', 'not in', ['disc_approv']), '&amp;', ('is_project_discount', '=' , False), '|','&amp;',('is_abandoned_cart', '=', True), ('cart_recovery_email_sent', '=', False), ('state', 'not in', ['draft'])]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][2]" position="attributes">
+                <attribute name="attrs">{'invisible':  ['|', ('is_project_discount', '=', True), '&amp;', ('is_project_discount', '=' , False), '|' ,('state', 'not in', ['draft']), ('invoice_count','&gt;=',1)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][3]" position="attributes">
+                <attribute name="attrs">{'invisible':  ['|', '&amp;', ('is_project_discount', '=', True), ('state', 'in', ['draft','disc_approv', 'disc_rej', 'draft_disc_approv', 'cancel']), '&amp;', ('is_project_discount', '=' , False), '|', ('state', 'in', ['draft']), ('invoice_count','&gt;=',1)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+                <attribute name="states"></attribute>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation'][1]" position="attributes">
+                <attribute name="attrs">{'invisible':  ['|', '&amp;', ('is_project_discount', '=', True), ('state', 'not in', ['disc_approv']), '&amp;', ('is_project_discount', '=' , False), ('state', 'not in', ['draft'])]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation'][1]" position="attributes">
+                <attribute name="states"></attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="attrs">{'invisible':  ['|', '&amp;', ('is_project_discount', '=', True), ('state', 'not in', ['disc_approv']), '&amp;', ('is_project_discount', '=' , False), ('state', 'not in', ['draft'])]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='preview_sale_order']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_project_discount', '=', True), ('state', 'in', ['draft', 'draft_disc_approv', 'disc_rej', 'cancel'])]}</attribute>
+            </xpath>
+
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,draft_disc_approv,disc_rej,disc_approv,sent,sale</attribute>
+            </field>
+            <xpath expr="//button[@name='action_cancel'][1]" position="attributes">
+                <attribute name="states">draft,draft_disc_approv,disc_rej,disc_approv,sent,sale</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_draft'][1]" position="attributes">
+                <attribute name="states"></attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Min Administration Rule -->
+            <xpath expr="//sheet//group[1]" position="after">
+                <group style="margin-top: 0px;">
+                    <group style="margin-bottom: 5px;">
+                        <div>
+                            <label for="is_min_admin_cost_rule" style="font-weight: bold;"/>
+                            <field name="is_min_admin_cost_rule" class="oe_inline"  attrs="{'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                            <button name="update_min_admin_cost_rule" type="object" class="oe_inline oe_link" attrs="{'invisible':['|', ('is_min_admin_cost_rule','=',False), ('state','in', ['sent', 'sale','done', 'cancel'])]}"><i class="fa fa-arrow-right"/> Add to order</button>
+                        </div>
+                    </group>
+                    <group style="margin-bottom: 5px;">
+                        <div>
+                            <label for="is_montage_install_rule" style="font-weight: bold;"/>
+                            <field name="is_montage_install_rule" class="oe_inline" attrs="{'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                        </div>
+                    </group>
+                    <group style="margin-top: 0px">
+                        <field name="admin_cost_rule_min_amount" attrs="{'invisible':[('is_min_admin_cost_rule', '=', False)], 'required':[('is_min_admin_cost_rule', '=', True)],
+                        'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                        <field name="admin_cost_rule_admin_amount" attrs="{'invisible':[('is_min_admin_cost_rule', '=', False)], 'required':[('is_min_admin_cost_rule', '=', True)],
+                        'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                        <field name="admin_cost_rule_apply_on" attrs="{'invisible':[('is_min_admin_cost_rule', '=', False)], 'required':[('is_min_admin_cost_rule', '=', True)],
+                        'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+
+                    </group>
+                    <group style="margin-top: 0px">
+                        <label for="montage_install_rule_id" style="font-weight: bold;" attrs="{'invisible':[ ('is_montage_install_rule','=',False)], 'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                        <div name="montage_selection">
+                            <div>
+                                <field name="montage_install_rule_id" attrs="{'invisible':[('is_montage_install_rule', '=', False)], 'required':[('is_montage_install_rule', '=', True)], 'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                                <i class="fa fa-check text-success" role="img" aria-label="Rating OK" title="Rating OK" attrs="{'invisible':['|','|',('montage_install_rule_id','=',False),('is_montage_install_rule','=', False),('montage_install_rule_price','=',0.0)]}"></i>
+                            </div>
+                            <div>
+                                <field name='montage_install_rule_price' widget='monetary' class="oe_inline" options="{'currency_field': 'currency_id'}" nolabel="1" attrs="{'invisible':['|', ('is_montage_install_rule','=',False), ('montage_install_rule_id','=',False)]}" force_save="1"/>
+                                <button name="get_montage_installation_price" type="object" class="oe_inline oe_link" attrs="{'invisible':['|', '|', ('is_montage_install_rule','=',False), ('montage_install_rule_id','=',False), ('state','in', ['sent', 'sale','done', 'cancel'])]}" context="{'no_add_mont_installtion_cost':True}"><i class="fa fa-arrow-right"/> Get rate</button>
+                                <button name="set_montage_installation_price" type="object" class="oe_inline oe_link" attrs="{'invisible':['|', '|', '|', ('is_montage_install_rule','=',False), ('montage_install_rule_id','=',False), ('montage_install_rule_price','=',0.0), ('state','in', ['sent', 'sale','done', 'cancel'])]}"><i class="fa fa-arrow-right"/> Add to order</button>
+                            </div>
+                            <div class="alert alert-info" role="status" attrs="{'invisible': ['|',('is_montage_install_rule','=', False),('montage_install_rule_message','=',False)]}">
+                                <field name='montage_install_rule_message' force_save="1"/>
+                            </div>
+                        </div>
+                        <field name="montage_install_multiple_of" attrs="{'invisible':[('is_montage_install_rule', '=', False)], 'required':[('is_montage_install_rule', '=', True)], 'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                        <field name="montage_install_level_of_floor" attrs="{'invisible':[('is_montage_install_rule', '=', False)], 'required':[('is_montage_install_rule', '=', True)], 'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <!-- Inherit related Order Cycle -->
+            <field name="payment_term_id" position="after">
+                <field name="sale_order_cycle_id" attrs="{'invisible':[('apply_order_cycle', '=', False)], 'required':[('apply_order_cycle', '=', True)], 'readonly': [('state', 'in', ['sent', 'sale', 'done', 'cancel'])]}"/>
+                <field name="apply_order_cycle" invisible="1"/>
+                <field name="sale_order_cycle_prefix" invisible="1"/>
+            </field>
+            <field name="pricelist_id" position="after">
+                <field name="carrier_name_id" required="True"/>
+            </field>
+
+            <field name="name" position="after">
+                <field name="name" invisible="1"/>
+            </field>
+
+            <field name="partner_shipping_id" position="after">
+                <field name="report_to_send" required="1"/>
+            </field>
+
+            <!-- Apply the group on the lock and unlock button -->
+            <xpath expr="//button[@name='action_done']" position="attributes">
+                <attribute name="groups">markant_sale.group_markant_lock_unlock_access</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_unlock']" position="attributes">
+                <attribute name="groups">markant_sale.group_markant_lock_unlock_access</attribute>
+            </xpath>
+
+            <xpath expr="//control/create[3]" position="attributes">
+                <attribute name="string">Add an Order Point</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='order_lines']//field[@name='note']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='order_lines']//field[@name='note']" position="after">
+                <group>
+                    <label for="terms_note" class="oe_inline"/>
+                    <br/>
+                    <div>
+                        <field name="terms_note"/>
+                    </div>
+                </group>
+            </xpath>
+
+
+            <!-- Need Down Payment  -->
+            <field name="partner_shipping_id" position="after">
+                <field name="require_down_payment"/>
+                <field name="downpayment_invoice_id" invisible="1"/>
+                <field name="is_downpayment_paid" readonly="1"/>
+
+            </field>
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="before">
+                <button name="%(markant_sale.action_view_sale_advance_payment_inv_markant_sale)d"
+                        type="action"
+                        string="Create Down-Payment Invoice"
+                        class="btn-primary"
+                        attrs="{'invisible':  ['|', '|', ('require_down_payment', '=', False), '&amp;', ('require_down_payment', '=', True), ('downpayment_invoice_id', '!=', False), '&amp;', ('require_down_payment', '=' , True), ('state', 'not in', ['draft','sent', 'disc_approv', 'sale'])]}"
+                        context="{'markant_down_payment':True}"/>
+            </xpath>
+
+            <!-- Add Filter on delivery and invoice address based on organization -->
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="domain">[('id', 'child_of', [partner_id])]</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="domain">[('id', 'child_of', [partner_id])]</attribute>
+            </field>
+            <!-- End Filter -->
+
+
+            <field name="user_id" position="after">
+                <field name="contact_person_id"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Montage and Installation Rule Views -->
+    <record id="markant_montage_installation_rule_tree_view" model="ir.ui.view">
+        <field name="name">Delivery and Installation Tree</field>
+        <field name="model">montage.installation.rule</field>
+        <field name="arch" type="xml">
+            <tree string="Delivery and Installation">
+                <field name="name"/>
+                <field name="condition"/>
+                <field name="service_product_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_montage_installation_rule_form_view" model="ir.ui.view">
+        <field name="name">Delivery and Installation Form</field>
+        <field name="model">montage.installation.rule</field>
+        <field name="arch" type="xml">
+            <form string="Delivery and Installation">
+                <sheet string="Delivery and Installation">
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="condition" widget="radio"/>
+                            <field name="get_rate" attrs="{'invisible': [('condition', '=', 'fixed_price')], 'required': [('condition', '=', 'based_on_rule')]}"/>
+                            <field name="based_on" attrs="{'invisible': [('condition', '=', 'fixed_price')], 'required': [('condition', '=', 'based_on_rule')]}"/>
+                        </group>
+                        <group>
+                            <field name="service_product_id" context="{'default_type': 'service'}"/>
+                            <label for="charges_level"/>
+                            <div class="o_row">
+                                <field name="charges_level" /> <span attrs="{'invisible': ['|', '&amp;', ('condition', '=', 'fixed_price'), ('condition', '=', 'based_on_rule'), ('get_rate', '=', 'fixed')]}">% </span>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pricing" name="pricing">
+                            <group attrs="{'invisible': [('condition', '=', 'based_on_rule')]}">
+                                <group >
+                                    <field name="price" attrs="{'required': [('condition', '=', 'fixed_price')]}"/>
+                                </group>
+                                <group >
+                                </group>
+                            </group>
+                            <field name="mont_install_pricing_rule_ids" attrs="{'invisible': [('condition', '=', 'fixed_price')]}">
+                                <tree editable="bottom">
+                                    <field name="price_more_than" string="Greater than"/>
+                                    <field name="price_less_than_eqto" string="Less than or equal to"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="markant_montage_installation_rule_search_view" model="ir.ui.view">
+        <field name="name">Delivery and Installation Search</field>
+        <field name="model">montage.installation.rule</field>
+        <field name="arch" type="xml">
+            <search string="Search Delivery and Installation">
+                <field name="name"/>
+                <field name="service_product_id"/>
+                <field name="condition"/>
+                <field name="get_rate"/>
+                <field name="based_on"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="markant_montage_installation_rule_action" model="ir.actions.act_window">
+        <field name="name">Delivery and Installation</field>
+        <field name="res_model">montage.installation.rule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="markant_montage_installation_rule_search_view"/>
+    </record>
+
+    <menuitem id="markant_montage_installation_rule_menu" name="Delivery and Installation"
+              action="markant_montage_installation_rule_action"
+              parent="sale.menu_sales_config"/>
+    <!-- End Montage and Installation Rule Views -->
+
+    <menuitem name="Carrier" id="sale_menu_carrier"
+              action="markant_survey.action_carrier"
+              parent="sale.menu_sale_config"/>
+
+</odoo>

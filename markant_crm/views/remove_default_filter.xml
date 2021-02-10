@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- remove default filter of activities analysis -->
+    <record id="crm.crm_activity_report_action" model="ir.actions.act_window">
+        <field name="context"/>
+    </record>
+
+    <!-- remove default filter of sale channels -->
+    <record id="sales_team.crm_team_salesteams_act" model="ir.actions.act_window">
+        <field name="context"/>
+    </record>
+
+    <!-- remove default filter of pipeline analysis -->
+    <record id="crm.crm_opportunity_report_action" model="ir.actions.act_window">
+        <field name="context">{'active_test': True}</field>
+    </record>
+
+    <!-- remove default filter of customer -->
+    <record id="base.action_partner_form" model="ir.actions.act_window">
+        <field name="context"/>
+    </record>
+
+    <!-- remove default filter of opp -->
+    <record model="ir.actions.act_window" id="crm.crm_lead_opportunities_tree_view">
+        <field name="context">{'default_type': 'opportunity', 'default_user_id': uid}</field>
+    </record>
+
+</odoo>

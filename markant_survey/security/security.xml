@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Restrict creation/edit carrier-->
+    <record id="group_markant_create_edit_carrier" model="res.groups">
+        <field name="name">Create/ Edit Carrier</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</odoo>

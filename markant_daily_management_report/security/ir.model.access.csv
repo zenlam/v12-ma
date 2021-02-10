@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_daily_management_report,access_daily_management_report,markant_daily_management_report.model_daily_management_report_list,,1,1,1,1

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="survey_form_view" model="ir.ui.view">
+        <field name="name">survey.form.view</field>
+        <field name="model">survey</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="creation_date" readonly="1"/>
+                            <field name="so_number"/>
+                        </group>
+                        <group>
+                            <field name="created_by" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Info" name="main_info">
+                            <group string="Dealer" name="dealer">
+                                <group>
+                                    <field name="dealer_partner_id" domain="[('customer', '=', True)]"/>
+                                    <label for="street" string="Address"/>
+                                    <div class="o_address_format">
+                                        <field name="dealer_street" placeholder="Street..." class="o_address_street" />
+                                        <field name="dealer_street2" placeholder="Street 2..." class="o_address_street" />
+                                        <field name="dealer_city" placeholder="City" class="o_address_city" />
+                                        <field name="dealer_state_id" class="o_address_state" placeholder="State" options="{'no_open': True}" context="{'country_id': dealer_country_id, 'zip': dealer_zip}"/>
+                                        <field name="dealer_zip" placeholder="ZIP" class="o_address_zip" />
+                                        <field name="dealer_country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}" />
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="dealer_contact_person" domain="[('parent_id', '=', dealer_partner_id)]"/>
+                                    <field name="dealer_email"/>
+                                    <field name="dealer_phone"/>
+                                </group>
+                            </group>
+                            <group string="End User" name="end_user">
+                                <group>
+                                    <field name="end_user_partner_id" domain="[('end_user', '=', True)]"/>
+                                    <label for="street" string="Address"/>
+                                    <div class="o_address_format">
+                                        <field name="end_user_street" placeholder="Street..." class="o_address_street" />
+                                        <field name="end_user_street2" placeholder="Street 2..." class="o_address_street" />
+                                        <field name="end_user_city" placeholder="City" class="o_address_city" />
+                                        <field name="end_user_state_id" class="o_address_state" placeholder="State" options="{'no_open': True}" context="{'country_id': end_user_country_id, 'zip': end_user_zip}"/>
+                                        <field name="end_user_zip" placeholder="ZIP" class="o_address_zip" />
+                                        <field name="end_user_country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}" />
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="end_user_contact_person" domain="[('parent_id', '=', end_user_partner_id)]"/>
+                                    <field name="end_user_email"/>
+                                    <field name="end_user_phone"/>
+                                    <field name="google_map_url" widget="url"/>
+                                </group>
+                            </group>
+                            <group string="Planning" name="planning">
+                                <group>
+                                    <field name="mechanic"/>
+                                </group>
+                                <group>
+                                    <field name="google_drive" widget="url"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Survey of Site" name="survey_of_site">
+                            <group string="Licenses" name="licenses">
+                                <group>
+                                    <field name="vca_certification" required="1"/>
+                                </group>
+                            </group>
+                            <group string="Vehicle / Equipment" name="vehicle_equipment">
+                                <group>
+                                    <field name="accessibility_transport"/>
+                                    <field name="trailer" required="1"/>
+                                    <field name="trailer_load_value" attrs="{'invisible': [('trailer', '!=', 'yes')]}"/>
+                                    <field name="trailer_with_tailgate" attrs="{'invisible': [('trailer', '!=', 'yes')], 'required': [('trailer', '=', 'yes')]}"/>
+                                </group>
+                                <group>
+                                    <field name="small_truck" required="1"/>
+                                    <field name="truck" required="1"/>
+                                    <field name="coach" required="1"/>
+                                </group>
+                            </group>
+                            <group string="Loading Site Survey" name="site_survey">
+                                <group>
+                                    <group col="3" colspan="2">
+                                        <field name="distance_place_unloading"/>
+                                        <field name="distance_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="distance_load_dock" required="1"/>
+                                </group>
+                                <group colspan="4">
+                                    <field name="photo_site" widget="url"/>
+                                    <field name="photo_description"/>
+                                    <field name="video" widget="url"/>
+                                    <field name="obstacle" required="1"/>
+                                    <field name="obstacle_description" attrs="{'invisible': [('obstacle', '!=', 'yes')]}"/>
+                                </group>
+                            </group>
+                            <group string="Entry Object Infomation" name="entry_object" col="6">
+                                <field name="entry_object_length" />
+                                <field name="entry_object_with" />
+                                <field name="entry_object_height" />
+                            </group>
+                            <group string="Time Constraints" name="time_constraints">
+                                <group>
+                                    <group col="5" colspan="2">
+                                        <span style="font-weight: bold">Tuning and Loading Time</span>
+                                        <field name="tuning_loading_time_from" widget="float_time"/>
+                                        <field name="tuning_loading_time_to" widget="float_time"/>
+                                    </group>
+                                    <group col="2" colspan="2">
+                                      <field name="available_working_hours"/>
+                                    </group>
+                                    <group col="5" colspan="2" attrs="{'invisible': [('available_working_hours', '!=', 'yes')]}">
+                                        <span style="font-weight: bold">Available Working Hours</span>
+                                        <field name="available_working_hours_from" widget="float_time" />
+                                        <field name="available_working_hours_to" widget="float_time" />
+                                    </group>
+                                    <group col="2" colspan="2" attrs="{'invisible': [('available_working_hours', '!=', 'yes')]}">
+                                      <field name="difference_available_time" widget="color" options="{'readonly_mode': 'color'}"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Buffer Zone" name="buffer_zone">
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="any_buffer_zone" required="1"/>
+                                        <field name="buffer_zone_length" widget="upgrade_integer" attrs="{'invisible': [('any_buffer_zone', '!=', 'yes')], 'required': [('any_buffer_zone', '=', 'yes')]}"/>
+                                        <field name="buffer_zone_width" widget="upgrade_integer" attrs="{'invisible': [('any_buffer_zone', '!=', 'yes')], 'required': [('any_buffer_zone', '=', 'yes')]}"/>
+                                        <field name="buffer_zone_height" widget="upgrade_integer" attrs="{'invisible': [('any_buffer_zone', '!=', 'yes')], 'required': [('any_buffer_zone', '=', 'yes')]}"/>
+                                    </group>
+                                    <group col="3" colspan="2" attrs="{'invisible': [('any_buffer_zone', '!=', 'yes')]}">
+                                        <field name="distance_buffer_zone" />
+                                        <field name="distance_buffer_zone_uom" domain="[('category_id.is_length', '=', True)]" nolabel="1"/>
+                                    </group>
+                                    <group col="2" colspan="2" attrs="{'invisible': [('any_buffer_zone', '!=', 'yes')]}">
+                                        <field name="photo_buffer_zone" widget="url" />
+                                        <field name="waste_buffer_zone" attrs="{'required': [('any_buffer_zone', '=', 'yes')]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Lift Condition" name="lift_condition">
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="lift_available" required="1"/>
+                                    </group>
+                                    <group col="3" colspan="3" attrs="{'invisible': [('lift_available', '!=', 'yes')]}">
+                                        <field name="size_lift_length" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="size_lift_length_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="size_lift_depth" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="size_lift_depth_uom" nolabel="1" domain="[('category_id.is_depth', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="size_lift_height" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="size_lift_height_uom" nolabel="1" domain="[('category_id.is_hight', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                    </group>
+                                    <group col="2" colspan="2">
+                                        <field name="moving_lift_available" required="1"/>
+                                    </group>
+                                    <group col="3" colspan="3" attrs="{'invisible': [('moving_lift_available', '!=', 'yes')]}">
+                                        <field name="size_moving_lift_length" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="size_moving_lift_length_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="size_moving_lift_depth" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="size_moving_lift_depth_uom" nolabel="1" domain="[('category_id.is_depth', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="size_moving_lift_height" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="size_moving_lift_height_uom" nolabel="1" domain="[('category_id.is_hight', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                    </group>
+                                    <group col="2" colspan="2">
+                                        <field name="lift_protection" required="1"/>
+                                        <field name="staircase_available" required="1"/>
+                                        <field name="type_staircase" widget="image" attrs="{'invisible': [('staircase_available', '!=', 'yes')]}"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="lift_qty_lift" attrs="{'invisible': [('lift_available', '!=', 'yes')]}"/>
+                                    </group>
+                                    <group col="3" colspan="3" attrs="{'invisible': [('lift_available', '!=', 'yes')]}">
+                                        <field name="lift_load_capacity" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="lift_load_capacity_uom" nolabel="1" domain="[('category_id.is_weight', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="lift_opening_length" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="lift_opening_length_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="lift_opening_height" widget="upgrade_integer" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                        <field name="lift_opening_height_uom" nolabel="1" domain="[('category_id.is_hight', '=', True)]" attrs="{'required': [('lift_available', '=', 'yes')]}"/>
+                                    </group>
+                                    <!-- use for balance column -->
+                                    <group col="3" colspan="3" attrs="{'invisible': [('lift_available', '=', 'yes')]}">
+                                        <div style="height:7px"></div>
+                                    </group>
+                                    <!-- use for balance column -->
+                                    <group col="2" colspan="2">
+                                        <field name="lift_qty_moving" attrs="{'invisible': [('moving_lift_available', '!=', 'yes')]}"/>
+                                    </group>
+                                    <group col="3" colspan="3" attrs="{'invisible': [('moving_lift_available', '!=', 'yes')]}">
+                                        <field name="moving_lift_load_capacity" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="moving_lift_load_capacity_uom" nolabel="1" domain="[('category_id.is_weight', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="moving_lift_opening_length" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="moving_lift_opening_length_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="moving_lift_opening_height" widget="upgrade_integer" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                        <field name="moving_lift_opening_height_uom" nolabel="1" domain="[('category_id.is_hight', '=', True)]" attrs="{'required': [('moving_lift_available', '=', 'yes')]}"/>
+                                    </group>
+                                    <!-- use for balance column -->
+                                    <group col="3" colspan="3" attrs="{'invisible': [('moving_lift_available', '=', 'yes')]}">
+                                        <div style="height:7px"></div>
+                                    </group>
+                                    <!-- use for balance column -->
+                                    <group col="2" colspan="2">
+                                        <!-- use for balance column -->
+                                        <div style="height:20px"></div>
+                                        <!-- use for balance column -->
+                                        <field name="number_staircase" widget="upgrade_integer" attrs="{'invisible': [('staircase_available', '!=', 'yes')], 'required': [('staircase_available', '=', 'yes')]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Installation Space Survey" name="installation_space_survey">
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="installation_on_multiple" required="1"/>
+                                        <field name="total_number_floors" widget="upgrade_integer" attrs="{'invisible': [('installation_on_multiple', '!=', 'yes')], 'required': [('installation_on_multiple', '=', 'yes')]}"/>
+                                        <field name="number_floors" widget="upgrade_integer" attrs="{'invisible': [('installation_on_multiple', '!=', 'yes')], 'required': [('installation_on_multiple', '=', 'yes')]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Necessary Means of Transport (Internal Use)" name="necessary_means">
+                                <group>
+                                    <field name="dog" required="1"/>
+                                    <field name="rolling_containers" required="1"/>
+                                    <field name="pickup_truck" required="1"/>
+                                    <field name="pump_truck" required="1"/>
+                                    <field name="threshold_plate" required="1"/>
+                                </group>
+                                <group>
+                                    <field name="dog_qty" attrs="{'invisible': [('dog', '!=', 'yes')]}"/>
+                                    <!-- use for balance column -->
+                                    <div style="height:25px" attrs="{'invisible': [('dog', '=', 'yes')]}"></div>
+                                    <!-- use for balance column -->
+
+                                    <field name="rolling_container_qty" attrs="{'invisible': [('rolling_containers', '!=', 'yes')]}"/>
+                                    <div style="height:25px" attrs="{'invisible': [('rolling_containers', '=', 'yes')]}"></div>
+
+                                    <field name="pickup_truck_qty" attrs="{'invisible': [('pickup_truck', '!=', 'yes')]}"/>
+                                    <div style="height:25px" attrs="{'invisible': [('pickup_truck', '=', 'yes')]}"></div>
+
+                                    <field name="pump_truck_qty" attrs="{'invisible': [('pump_truck', '!=', 'yes')]}"/>
+                                    <div style="height:25px" attrs="{'invisible': [('pump_truck', '=', 'yes')]}"></div>
+
+                                    <field name="truck_qty" attrs="{'invisible': [('threshold_plate', '!=', 'yes')]}"/>
+                                </group>
+                            </group>
+                            <group string="Protective Device for Housing" name="protective_device">
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="stool" required="1"/>
+                                        <field name="carpenter_cover" required="1"/>
+                                        <field name="board_plates" required="1"/>
+                                        <field name="blankets" required="1"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group col="3" colspan="2">
+                                        <field name="stool_size" attrs="{'invisible': [('stool', '!=', 'yes')]}"/>
+                                        <field name="stool_size_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'invisible': [('stool', '!=', 'yes')]}"/>
+                                        <!-- use for balance column -->
+                                        <div style="height:25px" attrs="{'invisible': [('stool', '=', 'yes')]}"></div><div></div>
+                                        <!-- use for balance column -->
+
+                                        <field name="carpenter_size" attrs="{'invisible': [('carpenter_cover', '!=', 'yes')]}"/>
+                                        <field name="carpenter_size_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'invisible': [('carpenter_cover', '!=', 'yes')]}"/>
+                                        <div style="height:25px" attrs="{'invisible': [('carpenter_cover', '=', 'yes')]}"></div><div></div>
+
+                                        <field name="board_plates_size" attrs="{'invisible': [('board_plates', '!=', 'yes')]}"/>
+                                        <field name="board_plates_size_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'invisible': [('board_plates', '!=', 'yes')]}"/>
+                                        <div style="height:25px" attrs="{'invisible': [('board_plates', '=', 'yes')]}"></div><div></div>
+
+                                        <field name="blankets_size" attrs="{'invisible': [('blankets', '!=', 'yes')]}"/>
+                                        <field name="blankets_size_uom" nolabel="1" domain="[('category_id.is_length', '=', True)]" attrs="{'invisible': [('blankets', '!=', 'yes')]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Employee Information" name="employee_info">
+                                <group>
+                                    <group col="2" colspan="2">
+                                        <field name="number_mechanics" widget="upgrade_integer" required="1"/>
+                                        <field name="number_assistant" widget="upgrade_integer" required="1"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Other Detail Information" name="other_detail">
+                                <field name="other_detail_info" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Before Installation Project Checklist" name="before_installation">
+                            <group>
+                                <field name="project"/>
+                                <field name="survey_planned_date"/>
+                                <field name="survey_finished_date"/>
+                            </group>
+                            <group>
+                                <field name="planning_production_order"/>
+                                <field name="delivery_date"/>
+                                <field name="planned_transport_date"/>
+                                <field name="carrier"/>
+                                <field name="planned_installation_date"/>
+                                <field name="contact_person"/>
+                                <field name="project_manager"/>
+                                <field name="project_drawing_available" required="1"/>
+                                <field name="project_image_url" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="survey_tree_view" model="ir.ui.view">
+        <field name="name">survey.form.tree.view</field>
+        <field name="model">survey</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="so_number"/>
+                <field name="creation_date"/>
+                <field name="created_by"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_survey" model="ir.actions.act_window">
+        <field name="name">Survey</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">survey</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create new Survey
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Survey Form" id="main_menu_survey_form" sequence="70"
+              web_icon="markant_survey,static/description/icon.png"/>
+    <menuitem name="Survey Form" id="menu_survey_form"
+              action="action_survey" sequence="10" parent="main_menu_survey_form"/>
+</odoo>

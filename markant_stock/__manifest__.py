@@ -1,0 +1,41 @@
+{
+    'name': 'Markant Warehouse',
+    'version': '12.0.1.0.0',
+    'author': 'Onnet Consulting Sdn Bhd',
+    'category': 'Hidden',
+    'description': """
+Markant Warehouse
+=================
+    """,
+    'website': 'https://on.net.my/',
+    'depends': ['markant_product', 'mrp_labour_cost', 'sale_stock',
+                'markant_sale', 'markant_account', 'stock_account',
+                'one_invoice_per_order'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/markant_data.xml',
+        'report/report_deliveryslip.xml',
+        'report/report_wegzetlijt.xml',
+        'report/report_packaging.xml',
+        'report/report_packaging_label.xml',
+        'report/report_inv_valuation.xml',
+
+        'views/product_views.xml',
+        'views/sale_views.xml',
+        'views/stock_picking_views.xml',
+        'views/reserve_sale_picking_views.xml',
+        'views/auto_invoice_log_views.xml',
+        'views/auto_invoice_mail_views.xml',
+        'views/product_strategy_views.xml',
+        'views/picking_packaging_view.xml',
+        'views/packaging_table_view.xml',
+        'views/res_company_view.xml',
+        'views/res_config_settings_views.xml',
+        'views/cost_price_computation_log_view.xml',
+        'views/ir_cron_views.xml',
+        'views/stock_account_views.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+}

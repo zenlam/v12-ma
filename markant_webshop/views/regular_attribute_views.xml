@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_regular_attribute_tree_view" model="ir.ui.view">
+        <field name="name">markant.regular.attribute.tree</field>
+        <field name="model">regular.attribute</field>
+        <field name="arch" type="xml">
+            <tree string="Manual Variant Values">
+                <field name="sequence" widget="handle"/>
+                <field name="create_date"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_regular_attribute_view_form" model="ir.ui.view">
+        <field name="name">markant.regular.attribute.form</field>
+        <field name="model">regular.attribute</field>
+        <field name="arch" type="xml">
+            <form string="Manual Attribute">
+                <group>
+                    <group name="main_fields">
+                        <label for="name" string="Attribute Name"/>
+                        <field name="name" nolabel="1"/>
+                    </group>
+                </group>
+                <group name="values_ids">
+                    <label for="value_ids" string="Attribute Values"/>
+                    <field name="value_ids" widget="one2many_list" nolabel="1">
+                        <tree string="Values" editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="markant_regular_variants_tree_view" model="ir.ui.view">
+        <field name="name">markant.regular.product.attribute.value.tree</field>
+        <field name="model">regular.attribute.value</field>
+        <field name="arch" type="xml">
+            <tree string="Manual Variant Values">
+                <field name="sequence" widget="handle"/>
+                <field name="create_date"/>
+                <field name="attribute_id"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="markant_regular_attribute_value_view_form" model="ir.ui.view">
+        <field name="name">markant.regular.attribute.value.form</field>
+        <field name="model">regular.attribute.value</field>
+        <field name="arch" type="xml">
+            <form string="Manual Attribute Value">
+                <group>
+                    <group name="main_fields">
+                        <label for="name" string="Attribute Name"/>
+                        <field name="name" nolabel="1"/>
+                    </group>
+                </group>
+                <group name="attribute_ids">
+                    <label for="attribute_id" string="Attributes"/>
+                    <field name="attribute_id" nolabel="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="markant_regular_attribute_action" model="ir.actions.act_window">
+        <field name="name">Markant Manual Attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">regular.attribute</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <record id="markant_regular_attribute_value_action" model="ir.actions.act_window">
+        <field name="name">Markant Manual Attribute Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">regular.attribute.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem name="Manual Attributes" id="menu_regular_attributes"
+              action="markant_webshop.markant_regular_attribute_action"
+              sequence="3" parent="menu_webshop_config"/>
+
+    <menuitem name="Manual Attribute Values" id="menu_regular_attribute_values"
+              action="markant_webshop.markant_regular_attribute_value_action"
+              sequence="4" parent="menu_webshop_config"/>
+
+</odoo>

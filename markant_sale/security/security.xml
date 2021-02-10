@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- This group is used to hide and show approve discount in so based on rights. -->
+    <record id="group_approve_project_discount" model="res.groups">
+        <field name="name">Approve Project Discount</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+    <!-- Add group to hide and show the lock and unlock -->
+    <record id="group_markant_lock_unlock_access" model="res.groups">
+        <field name="name">Allow Lock/unlock Sale Order</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+    <!-- Add group to Approve SO with unpaid Downpayment -->
+    <record id="group_markant_approve_so_with_unpaid_downpayment" model="res.groups">
+        <field name="name">Approve SO with unpaid Downpayment</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+</odoo>

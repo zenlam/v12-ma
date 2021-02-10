@@ -1,0 +1,331 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* markant_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-20 08:58+0000\n"
+"PO-Revision-Date: 2019-12-20 08:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: markant_account
+#: model:ir.model,name:markant_account.model_customer_invoice_term
+msgid " Customer Invoice Terms"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model,name:markant_account.model_proforma_account_term
+msgid " Pro-forma Payment Terms"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model,name:markant_account.model_vendor_bill_term
+msgid " Vendor Bill Terms"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<span class=\"text-right\">Taxes</span>"
+msgstr "<span class=\"text-right\">BTW %</span>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_report_invoice_inherit_sale
+msgid "<strong style=\"margin-left: 60px; text-decoration: underline;\">Invoice address:</strong>"
+msgstr "<strong style=\"margin-left: 60px; text-decoration: underline;\">Factuuradres:</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_report_invoice_inherit_sale
+msgid "<strong style=\"margin-left: 60px; text-decoration: underline;\">Vendor address:</strong>"
+msgstr "<strong style=\"margin-left: 60px; text-decoration: underline;\">Adres verkoper:</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_report_invoice_inherit_sale
+msgid "<strong style=\"text-decoration: underline;\" class=\"page\">Delivery address:</strong>"
+msgstr "<strong style=\"text-decoration: underline;\" class=\"page\">Afleveradres:</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Contact person</strong>"
+msgstr "<strong>Behandeld door</strong>"
+
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Customer number</strong>"
+msgstr "<strong>Klantnummer</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Due Date</strong>"
+msgstr "<strong>Vervaldatum</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Incoterm</strong>"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Invoice Date</strong>"
+msgstr "<strong>Factuurdatum</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Your reference</strong>"
+msgstr "<strong>Uw referentie</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Order number</strong>"
+msgstr "<strong>Ordernummer</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Vendor ID</strong>"
+msgstr "<strong>Verkopers ID</strong>"
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__active
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__active
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__active
+msgid "Active"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__create_uid
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__create_uid
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__create_date
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__create_date
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.actions.act_window,name:markant_account.action_customer_invoice_term_form
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__name
+#: model:ir.ui.menu,name:markant_account.menu_action_customer_invoice_term_form
+#: model_terms:ir.ui.view,arch_db:markant_account.view_customer_invoice_term_form
+#: model_terms:ir.ui.view,arch_db:markant_account.view_customer_invoice_term_search
+#: model_terms:ir.ui.view,arch_db:markant_account.view_customer_invoice_term_tree
+msgid "Customer Invoice Terms"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__note
+msgid "Customer Invoice Terms Description"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.view_customer_invoice_term_form
+msgid "Customer Invoice payment term explanation for the customer..."
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__display_name
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__display_name
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__id
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__id
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__id
+msgid "ID"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model,name:markant_account.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term____last_update
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term____last_update
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__write_uid
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__write_uid
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__write_date
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__write_date
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__note
+msgid "Pro-forma Description"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__name
+#: model_terms:ir.ui.view,arch_db:markant_account.view_proforma_account_term_form
+#: model_terms:ir.ui.view,arch_db:markant_account.view_proforma_account_term_search
+#: model_terms:ir.ui.view,arch_db:markant_account.view_proforma_account_term_tree
+msgid "Pro-forma Terms"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.view_proforma_account_term_form
+msgid "Pro-forma payment term explanation for the customer..."
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "Product Image"
+msgstr "Product Afbeelding"
+
+#. module: markant_account
+#: model:ir.actions.act_window,name:markant_account.action_proforma_account_term_form
+#: model:ir.ui.menu,name:markant_account.menu_action_proforma_account_term_form
+msgid "Proforma Terms"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_customer_invoice_term__sequence
+#: model:ir.model.fields,field_description:markant_account.field_proforma_account_term__sequence
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: markant_account
+#: code:addons/markant_account/models/invoice_terms.py:22
+#, python-format
+msgid "There is already an existing Pro-forma Term (%s) that is active!"
+msgstr ""
+
+#. module: markant_account
+#: code:addons/markant_account/models/invoice_terms.py:43
+#, python-format
+msgid "There is already an existing active Customer Invoice Term (%s)!"
+msgstr ""
+
+#. module: markant_account
+#: code:addons/markant_account/models/invoice_terms.py:64
+#, python-format
+msgid "There is already an existing active Vendor Bill Term (%s)!"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "Uom"
+msgstr "Meet eenheid"
+
+#. module: markant_account
+#: model:ir.actions.act_window,name:markant_account.action_vendor_bill_term_form
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__name
+#: model:ir.ui.menu,name:markant_account.menu_action_vendor_bill_term_form
+#: model_terms:ir.ui.view,arch_db:markant_account.view_vendor_bill_term_form
+#: model_terms:ir.ui.view,arch_db:markant_account.view_vendor_bill_term_search
+#: model_terms:ir.ui.view,arch_db:markant_account.view_vendor_bill_term_tree
+msgid "Vendor Bill Terms"
+msgstr ""
+
+#. module: markant_account
+#: model:ir.model.fields,field_description:markant_account.field_vendor_bill_term__note
+msgid "Vendor Bill Terms Description"
+msgstr ""
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.view_vendor_bill_term_form
+msgid "Vendor Bill payment term explanation for the customer..."
+msgstr ""
+
+#. module: account
+#: model_terms:ir.ui.view,arch_db:account.report_invoice_document
+msgid "<span>Quantity</span>"
+msgstr "<span>Aantal</span>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "Gross Total"
+msgstr "Bruto totaal"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<span>Disc.(%)</span>"
+msgstr "<span>Korting %</span>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<span>Price p.p.</span>"
+msgstr "<span>Prijs p.st.</span>"
+
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "Sub Total"
+msgstr "Subtotaal"
+
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Project Discount</strong>"
+msgstr "<strong>Project korting</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Installation</strong>"
+msgstr "<strong>Inhuiskosten</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Administration Costs</strong>"
+msgstr "<strong>Administratie kosten</strong>"
+
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Total ex. VAT</strong>"
+msgstr "<strong>Totaal ex. BTW</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>VAT amount</strong>"
+msgstr "<strong>BTW bedrag</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Total incl. VAT</strong>"
+msgstr "<strong>Totaal incl. BTW</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Currency</strong>"
+msgstr "<strong>Valuta</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Gross Total</strong>"
+msgstr "<strong>Bruto totaal</strong>"
+
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Discount</strong>"
+msgstr "<strong>Korting</strong>"
+
+#. module: markant_account
+#: model_terms:ir.ui.view,arch_db:markant_account.markant_invoice_inherit_report
+msgid "<strong>Sum of Subtotal</strong>"
+msgstr "<strong>Som van subtotaal</strong>"

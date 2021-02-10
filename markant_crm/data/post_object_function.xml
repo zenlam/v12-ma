@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <function name="sync_partner_type_from_company"
+                  model="post.object.markant"/>
+    </data>
+</odoo>

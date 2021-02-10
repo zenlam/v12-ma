@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="claim_form_add_tab_inherit" model="ir.ui.view">
+        <field name="name">CRM - Claims Form Inherit</field>
+        <field name="inherit_id" ref="bi_crm_claim.crm_case_claims_form_view1" />
+        <field name="model">crm.claim</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//sheet//notebook//field[@name='description']" position="after">
+                <group name="claim_products" groups="base.group_user" string="Claim Products">
+                    <field name="claim_line_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="product_id" required="1" options="{'no_create': True}"/>
+                            <field name="description" />
+                            <field name="qty" />
+                            <field name="document_type" />
+                            <field name="so_id" attrs="{'readonly': ['|', ('document_type', '=', 'invoice'), ('document_type', '=', False)]}" domain="[('partner_id', '=', parent.partner_id)]"/>
+                            <field name="inv_id" attrs="{'readonly': ['|', ('document_type', '=', 'sale_order'), ('document_type', '=', False)]}" domain="[('partner_id', '=', parent.partner_id)]"/>
+                            <field name="as400_doc" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='user_fault']" position="after">
+                <field name="trouble_responsible_id" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_fault']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="Warranty" required="1"/>
+                <field name="claim_type_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//sheet//notebook//page[1]//separator" position="attributes">
+                <attribute name="string">Customer</attribute>
+            </xpath>
+            <xpath expr="//sheet//notebook//page[1]//group[1]" position="after">
+                <group colspan="2" col="2" name="supplier" groups="base.group_user">
+                    <separator colspan="2" string="Supplier"/>
+                    <field name="supplier_id" domain="[('supplier', '=', True)]" options="{'no_create': True}"/>
+                    <field name="supplier_phone"/>
+                    <field name="supplier_email"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_claim_search_view">
+        <field name="name">search view for crm claim</field>
+        <field name="model">crm.claim</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="Claims">
+                <field name="partner_id" string="Partner"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree View: Claims Type -->
+    <record id="view_claims_type_tree" model="ir.ui.view">
+        <field name="name">crm.claim.type.tree</field>
+        <field name="model">crm.claim.type</field>
+        <field name="arch" type="xml">
+            <tree string="Claims Type" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action: Claims Type -->
+    <record id="action_menu_claims_type" model="ir.actions.act_window">
+        <field name="name">Claims Type</field>
+        <field name="res_model">crm.claim.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Claims As New Menu in Dashboard -->
+    <menuitem name="Claims" id="menu_crm_case_claims_dashboard" string="Claims"
+              groups="bi_crm_claim.group_claim_user"
+              web_icon="markant_crm,static/description/icon.png"/>
+
+    <menuitem name="Claims" id="bi_crm_claim.menu_crm_case_claims"
+        parent="menu_crm_case_claims_dashboard" action="bi_crm_claim.crm_claim_view_act1" sequence="10"/>
+
+    <menuitem id="bi_crm_claim.menu_config_claim" name="Configuration"
+              groups="bi_crm_claim.group_claim_manager"
+        parent="menu_crm_case_claims_dashboard" sequence="20"/>
+
+    <!-- Menu: Claims Type -->
+    <menuitem id="menu_claims_type" action="action_menu_claims_type"
+              name="Claims Type" parent="bi_crm_claim.menu_config_claim"
+              groups="base.group_system"/>
+
+</odoo>

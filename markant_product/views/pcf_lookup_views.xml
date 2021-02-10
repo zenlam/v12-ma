@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_mrp_bom_pcf_lookup">
+        <div class="container o_mrp_bom_report_page">
+            <t t-if="data.get('components') or data.get('lines')">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>
+                            <a href="#" t-if="data['report_type'] == 'html'" t-att-data-res-id="data['product'].id" t-att-data-model="data['product']._name" class="o_mrp_bom_action">
+                                <t t-esc="data['bom_prod_name']"/>
+                            </a>
+                            <t t-else="" t-esc="data['bom_prod_name']"/>
+                        </h2>
+                        <h6 t-if="data['bom'].code">Reference: <t t-esc="data['bom'].code"/></h6>
+                    </div>
+                </div>
+                <t t-set="currency" t-value="data['currency']"/>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <table width="100%" class="o_mrp_bom_expandable">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>BoM</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-left" groups="uom.group_uom">Unit of Measure</th>
+                                        <th t-if="data['report_structure'] != 'bom_cost'" class="o_mrp_prod_cost text-right" title="This is the available qty of the product.">On Hand</th>
+                                        <th t-if="data['report_structure'] != 'bom_structure'" class="o_mrp_bom_cost text-right" title="This is the (Free Stock = On Hand - Quantity)">Free Stock</th>
+<!--                                        <th t-if="data['report_type'] == 'html' and data['has_attachments']" class="o_mrp_has_attachments" title="Files attached to the product">Attachments</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span><a href="#" t-if="data['report_type'] == 'html'" t-att-data-res-id="data['product'].id" t-att-data-model="'product.product'" class="o_mrp_bom_action"><t t-esc="data['bom_prod_name']"/></a><t t-else="" t-esc="data['bom_prod_name']"/></span>
+                                        </td>
+                                        <td>
+                                            <span><a href="#" t-if="data['report_type'] == 'html'" t-att-data-res-id="data['bom'].id" t-att-data-model="'mrp.bom'" class="o_mrp_bom_action"><t t-esc="data['code']"/></a><t t-else="" t-esc="data['code']"/></span>
+                                        </td>
+                                        <td class="text-right"><span><t t-esc="data['bom_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                                        <td groups="uom.group_uom"><span><t t-esc="data['bom'].product_uom_id.name"/></span></td>
+
+                                        <t t-if="data['prod_type'] == 'consu'">
+                                            <td class="text-right"><span>*</span></td>
+                                        </t>
+                                        <t t-else="">
+                                            <td class="text-right"><span><t t-esc="data['prod_available_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                                        </t>
+
+                                        <t t-if="data['prod_type'] == 'consu'">
+                                            <td class="text-right"><span>*</span></td>
+                                        </t>
+                                        <t t-else="">
+                                            <td class="text-right"><span><t t-esc="data['prod_free_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                                        </t>
+<!--                                        <td t-if="data['report_structure'] != 'bom_cost'" class="o_mrp_prod_cost text-right">-->
+<!--                                            <span><t t-esc="data['price']" t-options='{"widget": "monetary", "display_currency": currency}'/></span>-->
+<!--                                        </td>-->
+<!--                                        <td t-if="data['report_structure'] != 'bom_structure'" class="o_mrp_bom_cost text-right">-->
+<!--                                            <span><t t-esc="data['total']" t-options='{"widget": "monetary", "display_currency": currency}'/></span>-->
+<!--                                        </td>-->
+<!--                                        <td t-if="data['report_type'] == 'html'">-->
+<!--                                            <span>-->
+<!--                                                <t t-if="data['attachments']">-->
+<!--                                                    <a href="#" role="button" t-att-data-res-id="data['attachments'].ids" t-att-data-model="'mrp.document'" class="o_mrp_show_attachment_action fa fa-fw o_button_icon fa-files-o"/>-->
+<!--                                                </t>-->
+<!--                                            </span>-->
+<!--                                        </td>-->
+                                    </tr>
+                                    <t t-if="data['report_type'] == 'html'" t-call="markant_product.report_mrp_bom_line_pcf_lookup"/>
+                                </tbody>
+<!--                                <tfoot>-->
+<!--                                    <tr>-->
+<!--                                        <td></td>-->
+<!--                                        <td></td>-->
+<!--                                        <td class="text-right"><span><strong>Unit Cost</strong></span></td>-->
+<!--                                        <td groups="uom.group_uom"></td>-->
+<!--                                        <td t-if="data['report_structure'] != 'bom_cost'" class="o_mrp_prod_cost text-right">-->
+<!--                                            <span><t t-esc="data['price']/data['bom_qty']" t-options='{"widget": "monetary", "display_currency": currency}'/></span>-->
+<!--                                        </td>-->
+<!--                                        <td t-if="data['report_structure'] != 'bom_structure'" class="o_mrp_bom_cost text-right">-->
+<!--                                            <span><t t-esc="data['total']/data['bom_qty']" t-options='{"widget": "monetary", "display_currency": currency}'/></span>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </tfoot>-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <h1 class="text-center">No data available.</h1>
+            </t>
+        </div>
+    </template>
+
+    <template id="report_mrp_bom_line_pcf_lookup">
+        <t t-set="currency" t-value="data['currency']"/>
+        <t t-foreach="data['components']" t-as="l">
+            <t t-set="space_td" t-value="'margin-left: '+ str(l['level'] * 20) + 'px;'"/>
+            <tr class="o_mrp_bom_report_line" t-att-data-id="l['child_bom']" t-att-parent_id="l['parent_id']" t-att-data-line="l['line_id']" t-att-data-product_id="l['prod_id']" t-att-data-qty="l['prod_qty']" t-att-data-level="l['level']">
+                <td>
+                    <span t-att-style="space_td"/>
+                    <t t-if="l['child_bom']">
+                        <span t-att-data-function="'get_bom'" class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right" role="img" aria-label="Unfold" title="Unfold"/>
+                    </t>
+                    <span t-att-class="None if l['child_bom'] else 'o_mrp_bom_no_fold'">
+                        <a href="#" t-att-data-res-id="l['prod_id']" t-att-data-model="'product.product'" class="o_mrp_bom_action"><t t-esc="l['prod_name']"/></a>
+                    </span>
+                    <t t-if="l['phantom_bom']">
+                        <span class="fa fa-dropbox" title="This is a BoM of type Kit!" role="img" aria-label="This is a BoM of type Kit!"/>
+                    </t>
+                </td>
+                <td>
+                    <span>
+                        <a href="#" t-att-data-res-id="l['child_bom']" t-att-data-model="'mrp.bom'" class="o_mrp_bom_action"><t t-esc="l['code']"/></a>
+                  </span>
+                </td>
+                <td class="text-right"><span><t t-esc="l['prod_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                <td groups="uom.group_uom"><span><t t-esc="l['prod_uom']"/></span></td>
+
+                <t t-if="l['prod_type'] == 'consu'">
+                    <td class="text-right"><span>*</span></td>
+                </t>
+                <t t-else="">
+                    <td class="text-right"><span><t t-esc="l['prod_available_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                </t>
+
+                <t t-if="l['prod_type'] == 'consu'">
+                    <td class="text-right"><span>*</span></td>
+                </t>
+                <t t-else="">
+                    <td class="text-right"><span><t t-esc="l['prod_free_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/></span></td>
+                </t>
+<!--                <td class="o_mrp_prod_cost text-right">-->
+<!--                    <span t-esc="l['prod_cost']" t-options='{"widget": "monetary", "display_currency": currency}'/>-->
+<!--                </td>-->
+<!--                <td class="o_mrp_bom_cost text-right">-->
+<!--                    <span t-esc="l['total']" t-options='{"widget": "monetary", "display_currency": currency}'/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <span>-->
+<!--                        <t t-if="l['attachments']">-->
+<!--                            <a href="#" role="button" t-att-data-res-id="l['attachments'].ids" t-att-data-model="'mrp.document'" class="o_mrp_show_attachment_action fa fa-fw o_button_icon fa-files-o"/>-->
+<!--                        </t>-->
+<!--                    </span>-->
+<!--                </td>-->
+            </tr>
+        </t>
+<!--        <t t-if="data['operations']">-->
+<!--            <t t-set="space_td" t-value="'margin-left: '+ str(data['level'] * 20) + 'px;'"/>-->
+<!--            <tr class="o_mrp_bom_report_line o_mrp_bom_cost" t-att-data-id="'operation-' + str(data['bom'].id)" t-att-data-bom-id="data['bom'].id" t-att-parent_id="data['bom'].id" t-att-data-qty="data['bom_qty']" t-att-data-level="data['level']">-->
+<!--                <td>-->
+<!--                    <span t-att-style="space_td"/>-->
+<!--                    <span class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right" t-att-data-function="'get_operations'" role="img" aria-label="Unfold" title="Unfold"/>-->
+<!--                    Operations-->
+<!--                </td>-->
+<!--                <td/>-->
+<!--                <td class="text-right">-->
+<!--                    <span t-esc="data['operations_time']" t-options='{"widget": "float_time"}'/>-->
+<!--                </td>-->
+<!--                <td groups="uom.group_uom"><span>Minutes</span></td>-->
+<!--                <td class="o_mrp_prod_cost">-->
+<!--                </td>-->
+<!--                <td class="o_mrp_bom_cost text-right">-->
+<!--                    <span t-esc="data['operations_cost']" t-options='{"widget": "monetary", "display_currency": currency}'/>-->
+<!--                </td>-->
+<!--                <td/>-->
+<!--            </tr>-->
+<!--        </t>-->
+    </template>
+
+    <!-- Top menu: PCF Lookup Action -->
+    <record id="action_pcf_lookup" model="ir.actions.act_window">
+        <field name="name">PCF Lookup</field>
+        <field name="res_model">sale.product.configurator</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'pcf_lookup' : True}</field>
+    </record>
+
+    <!-- Top menu: PCF Lookup -->
+    <menuitem id="pcf_lookup_menu_root"
+              name="PCF Lookup"
+              action="action_pcf_lookup"
+              web_icon="markant_product,static/description/pcf.png"/>
+</odoo>

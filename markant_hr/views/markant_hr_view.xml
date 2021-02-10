@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <delete model="ir.ui.view" search="[('name','=','hr.employee.leave.form.inherit')]"/>
+    </data>
+    <data>
+        <!-- public holiday tree view -->
+
+        <record id="view_weekly_hours_basis_tree" model="ir.ui.view">
+            <field name="name">weekly.hours.basis.tree</field>
+            <field name="model">weekly.hours.basis</field>
+            <field name="arch" type="xml">
+                <tree string="Weekly Hours Basis">
+                    <field name="name" />
+                    <field name="hrs_basis_per_week"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_weekly_hours_basis_form" model="ir.ui.view">
+            <field name="name">weekly.hours.basis.form</field>
+            <field name="model">weekly.hours.basis</field>
+            <field name="arch" type="xml">
+                <form string="Weekly Hours Basis">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="hrs_basis_per_week"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_weekly_hours_basis_view" model="ir.actions.act_window">
+            <field name="name">Weekly Hours Basis</field>
+            <field name="res_model">weekly.hours.basis</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_weekly_hours_basis_tree" />
+        </record>
+
+        <menuitem action="open_weekly_hours_basis_view"
+                  id="menu_weekly_hours_basis_view"
+                  parent="hr.menu_human_resources_configuration"
+                  sequence="20"/>
+
+
+        <!-- <record id="holiday_new_calendar_inherited" model="ir.ui.view">
+            <field name="name">Leave Request</field>
+            <field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.view_holiday_new_calendar" />
+            <field name="arch" type="xml">
+                <calendar position="attributes">
+                    <attribute name="show_public_holidays">True</attribute>
+                </calendar>
+            </field>
+        </record> -->
+
+        <!-- <record id="hr_holidays.view_holiday_new_calendar" model="ir.ui.view">
+            <field name="name">Leave Request</field>
+            <field name="model">hr.holidays</field>
+            <field name="arch" type="xml">
+                <calendar string="Leave Request" date_start="date_from" date_stop="date_to" mode="month" quick_add="False" color="employee_id" show_public_holidays="True">
+                    <field name="display_name"/>
+                </calendar>
+            </field>
+        </record> -->
+
+        <record id="view_public_holidays_tree" model="ir.ui.view">
+            <field name="name">hr.holidays.public.tree</field>
+            <field name="model">hr.holidays.public</field>
+            <field name="arch" type="xml">
+                <tree string="Public Holidays">
+                    <field name="year"/>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_public_holidays_form" model="ir.ui.view">
+            <field name="name">hr.holidays.public.form</field>
+            <field name="model">hr.holidays.public</field>
+            <field name="arch" type="xml">
+                <form string="Public Holidays">
+                    <group>
+                        <group>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                    </group>
+                    <newline />
+                    <group string="Public Holidays">
+                        <field name="line_ids" nolabel="1">
+                            <tree string="Public Holidays"
+                                editable="top">
+                                <field name="date" />
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_public_holidays_view" model="ir.actions.act_window">
+            <field name="name">Public Holidays</field>
+            <field name="res_model">hr.holidays.public</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_public_holidays_tree" />
+        </record>
+
+        <menuitem action="open_public_holidays_view"
+                  id="menu_public_holidays_view"
+                  parent="hr.menu_human_resources_configuration"
+                  groups="base.group_user,hr.group_hr_manager,hr.group_hr_user"
+                  sequence="20"/>
+
+        <!-- leave allocation form -->
+
+        <record id="hr_leave_allocation_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.leave.allocation.form.inherit</field>
+            <field name="model">hr.leave.allocation</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group/div/span[2]" position="before">
+                    <field name="contract_calc" invisible="1"/>
+                    <div class="oe_inline" attrs="{'invisible': [('contract_calc', '=', False)]}">
+                        <field name="auto_allocate_days" class="oe_inline"/>
+                        <label for="auto_allocate_days" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- leave form -->
+
+        <record id="edit_holiday_new_inherit_markant_hr" model="ir.ui.view">
+            <field name="name">Leave Request Inherit</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form" />
+            <field name="arch" type="xml">
+                <field name="date_from" position="attributes">
+                    <attribute name="context">{'employee_id': employee_id,'flag':True, 'v_show_warning': True}</attribute>
+                </field>
+
+                <field name="date_to" position="attributes">
+                    <attribute name="context">{'employee_id': employee_id, 'v_show_warning': True}</attribute>
+                </field>
+
+                <!-- <xpath expr="//div[1]/div[2]" position="after">
+                    <field name="c_manager" invisible="1" />
+                    <field name="number_of_days_temp1" invisible="1"/>
+                    <field name="contract_calc" invisible="1"/>
+                    <div class="oe_inline">
+                        <field name="auto_allocate_days" class="oe_inline"/>
+                        <label for="auto_allocate_days" />
+                    </div>
+                </xpath> -->
+
+                <label for='request_unit_half' position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </label>
+                
+                <field name="request_unit_half" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                
+                <field name="employee_id" position="replace"/>
+                <field name="name" position="replace"/>
+
+                <field name="holiday_status_id" position="before">
+                    <field name="name"/>
+                    <field name="employee_id" attrs="{'required':[('holiday_type','=','employee')], 'invisible':[('holiday_type','=','category')]}" context="{'date_from': date_from, 'date_to': date_to, 'v_show_warning': True}" groups="base.group_hr_user"/>
+                    <field name="holiday_type"/>
+                </field>
+
+                <field name="holiday_status_id" position="replace">
+                </field>
+
+                <field name="holiday_type" position="after">
+                    <field name="holiday_status_id" context="{'employee_id':employee_id}"/>
+                </field>
+                
+                <xpath expr="//group" position="after">
+                    <group >
+                        <field name="select_all_fullday" />
+                    </group>
+                    <field name="holiday_hours_ids" nolabel="1" >
+                        <tree editable="bottom" create="false">
+                            <field name="date_from" string="Date" readonly="1" force_save="1"/>
+                            <field name="dayofweek" readonly="1" force_save="1"/>
+                            <field name="is_fullday"/>
+                            <field name="holidays_shift_id" attrs="{'readonly': [('is_fullday', '=', True)]}" context="{'employee_id': parent.employee_id, 'dayofweek': dayofweek}" force_save="1"/>
+                            <field name="hour_from" string="From" widget="float_time" readonly="1" force_save="1"/>
+                            <field name="hour_to" string="To" widget="float_time" readonly="1" force_save="1"/>
+                            
+                            <field name="noh" sum="Total" readonly="1" invisible="1" force_save="1"/>
+                            <field name="nod" sum="Total" readonly="1" force_save="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="/form/sheet" position="inside">
+                    <notebook groups="hr.group_hr_manager">
+                        <page string="Todo List" groups="hr.group_hr_manager">
+                            <field name="hr_leave_todo_task_ids" nolabel="1" colspan ="4">
+                                <tree string="Todo List" editable="bottom">
+                                    <field name="name" />
+                                    <field name="date_done" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="markant_view_hr_holidays_filter" model="ir.ui.view">
+            <field name="name">Leave Summary Inherit</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.view_hr_holidays_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='year']" position="after">
+                    <filter name="absent_today" string="Absent Today"
+                    domain="[('date_from', '&lt;=',context_today().strftime('%Y-%m-%d')),('date_to', '&gt;=',context_today().strftime('%Y-%m-%d')),('state','in' , ('validate','validate1'))]" help="Show employee who is absent today"/>
+                    <separator/>
+                </xpath>
+            </field>
+         </record>
+
+        <record id="markant_hr_resource_calendar_form" model="ir.ui.view">
+            <field name="name">markant.hr.resource.calendar.form</field>
+            <field name="model">resource.calendar</field>
+            <field name="inherit_id" ref="resource.resource_calendar_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet" position="replace">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <field name="working_hrs_per_week" widget="float_time"/>
+                                <label for="working_hrs_per_day"/>
+                                <div>
+                                    <field name="working_hrs_per_day" widget="float_time" class="oe_inline"/> 
+                                    <label for="equal" string="  = " />
+                                    <field name="working_hrs_per_day1" class="oe_inline"/>
+                                </div>
+                                <field name="public_holiday_id"/>
+                            </group>
+                        </group>
+                        <field name="attendance_ids"/>
+                        <field name="leave_ids"/>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_holidays.act_hr_employee_holiday_request" model="ir.actions.act_window">
+            <field name="domain">[('holiday_type','=','employee'),('holiday_status_id.display_in_employee','!=',False)]</field>
+        </record>
+
+        <record id="markant_hr_view_employee_form_leave_inherit" model="ir.ui.view">
+            <field name="name">markant.hr.employee.leave.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='active_group']" position="after">
+                    <group string="Leaves" name="leave">
+                        <label for="remaining_leaves"/>
+                        <div>
+                            <field name="remaining_leaves" class="oe_inline"/> days
+                        </div>
+
+                        <label for="leave_brought_forward"/>
+                        <div>
+                            <field name="leave_brought_forward" class="oe_inline"/> days
+                        </div>
+                        <label for="allocation_leave"/>
+                        <div>
+                            <field name="allocation_leave" class="oe_inline"/>
+                        </div>
+                    </group>
+                    <group string="Dates">
+                        <field name="date_joined"/>
+                    </group>
+                </xpath>
+                <button name="toggle_active" position="before">
+                    <field name="show_leaves" invisible="1"/>
+                    <button name="%(hr_holidays.act_hr_employee_holiday_request)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-calendar"
+                            attrs="{'invisible': [('show_leaves','=', False)]}"
+                            groups="base.group_user"
+                            help="Remaining leaves">
+                        <field string="Leaves Left" name="leaves_count" widget="statinfo"/>
+                    </button>
+                </button>
+
+                <xpath expr="//field[@name='address_home_id']" position="after">
+                    <field name="emergency_contact"/>
+                    <field name="emergency_contact_name"/>
+                    <field name="emergency_contact_number"/>
+                    <field name="spouse_name"/>
+                    <field name="spouse_working_status"/>
+                    <field name="epf_number"/>
+                </xpath>
+
+                <field name="resource_calendar_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="markant_view_holiday_status_tree_inherit" model="ir.ui.view">
+            <field name="name">markant.hr.holidays.status.tree.inherit</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.view_holiday_status_normal_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='validity_stop']" position="after">
+                    <field name="contract_calc"/>
+                    <field name="display_in_employee"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_edit_holiday_status_form_inherit" model="ir.ui.view">
+            <field name="name">markant.hr.holidays.status.form.inherit</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='validity_stop']" position="after">
+                    <field name="contract_calc"/>
+                    <field name="display_in_employee"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_hr_contract_view_form_inherit" model="ir.ui.view">
+            <field name="name">markant.hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type_id']" position="after">
+                    <field name="weekly_hours_basis_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="markant_view_resource_calendar_attendance_tree" model="ir.ui.view">
+            <field name="name">markant.resource.calendar.attendance.tree</field>
+            <field name="model">resource.calendar.attendance</field>
+            <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                </field>
+                <field name="dayofweek" position="after">
+                    <field name="name" />
+                    <field name="working_session_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- form for holiday shift -->
+        <record id="view_holidays_shift_form" model="ir.ui.view">
+            <field name="name">hr.holidays.shift.form</field>
+            <field name="model">hr.holidays.shift</field>
+            <field name="arch" type="xml">
+                <form string="Working Session">
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                        </group>
+                        <group>
+                            <field name="tfrom" widget="float_time"/>
+                            <field name="tto" widget="float_time"/>
+                            <field name="leave_day_calc"/>
+                            <field name="nod" invisible="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_holidays_shift_tree" model="ir.ui.view">
+            <field name="name">hr.holidays.shift.tree</field>
+            <field name="model">hr.holidays.shift</field>
+            <field name="arch" type="xml">
+                <tree string="Shift">
+                    <field name="name" string="Name"/>
+                    <field name="tfrom" widget="float_time"/>
+                    <field name="tto" widget="float_time"/>
+                    <field name="leave_day_calc"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_holidays_shift" model="ir.actions.act_window">
+            <field name="name">Working Session</field>
+            <field name="res_model">hr.holidays.shift</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_holidays_shift_tree" />
+        </record>
+
+         <menuitem name="Working Time" action="resource.action_resource_calendar_form"
+            id="menu_hr_working_time"
+            parent="hr.menu_human_resources_configuration"
+            groups="base.group_user,hr.group_hr_manager,hr.group_hr_user"
+            sequence="40"/>
+
+
+        <menuitem
+            action="action_holidays_shift"
+            id="menu_action_holidays_shift"
+            parent="hr.menu_human_resources_configuration"
+            groups="base.group_user,hr.group_hr_manager,hr.group_hr_user"
+            sequence="25"/>
+
+    </data>
+</odoo>

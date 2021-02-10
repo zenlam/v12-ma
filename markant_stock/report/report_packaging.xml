@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report
+            string="Packaging"
+            id="action_report_packaging"
+            model="picking.packaging"
+            report_type="qweb-pdf"
+            name="markant_stock.report_packaging"
+            file="markant_stock.report_packaging"
+            print_report_name="'Packaging - %s - %s' %
+            (object.partner_id.name or '', object.name)"
+    />
+
+    <record id="packaging_report_format" model="report.paperformat">
+        <field name="name">MARKANT: Packaging Report Paper Format</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+        <field name="report_ids" eval="[(4, ref('action_report_packaging'))]"/>
+    </record>
+
+    <template id="report_packaging">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+                <t t-set="partner"
+                   t-value="doc.partner_id"/>
+                <t t-set="partner_recipient"
+                   t-value="doc.partner_recipient_id"/>
+                <t t-foreach="range(doc.order_id.company_id.no_of_packaging_prints)" t-as="num">
+                    <div id="informations" class="row mt22 mb22 col-xs-12 font-italic" style="font-family: Lucia Grande">
+                        <p style="page-break-after:always;">
+                            <table class="table table-sm table-borderless">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.name"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.street"/><br/>
+                                        <t t-if="doc.warehouse_id.partner_id.zip">
+                                            <span t-field="doc.warehouse_id.partner_id.zip"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.state_id">
+                                            <span t-field="doc.warehouse_id.partner_id.state_id"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.city">
+                                            <span t-field="doc.warehouse_id.partner_id.city"/>
+                                        </t>
+                                        <span t-field="doc.warehouse_id.partner_id.country_id"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 45px">
+                                <tr class="" style="margin-top: 30px">
+                                    <td width="40%" style="text-right">
+                                        <div t-field="doc.partner_recipient_id"
+                                             t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}'/>
+                                    </td>
+                                    <td width="5%"></td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.name"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.street"/><br/>
+                                        <t t-if="doc.warehouse_id.partner_id.zip">
+                                            <span t-field="doc.warehouse_id.partner_id.zip"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.state_id">
+                                            <span t-field="doc.warehouse_id.partner_id.state_id"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.city">
+                                            <span t-field="doc.warehouse_id.partner_id.city"/>
+                                        </t>
+                                        <span t-field="doc.warehouse_id.partner_id.country_id"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 40px">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.partner_recipient_id.city"/><br/>
+                                        <span t-field="doc.partner_recipient_id.country_id"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 30px">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.city"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.country_id"/>
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 130px">
+                                <tr class="" style="">
+                                    <td width="20%">Ordernummer: </td>
+                                    <td width="1%"></td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.order_id"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 20px">
+                                <t t-foreach="doc.packaging_line_ids" t-as="line">
+                                    <t t-if="line.code">
+                                        <tr class="" style="">
+                                            <td width="23%"></td>
+                                            <td></td>
+                                            <td width="50%" style="text-right">
+                                                <span t-field="line.description"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 280px">
+                                <tr class="" style="">
+                                    <td width="20%">Telefoonnummer: </td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 85px">
+                                <tr class="" style="">
+                                    <td width="6%"></td>
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.order_id.incoterm"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 53px">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.city"/>
+                                    </td>
+                                    <td width="3%"></td>
+                                    <td width="27%">
+                                        <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')" t-options='{"widget": "date"}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm table-borderless" style="margin-top: 40px">
+                                <tr class="" style="">
+                                    <td width="40%" style="text-right">
+                                        <span t-field="doc.warehouse_id.partner_id.name"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.street"/><br/>
+                                        <t t-if="doc.warehouse_id.partner_id.zip">
+                                            <span t-field="doc.warehouse_id.partner_id.zip"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.state_id">
+                                            <span t-field="doc.warehouse_id.partner_id.state_id"/>
+                                        </t>
+                                        <t t-if="doc.warehouse_id.partner_id.city">
+                                            <span t-field="doc.warehouse_id.partner_id.city"/>
+                                        </t>
+                                        <span t-field="doc.warehouse_id.partner_id.country_id"/><br/>
+                                        <span t-field="doc.warehouse_id.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+                    </div>
+                </t>
+                <div class="oe_structure"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

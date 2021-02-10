@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Lead fields fixed -->
+        <record id="base_sync_fields_lead_name" model="base.sync.fields">
+            <field name="name">Name: first name + last name</field>
+            <field name="odoo_field_name">Name</field>
+            <field name="technical_name">name</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_company" model="base.sync.fields">
+            <field name="name">Company</field>
+            <field name="odoo_field_name">Company</field>
+            <field name="technical_name">company</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_title" model="base.sync.fields">
+            <field name="name">Title</field>
+            <field name="odoo_field_name">Job Position</field>
+            <field name="technical_name">title</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_email" model="base.sync.fields">
+            <field name="name">E-mail address</field>
+            <field name="odoo_field_name">Email</field>
+            <field name="technical_name">email</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_mobile" model="base.sync.fields">
+            <field name="name">Phone: Mobile</field>
+            <field name="odoo_field_name">Mobile</field>
+            <field name="technical_name">mobile</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_phone" model="base.sync.fields">
+            <field name="name">Phone: Work</field>
+            <field name="odoo_field_name">Phone</field>
+            <field name="technical_name">phone</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_street" model="base.sync.fields">
+            <field name="name">Address: Address</field>
+            <field name="odoo_field_name">Street</field>
+            <field name="technical_name">line1</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_city" model="base.sync.fields">
+            <field name="name">Address: City</field>
+            <field name="odoo_field_name">City</field>
+            <field name="technical_name">city</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_zip" model="base.sync.fields">
+            <field name="name">Address: Zip / Postal Code</field>
+            <field name="odoo_field_name">ZIP</field>
+            <field name="technical_name">postal_code</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_state" model="base.sync.fields">
+            <field name="name">Address: State / Region</field>
+            <field name="odoo_field_name">State</field>
+            <field name="technical_name">state</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+        <record id="base_sync_fields_lead_country" model="base.sync.fields">
+            <field name="name">Address: Country</field>
+            <field name="odoo_field_name">Country</field>
+            <field name="technical_name">country</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        
+        <record id="base_sync_fields_lead_linkedin" model="base.sync.fields">
+            <field name="name">LinkedIn</field>
+            <field name="odoo_field_name">LinkedIn</field>
+            <field name="technical_name">linkedin</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_website" model="base.sync.fields">
+            <field name="name">Website</field>
+            <field name="odoo_field_name">Website</field>
+            <field name="technical_name">website</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_add_to_sea" model="base.sync.fields">
+            <field name="name">Add to SEA</field>
+            <field name="odoo_field_name">Opt-Out</field>
+            <field name="technical_name">add_to_sea</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_group" model="base.sync.fields">
+            <field name="name">GROUP</field>
+            <field name="odoo_field_name">Personal Tags</field>
+            <field name="technical_name">group</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_tags" model="base.sync.fields">
+            <field name="name">Tags</field>
+            <field name="odoo_field_name">Personal Tags</field>
+            <field name="technical_name">tags</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_source" model="base.sync.fields">
+            <field name="name">Source</field>
+            <field name="odoo_field_name">Personal Tags</field>
+            <field name="technical_name">source</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="False"></field>
+        </record>
+
+        <record id="base_sync_fields_lead_aanhef" model="base.sync.fields">
+            <field name="name">Aanhef</field>
+            <field name="odoo_field_name">Title</field>
+            <field name="technical_name">aanhef</field>
+            <field name="model_of_field">lead</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record> 
+        <!-- End lead fields -->
+
+        <!-- Notes fields -->
+         <record id="base_sync_fields_note_content30" model="base.sync.fields">
+            <field name="name">Content (first 30 letters)</field>
+            <field name="odoo_field_name">Call Summary</field>
+            <field name="technical_name">contect30</field>
+            <field name="model_of_field">note</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+        <record id="base_sync_fields_note_content" model="base.sync.fields">
+            <field name="name">Content (Entire content)</field>
+            <field name="odoo_field_name">Description</field>
+            <field name="technical_name">content</field>
+            <field name="model_of_field">note</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+        <record id="base_sync_fields_note_create_Date" model="base.sync.fields">
+            <field name="name">Creation date</field>
+            <field name="odoo_field_name">Date</field>
+            <field name="technical_name">create_date</field>
+            <field name="model_of_field">note</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+        <!-- End -->
+
+        <!-- Task fields -->
+        <record id="base_sync_fields_task_task_content" model="base.sync.fields">
+            <field name="name">Task content</field>
+            <field name="odoo_field_name">Call Summery/Description</field>
+            <field name="technical_name">content</field>
+            <field name="model_of_field">task</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record>
+
+        <record id="base_sync_fields_task_due_date" model="base.sync.fields">
+            <field name="name">Next Action Date</field>
+            <field name="odoo_field_name">Next Action Date</field>
+            <field name="technical_name">due_date</field>
+            <field name="model_of_field">task</field>
+            <field name="is_customise_field" eval="True"></field>
+        </record> 
+        <!-- End Task field -->
+
+        <record id="ir_cron_sync_leads" model="ir.cron">
+            <field name="name">Sync Leads</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+            <field name="model_id" ref="markant_base_sync.model_base_synchronization"/>
+            <field name="state">code</field>
+            <field name="code" eval="'model.sync_leads()'"/>
+        </record>
+    </data>
+</odoo>

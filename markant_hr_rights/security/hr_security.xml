@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <data>
+        <!--
+            Manager + Approver + Validator 
+            can see its lower lever hierarchy employees
+        -->
+
+        <record id="markant_hr_rights.group_hr_supervisor" model="res.groups">
+            <field name="name">Supervisor</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="markant_hr_rights.group_hr_super_manager" model="res.groups">
+            <field name="name">Super Manager</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[
+                                                (4, ref('hr.group_hr_manager')), 
+                                                (4, ref('markant_hr_rights.group_hr_supervisor'))
+                                            ]"/>
+            <field name="comment">the user will be able to access all employees.</field>
+        </record>
+
+        <record id="hr_emp_rule_himself" model="ir.rule">
+            <field name="name">Employee: Himself</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field eval="True" name="global"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="domain_force">
+                [('user_id', '=', user.id)]
+            </field>
+        </record>
+
+        <record id="hr_emp_rule1" model="ir.rule">
+            <field name="name">Employee Rule1</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_supervisor')), (4,ref('hr.group_hr_user')), (4,ref('hr.group_hr_manager')),]"/>
+            <field name="domain_force">
+                ['|',
+                    '|',
+                        ('user_id', '=', user.id),
+                        ('parent_id.user_id', '=', user.id),
+                    '|',
+                        ('approver_user_ids', 'child_of', user.id),
+                        ('validator_user_ids', 'child_of', user.id)
+                ]
+            </field>
+        </record>
+
+        <record id="hr_emp_rule_super_manager" model="ir.rule">
+            <field name="name">Super Manager: See all Employees</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_super_manager'))]"/>
+            <field name="domain_force">
+                [(1, '=', 1)]
+            </field>
+        </record>
+
+        <!-- Employee Leave -->
+        <record id="hr_emp_leave_rule1" model="ir.rule">
+            <field name="name">Own/Approver/Validator Emp Leave</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_supervisor')),(4,ref('hr.group_hr_user')),(4,ref('hr.group_hr_manager')),]"/>
+            <field name="domain_force">
+                [
+                    '|',
+                        ('employee_id.parent_id.user_id', '=', user.id),
+                    '|',
+                        ('employee_id.user_id', '=', user.id),
+                    '|',
+                        ('employee_id.approver_user_ids', 'child_of', user.id),
+                        ('employee_id.validator_user_ids', 'child_of', user.id)
+                ]
+            </field>
+        </record>
+
+        <record id="hr_holiday_rule_super_manager" model="ir.rule">
+            <field name="name">Super Manager: See all Leaves</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_super_manager'))]"/>
+            <field name="domain_force">
+                [(1, '=', 1)]
+            </field>
+        </record>
+
+        <record id="hr_holidays.hr_leave_rule_officer_read" model="ir.rule">
+            <field name="active" eval="False" />
+        </record>
+
+
+        <!-- Contract -->
+
+        <!-- Supervisor, Officer, Manager -->
+        <record id="hr_contract_officer_hirarchy" model="ir.rule">
+            <field name="name">Contract: Supervisor, Officer, Manager</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_supervisor')), (4,ref('hr.group_hr_user')),(4,ref('hr.group_hr_manager')),]"/>
+            <field name="domain_force">
+                ['|',
+                        ('employee_id.user_id', '=', user.id),
+                        ('employee_id.parent_id.user_id', '=', user.id),
+                ]
+            </field>
+        </record>
+                    <!-- '|',
+                        ('employee_id.approver_user_ids', 'child_of', user.id),
+                        ('employee_id.validator_user_ids', 'child_of', user.id) -->
+
+        <record id="hr_contract_rule_super_manager" model="ir.rule">
+            <field name="name">Super Manager: See all Contracts</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="groups" eval="[(4,ref('markant_hr_rights.group_hr_super_manager'))]"/>
+            <field name="domain_force">
+                [(1, '=', 1)]
+            </field>
+        </record>
+    </data>
+
+</odoo>

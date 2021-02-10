@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="snippet_options_inherited" inherit_id="mass_mailing.snippet_options">
+        <xpath expr="div[@data-js='colorpicker']" position="after">
+            <div data-js="field_selection"
+                data-selector="
+                    [data-oe-field='body_html'] > div:not(.o_layout),
+                    [data-oe-field='body_html'] .oe_structure > div,
+                    td, th
+                "
+                data-exclude=".o_mail_no_colorpicker">
+                <li>
+                    <a class="v_paste_value" tabindex="-1" href="#"><i class="fa fa-edit"/>Add Field Value</a>
+                </li>
+            </div>
+        </xpath>
+    </template>
+
+    <!--<template id="assets_backend" name="markant_hr assets" inherit_id="mass_mailing.assets_mail_themes">-->
+        <!--<xpath expr="." position="inside">-->
+            <!--<script type="text/javascript" src="/markant_mass_mail/static/src/js/mass_mail.js"></script>-->
+        <!--</xpath>-->
+    <!--</template>-->
+</odoo>

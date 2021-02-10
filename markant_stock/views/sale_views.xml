@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_view_order_form_section" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@widget='section_and_note_text']" position="after">
+                <field name="section_name"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="delivery_option"/>
+                <field name="client_order_ref"/>
+                <field name="block_do"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='discount']" position="after">
+                <field name="delivery_option" invisible="1"/>
+                <field name="allow_partial" attrs="{'readonly': ['|', ('delivery_option', '=', False), ('delivery_option', '=', 'full')]}" force_save="1"/>
+            </xpath>
+            <xpath expr="//group[@name='sales_person']/field[@name='client_order_ref']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="after">
+                <field name="delivery_date" attrs="{'readonly': ['|', ('state', 'in', ('done', 'cancel')), ('delivery_option', '=', False)]}" force_save="1"/>
+            </xpath>
+            <field name="partner_shipping_id" position="after">
+                <field name="no_auto_invoice"/>
+            </field>
+            <xpath expr="//page[@name='order_lines']" position="inside">
+                <field name="order_line_notes" class="oe_inline" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

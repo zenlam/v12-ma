@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_type_form_inherit_delivery_order" model="ir.ui.view">
+        <field name="name">Delivery Types</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="is_delivery_order"/>
+                <field name="trigger_auto_reserve"/>
+                <field name="is_partner_readonly"/>
+                <field name="is_commitment_date_match"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="markant_view_picking_form_misc" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_type']" position="after">
+                <field name="contact_person_id"/>
+            </xpath>
+            <xpath expr="//field[@name='date_expected']" position="before">
+                <field name="article_description"/>
+                <field name="allow_partial"/>
+            </xpath>
+            <xpath expr="//field[@name='date_expected']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve']" position="attributes">
+                <attribute name="groups">markant_stock.group_allow_to_see_unreserve_button_ms</attribute>
+                <attribute name="attrs">{'invisible': ['|', '|', '|',
+                    ('picking_type_code', '=', 'incoming'),
+                    ('is_locked', '=', False), '&amp;', ('state', 'not in', ('assigned', 'partially_available', 'confirmed')),
+                    ('move_type', '!=', 'one'), '&amp;', ('state', 'not in', ('assigned', 'partially_available', 'confirmed')),
+                    ('move_type', '=', 'one')]}</attribute>
+            </xpath>
+            <field name="scheduled_date" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <xpath expr="//field[@name='scheduled_date']" position="after">
+                <field name="so_commitment_date" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="carrier_name_id"/>
+                <field name="delivery_option" readonly="1"/>
+                <field name="block_do" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_invoice_id"/>
+                <field name="is_partner_readonly" invisible="1"/>
+                <field name="is_commitment_date_match" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_partner_readonly', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//notebook//page[@name='extra']/group/group/field[@name='move_type']" position="after">
+                <field name="payment_term_id" invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="last_print_date" readonly="1"/>
+                <field name="no_of_print" readonly="1"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='extra']/group/group/field[@name='move_type']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button type="object" name="action_view_packaging_picking" class="oe_stat_button" icon="fa-barcode">
+                    <field name="packaging_count" widget="statinfo" string="Packaging"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='note']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+ 
+    <record id="vpicktree_inherit_markant_stock" model="ir.ui.view">
+        <field name="name">stock.picking.tree.inherit.markant.stock</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="no_of_print" readonly="1"/>
+                <field name="last_print_date" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

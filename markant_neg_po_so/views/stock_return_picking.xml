@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_return_picking_form_inherit_negative_po" model="ir.ui.view">
+            <field name="name">negative.stock.return.picking.stock.account.form</field>
+            <field name="inherit_id" ref="stock_account.view_stock_return_picking_form_inherit_stock_account"/>
+            <field name="model">stock.return.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="to_hide_column" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_return_moves']/tree" position="inside">
+                    <field name="to_create_neg" attrs="{'column_invisible': [('parent.to_hide_column', '=', True)]}"/>
+                </xpath>
+            </field>
+    </record>
+
+</odoo>

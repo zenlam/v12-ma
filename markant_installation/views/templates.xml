@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_common" name="Portal Common Assets" inherit_id="portal.assets_common">
+        <xpath expr="//script[@src='/web/static/lib/jSignature/jSignatureCustom.js']" position="attributes">
+            <attribute name="src">/markant_installation/static/src/js/jSignature.js</attribute>
+        </xpath>
+    </template>
+
+    <template id="assets_backend" name="Backend Assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/markant_installation/static/src/css/markant_installation.css" />
+            <script type="text/javascript" src="/markant_installation/static/src/js/markant_installation.js"/>
+        </xpath>
+    </template>
+</odoo>

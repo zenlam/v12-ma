@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="markant_unreserve_picking_form" model="ir.ui.view">
+        <field name="name">markant.reserve.sale.picking.form</field>
+        <field name="model">reserve.sale.picking</field>
+        <field name="arch" type="xml">
+            <form string="Un-reserve/Reserve Transfers">
+                <group>
+                    <field name="picking_ids" widget="many2many_tags"/>
+                    <field name="sale_order_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_unreserve_and_reserve" type="object"
+                            string="Proceed" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action -->
+    <record model="ir.actions.act_window" id="merge_quotations_act">
+        <field name="name">Un-reserve/Reserve Transfers</field>
+        <field name="res_model">reserve.sale.picking</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="markant_stock.markant_unreserve_picking_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Act Window: Un-reserve Menu -->
+    <act_window id="act_do_open_reservation_wizard"
+                name="Un-reserve/Reserve Transfers"
+                res_model="reserve.sale.picking"
+                src_model="stock.picking"
+                view_mode="form" view_type="form"
+                groups="markant_stock.group_product_reservation_manager"
+                target="new" multi="True"/>
+
+</odoo>

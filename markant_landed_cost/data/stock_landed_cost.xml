@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_cron_markant_landed_cost_old_data_update" model="ir.cron">
+        <field name="name">Markant Landed Cost: Update SO/PO Ref in Acc Move Line</field>
+        <field name="model_id" ref="stock_landed_costs.model_stock_landed_cost"/>
+        <field name="state">code</field>
+        <field name="code">model._update_ref_in_old_data()</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">1</field>
+        <field name="active">False</field>
+    </record>
+
+</odoo>

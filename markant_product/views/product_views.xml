@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_product_variant_easy_edit_view_pcf_lookup" model="ir.ui.view">
+        <field name="name">markant.product.variant.easy.edit.pcf.lookup</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='codes']" position="inside">
+                <field name="pcf_lookup" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_form_view_inherit" model="ir.ui.view">
+        <field name="name">markant.product.form.view.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='toggle_active']" position="after">
+                <button name="action_used_in_bom_configurator" type="object"
+                        class="oe_stat_button" icon="fa-level-up"
+                        attrs="{'invisible':['|',('type', 'not in', ['product', 'consu']), ('used_in_bom_config_count', '=', 0)]}">
+                    <field string="Used in Config Template" name="used_in_bom_config_count" widget="statinfo" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_template_form_view" model="ir.ui.view">
+        <field name="name">markant.product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="configurable_ok"/>
+                    <label for="configurable_ok"/><br/>
+                    <field name="obsolete_product"/>
+                    <label for="obsolete_product"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='product_variant_id']" position="after">
+                <field name="free_stock_qty" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_template_bom_button_view" model="ir.ui.view">
+        <field name="name">markant.product.template.bom.button</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='toggle_active']" position="before">
+                <button name="action_used_in_bom_configurator" type="object"
+                        class="oe_stat_button" icon="fa-level-up"
+                        attrs="{'invisible':['|',('type', 'not in', ['product', 'consu']), ('used_in_bom_config_count', '=', 0)]}">
+                    <field string="Used in Config Template" name="used_in_bom_config_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_template_only_form_view" model="ir.ui.view">
+        <field name="name">markant.product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='attribute_id']" position="before">
+                <field name="sequence" widget="handle"/>
+            </xpath>
+            <xpath expr="//field[@name='value_ids']" position="after">
+                <field name="is_display"/>
+                <field name="include_inside_d"/>
+                <field name="excl_desc"/>
+                <field name="desc_sequence"/>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('product_variant_count', '>', 1), ('configurable_ok', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='barcode']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('product_variant_count', '>', 1), ('configurable_ok', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="old_item_number"/>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="before">
+                <field name="first_digit_article_code"
+                       attrs="{'invisible': [('configurable_ok', '!=', True)]}"/>
+            </xpath>
+            <xpath expr="//page[@name='variants']" position="after">
+                <page name="extra_configuration" string="Configuration" attrs="{'invisible': ['|', ('sale_ok','=',False), ('configurable_ok','=',False)]}">
+                    <group name="extra_steps" string="Steps">
+                        <field name="product_config_steps_ids" context="{'default_product_tmpl_id': active_id}" nolabel="1">
+                            <tree string="Configuration Steps" editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="step_id"/>
+                                <field name="product_tmpl_id" invisible="1"/>
+                                <field name="attribute_ids" widget="many2many_tags" options="{'no_create': True}" context="{'configurator': True, 'product_tmpl_id': product_tmpl_id, 'all_steps': parent.product_config_steps_ids}"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="markant_product_template_search_view" model="ir.ui.view">
+        <field name="name">markant.product.template.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_to_purchase']" position="after">
+                 <filter string="Configurable" name="filter_to_configurable"
+                         domain="[('configurable_ok','=',True)]"/>
+            </xpath>
+            <xpath expr="//field[@name='pricelist_id']" position="after">
+                <field name="old_item_number" string="Old Item Number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="act_product_template_duplicate_bom" model="ir.actions.server">
+        <field name="name">Duplicate with BoM</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_duplicate_with_bom()</field>
+    </record>
+
+    <!-- Tree View: Product Variants Manual Creation -->
+    <record id="view_product_manual_creation_tree" model="ir.ui.view">
+        <field name="name">product.manual.creation.tree</field>
+        <field name="model">product.manual.creation</field>
+        <field name="arch" type="xml">
+            <tree string="Product Variants Manual Creation" editable="bottom">
+                <field name="product_tmpl_id" options="{'no_create': True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="value_ids" widget="many2many_tags"
+                       attrs="{'readonly': [('state', '!=', 'draft')]}"
+                       domain="[('product_tmpl_id','=',product_tmpl_id)]"
+                       options="{'no_create': True}"/>
+                <field name="state"/>
+                <field name="remarks"/>
+                <field name="product_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View: Product Variants Manual Creation -->
+    <record id="view_product_manual_creation_search" model="ir.ui.view">
+        <field name="name">product.manual.creation.search</field>
+        <field name="model">product.manual.creation</field>
+        <field name="arch" type="xml">
+            <search string="Search Phonecalls">
+                <field name="product_tmpl_id" string="Product"/>
+                <field name="state"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage" name="state" domain="[]"
+                            context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action: Product Variants Manual Creation -->
+    <record id="action_product_variant_manual_creation" model="ir.actions.act_window">
+        <field name="name">Product Variants Manual Creation</field>
+        <field name="res_model">product.manual.creation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Server Action: Product Variants Manual Creation Change Stage -->
+    <record id="server_action_product_variant_manual_creation" model="ir.actions.server">
+        <field name="name">Set to Waiting Stage</field>
+        <field name="model_id" ref="markant_product.model_product_manual_creation"/>
+        <field name="binding_model_id" ref="markant_product.model_product_manual_creation"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_change_stage()</field>
+    </record>
+
+    <!-- Server Action: Product Variants Manual Creation -->
+    <record id="server_action_product_variant_manual_creation_cron" model="ir.actions.server">
+        <field name="name">Create Product Variant</field>
+        <field name="model_id" ref="markant_product.model_product_manual_creation"/>
+        <field name="binding_model_id" ref="markant_product.model_product_manual_creation"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_product_variant_manual()</field>
+    </record>
+
+    <!-- Menu: Product Variants Manual Creation -->
+    <menuitem id="menu_product_variant_manual_create" name="Product Variants Manual Creation"
+              action="action_product_variant_manual_creation"
+              parent="stock.menu_stock_inventory_control"/>
+
+</odoo>

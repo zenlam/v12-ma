@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')), ('is_neg_so', '=', False)]</field>
+    </record>
+
+    <record id="negative_sale_form_action" model="ir.actions.act_window">
+        <field name="name">Negative SO</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')), ('is_neg_so', '=', True)]</field>
+        <field name="context">{'no_create': True}</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+    </record>
+
+    <menuitem action="negative_sale_form_action" id="menu_negative_sale_form_action" parent="sale.sale_order_menu" sequence="2"/>
+
+    <record id="all_sale_form_action" model="ir.actions.act_window">
+        <field name="name">All SO(s)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+    </record>
+
+    <menuitem action="all_sale_form_action" id="menu_all_sale_form_action" parent="sale.sale_order_menu" sequence="2"/>
+
+    <record id="negative_sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="is_neg_so" attrs="{'invisible': [('is_neg_so', '=', False)]}"/>
+                <field name="follow_up" attrs="{'invisible': [('is_neg_so', '=', False)]}"/>
+                <field name="origin_picking" attrs="{'invisible': [('is_neg_so', '=', False)]}"/>
+                <field name="origin_so" attrs="{'invisible': [('is_neg_so', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button type="object" name="action_view_neg_so" class="oe_stat_button" icon="fa-minus-square" attrs="{'invisible':[('neg_so_count', '=', 0)]}">
+                    <field name="neg_so_count" widget="statinfo" string="Negative SO"/>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('is_neg_so', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//tree//field[@name='qty_delivered']" position="attributes">
+                <attribute name="attrs">{'column_invisible': ['|', ('parent.state', 'not in', ['sale', 'done']), ('parent.is_neg_so', '=', True)], 'readonly': [('qty_delivered_method', '!=', 'manual')]}</attribute>
+            </xpath>
+            <xpath expr="//tree//field[@name='qty_invoiced']" position="attributes">
+                <attribute name="attrs">{'column_invisible': ['|', ('parent.state', 'not in', ['sale', 'done']), ('parent.is_neg_so', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="negative_sale_order_view_form_inherit2" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('invoice_status', '!=', 'no'), ('state', '!=', 'sale'), ('is_neg_so', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

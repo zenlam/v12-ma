@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<record id="markant_mass_mailing_own_rule" model="ir.rule">-->
+        <!--<field name="name">Mass Mailing Own</field>-->
+        <!--<field name="model_id" ref="mass_mailing.model_mail_mass_mailing"/>-->
+        <!--<field name="domain_force">[('email_from', 'ilike', user.partner_id.email)]</field>-->
+        <!--<field name="global" eval="True"/>-->
+    <!--</record>-->
+
+    <!--<record id="markant_mass_mailing_statistics_own_rule" model="ir.rule">-->
+        <!--<field name="name">Mass Mailing Statistics Own</field>-->
+        <!--<field name="model_id" ref="mass_mailing.model_mail_mail_statistics"/>-->
+        <!--<field name="domain_force">[('mass_mailing_id.email_from', 'ilike', user.partner_id.email)]</field>-->
+        <!--<field name="global" eval="True"/>-->
+    <!--</record>-->
+</odoo>

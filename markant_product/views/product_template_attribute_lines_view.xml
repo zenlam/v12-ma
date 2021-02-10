@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="product_tmpl_attribute_tree_view" model="ir.ui.view">
+        <field name="name">product.tmpl.attribute.tree</field>
+        <field name="model">product.template.attribute.line</field>
+        <field name="arch" type="xml">
+            <tree string="Product Template Attribute Lines" editable="bottom">
+                <field name="attribute_id"/>
+                <field name="product_template_value_ids" widget="many2many_tags"/>
+                <field name="product_tmpl_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_tmpl_attribute_action" model="ir.actions.act_window">
+        <field name="name">Product Template Attribute Lines</field>
+        <field name="res_model">product.template.attribute.line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_product_tmpl_attribute_action"
+              action="markant_product.product_tmpl_attribute_action"
+              parent="sale_management.menu_product_settings"
+              groups="base.group_system"/>
+
+    <record id="markant_product_template_attribute_value_view_tree" model="ir.ui.view">
+        <field name="name">markant.product.template.attribute.value.view.tree</field>
+        <field name="model">product.template.attribute.value</field>
+        <field name="groups_id" eval="[(4, ref('markant_product.group_attribute_values_config'))]"/>
+        <field name="inherit_id" ref="product.product_template_attribute_value_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

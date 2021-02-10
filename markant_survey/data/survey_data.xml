@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_survey_form" model="ir.sequence">
+        <field name="name">Sequence for name of survey form</field>
+        <field name="code">seq.survey</field>
+        <field name="prefix">SF/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_call_visit_report">
+        <field name="name">Call/Visit Report</field>
+        <field name="description">Setting group for call/visit report</field>
+        <field name="sequence">25</field>
+    </record>
+
+    <record id="group_call_visit_sales" model="res.groups">
+        <field name="name">Sales</field>
+        <field name="category_id" ref="markant_crm.module_category_call_visit_report"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_call_visit_purchase" model="res.groups">
+        <field name="name">Purchase</field>
+        <field name="category_id" ref="markant_crm.module_category_call_visit_report"/>
+        <field name="implied_ids" eval="[(4, ref('markant_crm.group_call_visit_sales'))]"/>
+    </record>
+
+    <record id="group_call_visit_management" model="res.groups">
+        <field name="name">Management</field>
+        <field name="category_id" ref="markant_crm.module_category_call_visit_report"/>
+        <field name="implied_ids" eval="[(4, ref('markant_crm.group_call_visit_purchase'))]"/>
+    </record>
+
+    <record id="group_call_visit_director" model="res.groups">
+        <field name="name">Director</field>
+        <field name="category_id" ref="markant_crm.module_category_call_visit_report"/>
+        <field name="implied_ids" eval="[(4, ref('markant_crm.group_call_visit_management'))]"/>
+    </record>
+
+    <record id="markant_opportunity_portal_dealer_rule" model="ir.rule">
+        <field name="name">Opportunities Dealer Portal</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="domain_force">[('dealer_partner_ids', 'in', [user.partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="markant_opportunity_info_dealer_rule" model="ir.rule">
+        <field name="name">Opportunities Info Dealer Portal</field>
+        <field name="model_id" ref="markant_crm.model_dealers_opportunity_info"/>
+        <field name="domain_force">[('dealer_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="markant_opportunity_portal_influencer_rule" model="ir.rule">
+        <field name="name">Opportunities Influencer Portal</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="domain_force">[('influencer_ids', 'in', [user.partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="security_phonecalls_by_group" model="ir.rule">
+        <field name="name">Phonecalls Filter</field>
+        <field name="model_id" ref="voip.model_voip_phonecall"/>
+        <field name="domain_force">[('real_creation_group', 'in', user.groups_id.ids)]</field>
+    </record>
+
+</odoo>

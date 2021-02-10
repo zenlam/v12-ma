@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_mrp_product_template_form_view" model="ir.ui.view">
+        <field name="name">markant.mrp.product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='options']" position="inside">-->
+<!--                <div>-->
+<!--                    <field name="kit_component"/>-->
+<!--                    <label for="kit_component"/>-->
+<!--                </div>-->
+<!--            </xpath>-->
+            <xpath expr="//div[@name='options']" position="replace">
+                <div name="options" groups="base.group_user" style="width: 60%">
+                    <div class="float-left">
+                        <field name="sale_ok"
+                               attrs="{'readonly': [('mrp_cost_ok', '=', True)]}"/>  <!-- product module -->
+                        <label for="sale_ok"/>
+                        <br/>
+
+                        <field name="purchase_ok"
+                               attrs="{'readonly': [('mrp_cost_ok', '=', True)]}"/>  <!-- product module -->
+                        <label for="purchase_ok"/>
+                        <br/>
+
+                        <field name="can_be_expensed"
+                               attrs="{'readonly': ['|', ('mrp_cost_ok', '=', True),
+                               ('kit_component', '=', True)]}"/> <!-- hr_expense module -->
+                        <label for="can_be_expensed"/>
+                        <br/>
+
+                        <field name="kit_component"/>  <!-- markant_mrp module -->
+                        <label for="kit_component"/>
+                    </div>
+                    <div class="float-right">
+                        <field name="landed_cost_ok"
+                               attrs="{'invisible': [('type', 'not in',
+                               ['product', 'consu', 'service'])],
+                               'readonly': [('kit_component', '=', True)]}"/>  <!-- stock_landed_costs module -->
+                        <label for="landed_cost_ok"
+                               attrs="{'invisible':[('type', 'not in',
+                               ['product', 'consu', 'service'])]}"/>
+                        <br/>
+
+                        <field name="mrp_cost_ok"
+                               attrs="{'readonly': [('kit_component', '=', True)]}"/>  <!-- mrp_labour_cost module -->
+                        <label for="mrp_cost_ok"/>
+                        <br/>
+
+                        <field name="configurable_ok"
+                               attrs="{'readonly': ['|', ('mrp_cost_ok', '=', True),
+                               ('kit_component', '=', True)]}"/>  <!-- markant_product module -->
+                        <label for="configurable_ok"/>
+                        <br/>
+
+                        <field name="obsolete_product"
+                               attrs="{'readonly': [('kit_component', '=', True)]}"/>  <!-- markant_product module -->
+                        <label for="obsolete_product"/>
+                        <br/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

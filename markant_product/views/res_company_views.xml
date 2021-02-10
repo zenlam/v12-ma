@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="markant_view_company_form_inherit_social_media" model="ir.ui.view">
+        <field name="name">markant.res.company.form.inherit.social.media</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="social_media.view_company_form_inherit_social_media"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='social_media']" position="after">
+                <group string="Media Bank" name="media_bank">
+                    <field name="media_bank_start_url" placeholder="https://mediabank.markantoffice.com/files/webshop/large"/>
+                    <field name="media_bank_end_url" placeholder="jpg"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
