@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_sale_order_form_inherit_credit_limit_do" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.credit.limit.do</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+        	<field name="partner_shipping_id" position="after">
+                <field name="cr_limit_finance_block" attrs="{'readonly':True}"/>
+                <field name="cl_finance_block_reason" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_cr_limit_finance_block_readonly" model="ir.ui.view">
+        <field name="name">so.inherit.credit.limit.do.readonly.cr_limit_finance_block</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="control_credit_limit_do.view_sale_order_form_inherit_credit_limit_do" />
+        <field name="groups_id" eval="[(6, 0, [ref('control_credit_limit.group_sale_manager_credit_limit')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cr_limit_finance_block']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <act_window id="action_list_finance_sale_to_approve"
+                name="Orders to Approve : Credit Limit Issues"
+                res_model="sale.order"
+                view_id="control_credit_limit.sale_order_to_approve"
+                view_mode="tree,form"
+                domain="[('cr_limit_finance_block', '=', True)]"/>
+
+    <menuitem id="control_credit_limit.menu_list_sale_to_approve"
+              name="Finance Block Sales Order"
+              action="action_list_finance_sale_to_approve"
+              parent="control_credit_limit.my_credit_limit_menu"
+              groups="control_credit_limit.group_sale_manager_credit_limit"
+              sequence="1"/>
+
+    <act_window id="action_list_finance_block_urgent_so"
+                name="Orders to Approve : Finance Block SO Urgent"
+                res_model="sale.order"
+                view_id="control_credit_limit.sale_order_to_approve"
+                view_mode="tree,form"
+                domain="[('cr_limit_finance_block', '=', True), ('finance_block_urgent_so', '=', True)]"/>
+
+    <menuitem id="menu_list_finance_block_urgent_so"
+              name="Finance Block SO Urgent"
+              action="action_list_finance_block_urgent_so"
+              parent="control_credit_limit.my_credit_limit_menu"
+              groups="control_credit_limit.group_sale_manager_credit_limit"
+              sequence="1"/>
+</odoo>

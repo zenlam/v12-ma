@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_type_form_inherit_credit_limit_do" model="ir.ui.view">
+        <field name="name">Operation Types</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <field name="show_reserved" position="after">
+                <field name="credit_limit_check"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- inherit the view to fulfill do requirement -->
+    <record id="my_credit_limit_confirm_wizard_inherit_credit_limit_do" model="ir.ui.view">
+        <field name="name">Confirming Sale Order When Credit is Over Limit
+        </field>
+        <field name="model">sale.control.limit.wizard</field>
+        <field name="inherit_id" ref="control_credit_limit.my_credit_limit_confirm_wizard"/>
+        <field name="arch" type="xml">
+            <field name="my_credit_limit" position="after">
+                <field name="picking_id" invisible="1"/>
+            </field>
+            <xpath expr="//form/group[1]" position="attributes">
+                <attribute name="attrs">{'invisible': [('picking_id','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/group[1]" position="after">
+                <group attrs="{'invisible': [('picking_id','=',False)]}">
+                    <span> The following customer is about or exceeded their credit limit. You need to confirm their Transfer Order or Increase their Credit Limit: </span>
+                </group>
+            </xpath>
+
+            <xpath expr="//form/footer/button[@name='exceed_limit_approve']" position="attributes">
+                <attribute name="attrs">{'invisible': [('picking_id','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/footer/button[@name='exceed_limit_approve']" position="after">
+                <button name="exceed_limit_approve_do"
+                    string="Approve Transfer" type="object"
+                    class="oe_highlight" attrs="{'invisible': [('picking_id','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="my_credit_limit_wizard_inherit_credit_limit_do" model="ir.ui.view">
+        <field name="name">Request Approval for Sale Order with Credit over Limit </field>
+        <field name="model">sale.control.limit.wizard</field>
+        <field name="inherit_id" ref="control_credit_limit.my_credit_limit_wizard"/>
+        <field name="arch" type="xml">
+            <field name="my_credit_limit" position="after">
+                <field name="picking_id" invisible="1"/>
+            </field>
+            <xpath expr="//form/group[1]" position="attributes">
+                <attribute name="attrs">{'invisible': [('picking_id','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/group[1]" position="after">
+                <group attrs="{'invisible': [('picking_id','=',False)]}">
+                    <span> The following customer is about or exceeded their credit limit. This operation needs an Authorized Employee to approve the Transfer:</span>
+                </group>
+            </xpath>
+            <xpath expr="//form/footer/button[@name='agent_exceed_limit']" position="attributes">
+                <attribute name="attrs">{'invisible': [('picking_id','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/footer/button[@name='agent_exceed_limit']" position="after">
+                <button name="agent_exceed_limit_do"
+                    string="Request Manager to Approve Transfer"
+                    type="object" class="oe_highlight" attrs="{'invisible': [('picking_id','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="my_credit_limit_confirm_transfer_approve_wizard">
+        <field name="name">Request Approval for Transfer with Credit over Limit
+        </field>
+        <field name="model">sale.control.limit.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="picking_id" invisible="1"/>
+                <group>
+                    <span>The following customer is about or exceeded their credit limit. This operation needs an Authorized Employee to approve the Transfer:
+                    </span>
+                </group>
+                <footer>
+                    <button string="Cancel" special="cancel"
+                            class="oe_highlight"/>
+                    <button name="agent_exceed_limit_do"
+                        string="Request Manager to Approve Transfer"
+                        type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="transfer_credit_limit_menu"
+              name="Credit Limit"
+              parent="stock.menu_stock_root"
+              groups="control_credit_limit_do.group_transfer_manager_credit_limit"
+              sequence="3"/>
+
+    <act_window id="action_list_transfer_to_approve"
+                name="Transfer to Approve : Credit Limit Issues"
+                res_model="stock.picking"
+                view_id="stock.vpicktree"
+                view_mode="tree,form"
+                domain="[('need_approval', '=', True), ('state', 'not in', ('done','cancel'))]"/>
+
+    <menuitem id="menu_list_transfer_to_approve"
+              name="Transfer to Approve"
+              action="action_list_transfer_to_approve"
+              parent="transfer_credit_limit_menu"
+              groups="control_credit_limit_do.group_transfer_manager_credit_limit"
+              sequence="1"/>
+
+</odoo>

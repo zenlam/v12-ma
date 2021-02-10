@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_transfer_manager_credit_limit" model="res.groups">
+        <field name="name">Transfer Manager (Credit Limit)</field>
+        <field name="comment">Access right to approve transfer.</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_change_credit_inherit_add_fields" model="ir.ui.view">
+        <field name="name">Controlling the Credit Limit for Partners</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="control_credit_limit.view_partner_change_credit"/>
+        <field name="arch" type="xml">
+            <field name="credit" position="attributes">
+                <attribute name="string">Invoice Amt</attribute>
+            </field>
+            <field name="credit" position="before">
+                <field name="cl_order_amount" attrs="{'readonly':True}" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+            <field name="my_credit_limit" position="after">
+                <field name="cl_space" attrs="{'readonly':True}" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="credit_days"/>
+            </field>
+            <field name="my_credit_limit" position="attributes">
+                <attribute name="widget">monetary</attribute>
+                <attribute name="options">{'currency_field': 'currency_id'}</attribute>
+            </field>
+            <field name="check_credit_limit" position="after">
+                <field name="bypass_so" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="email_template_cl_so_approved" model="mail.template">
+            <field name="name">Delivery can validate now</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="email_from">${(object.company_id.email or '')|safe}</field>
+            <field name="partner_to">${object.sale_id.cl_request_approval_user_id.partner_id.id}</field>
+            <field name="subject">Delivery unblocked now : (Ref ${object.name or 'n/a'})</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        % if object.name:
+            Delivery number <strong>${object.name}</strong>
+        % else:
+            Delivery
+        %endif
+        is no longer blocked by finance department and can now be completed.
+        <br /><br />
+        <p style="margin-top: 24px; margin-bottom: 16px;">
+        <p>
+            <a href="/mail/view?model=stock.picking&amp;res_id=${object.id}"
+                    style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                View Delivery
+            </a>
+        </p>
+    </p>
+    </p>
+</div>
+            </field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_credit_limit_exceed_do" model="mail.template">
+            <field name="name">Credit Limit Exceed</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="email_from">${(object.company_id.email or '')|safe}</field>
+            <field name="subject">Credit Limit Exceed : (Ref ${object.name or 'n/a'})</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Credit Limit exceeded. Will move this SO for Finance attention.
+        <br /><br />
+        <p style="margin-top: 10px; margin-bottom: 16px;">
+        <p>
+            <a href="/mail/view?model=sale.order&amp;res_id=${object.id}"
+                    style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                View Order
+            </a>
+        </p>
+    </p>
+    </p>
+</div>
+            </field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_cl_so_approval_request" model="mail.template">
+            <field name="name">Order Approval is requested</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="email_from">${(object.company_id.email or '')|safe}</field>
+            <field name="subject">Order Approval is requested: (Ref ${object.name or 'n/a'})</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Order Approval is requested for a customer with Credit Limit issue.
+        <br /><br />
+        <p style="margin-top: 10px; margin-bottom: 16px;">
+        <p>
+            <a href="/mail/view?model=sale.order&amp;res_id=${object.id}"
+                    style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                View Order
+            </a>
+        </p>
+    </p>
+    </p>
+</div>
+            </field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+	</data>
+</odoo>
+
