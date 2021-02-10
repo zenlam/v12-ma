@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_claim_category_user,crm.claim.category,model_crm_claim_category,bi_crm_claim.group_claim_user,1,0,0,0
+access_crm_claim_category_manager,crm.claim.category,model_crm_claim_category,bi_crm_claim.group_claim_manager,1,1,1,1
+access_crm_claim_stage_user,crm.claim.stage,model_crm_claim_stage,bi_crm_claim.group_claim_user,1,0,0,0
+access_crm_claim_stage_manager,crm.claim.stage,model_crm_claim_stage,bi_crm_claim.group_claim_manager,1,1,1,1
+access_crm_claim_user,crm.claim,model_crm_claim,bi_crm_claim.group_claim_user,1,0,0,0
+access_crm_claim_manager,crm.claim,model_crm_claim,bi_crm_claim.group_claim_manager,1,1,1,1
